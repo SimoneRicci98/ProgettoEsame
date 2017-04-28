@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>nome programma</title>
+  <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="col-md-offset-3 col-md-4" style="text-align:center"><h1>Nome programma</h1></div>
+        <div class="col-md-4" style="text-align:center; margin-top:2%">
+        <a href="#"><asp:Label ID="Label1" runat="server" Text=""></asp:Label></a>
+            </div>
+        <div class="col-md-12" style="text-align:center">
+            DESCRIZIONE
+        </div>
+        </div>
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
