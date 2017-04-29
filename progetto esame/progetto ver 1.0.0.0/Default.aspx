@@ -4,9 +4,21 @@
     <div class="col-md-12">
         <div class="col-md-4">
             
-            <asp:TextBox ID="txtUtente" runat="server"></asp:TextBox>
+            Inserisci il nome con il quale vuoi essere riconosciuto<br />
+            
+            <asp:TextBox ID="txtUtente" runat="server" OnTextChanged="txtUtente_TextChanged"></asp:TextBox>
+            <asp:Label ID="lblErr2" runat="server" ForeColor="#CC0000"></asp:Label>
             <br />
-            <asp:TextBox ID="txtDomanda" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="MultiLine" Width="122px"></asp:TextBox>
+            Inserisci qui la domanda<br />
+            <asp:TextBox ID="txtDomanda" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="MultiLine" Width="122px" ></asp:TextBox>
+            
+            <asp:Label ID="lblErr1" runat="server" ForeColor="#CC0000"></asp:Label>
+            
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"  Text="Invia" />
+            <br />
+            <br />
+            <asp:ListBox ID="lstDomande" runat="server" Rows="10"></asp:ListBox>
             
         </div>
         <div class="col-md-4">
@@ -14,7 +26,7 @@
         </div>
         <div class="col-md-4">
             qui ci va la zona per chiedere aiuto
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" OnClientClick="OnClientClick = "return confirm('Are you sure you want to delete?');" Text="Button" />
-        </div>
+            </div>
     </div>
+
 </asp:Content>

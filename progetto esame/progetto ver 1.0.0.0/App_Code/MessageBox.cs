@@ -69,7 +69,7 @@ public class MessageBox
             int iMsgCount = queue.Count;
 
             // Use StringBuilder to build up our client slide JavaScript.
-            sb.Append("<script language=/"+"'javascript/'"+">");
+            sb.Append("<script language="+"'javascript'"+">");
             // Loop round registered messages
             string sMsg;
             while (iMsgCount-- > 0)
