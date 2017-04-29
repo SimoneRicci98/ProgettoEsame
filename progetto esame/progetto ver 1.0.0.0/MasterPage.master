@@ -14,18 +14,19 @@
     <form id="form1" runat="server">
     <div class="row">
         <div class="col-md-12">
-        <div class="col-md-offset-3 col-md-4" style="text-align:center"><h1>Nome programma</h1></div>
+        <div class="col-md-offset-3 col-md-4" style="text-align:center"><h1>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<a href ="Default.aspx"> Nome programma</a></h1></div>
         <div class="col-md-4" style="text-align:center; margin-top:2%">
-        <a href="#"><asp:Label ID="Label1" runat="server" Text=""></asp:Label></a>
+        <a href="Reg.aspx"><asp:Label ID="Label1" runat="server" Text=""></asp:Label></a>
             </div>
         <div class="col-md-12" style="text-align:center">
             DESCRIZIONE
         </div>
         </div>
+        <div class="col-md-12">
+          <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+          </asp:ContentPlaceHolder>
+        </div>
 
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
     </div>
     </form>
 </body>
