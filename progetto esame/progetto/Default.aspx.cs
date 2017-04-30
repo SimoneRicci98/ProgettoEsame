@@ -23,7 +23,23 @@ public partial class _Default : System.Web.UI.Page
             lstDomande.Items.Add(rs["Domanda"].ToString());
         }
         help.disconnetti();
-        if(Session["dom"]==null)
+        cont = 0;
+        help.connetti();
+        help.assegnaComando("SELECT Utente,Domanda,Risposta FROM DomandeRisposte ORDER BY Data DESC");
+        rs = help.estraiDati();
+        while (rs.Read() || cont == 10)
+        {
+            if(rs["Risposta"].ToString() != "blank")
+            {
+                cont++;
+                lstRisposte.Items.Add("Rispondo a: " + rs["Utente"].ToString());
+                lstRisposte.Items.Add("Che ha chiesto: " + rs["Domanda"].ToString());
+                lstRisposte.Items.Add(rs["Risposta"].ToString());
+            }
+            
+        }
+        help.disconnetti();
+        if (Session["dom"]==null)
         {
             Session["dom"] = "";
             txtUtente.Text = "Utente anonimo";
@@ -39,12 +55,13 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        DateTime oggi = DateTime.Today;
         string utente = txtUtente.Text;
         string domanda = txtDomanda.Text;
         if(domanda!="" && utente!="")
         {
             help.connetti();
-            help.assegnaComando("INSERT INTO DomandeRisposte(Utente,Domanda,Risposta) VALUES('"+utente+"','"+domanda+"','blank')");
+            help.assegnaComando("INSERT INTO DomandeRisposte(Utente,Domanda,Risposta,Data) VALUES('"+utente+"','"+domanda+"','blank',#"+oggi+"#)");
             help.eseguicomando();
             help.disconnetti();
             txtDomanda.Text = "";

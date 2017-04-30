@@ -18,14 +18,17 @@
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"  Text="Invia" />
             <br />
             <br />
-            <asp:ListBox ID="lstDomande" runat="server" Rows="10"></asp:ListBox>
+            <asp:ListBox ID="lstDomande" runat="server" Rows="10" Width="80%"></asp:ListBox>
             
         </div>
         <div class="col-md-4">
             qui le possibilità di acquisti con le relative caratteristiche 
         </div>
         <div class="col-md-4">
-            qui ci va la zona per chiedere aiuto
+            
+            Qui rispondo alle vostre domande<br />
+            <asp:ListBox ID="lstRisposte" runat="server" Rows="10" Width="80%"></asp:ListBox>
+            
             </div>
     </div>
 

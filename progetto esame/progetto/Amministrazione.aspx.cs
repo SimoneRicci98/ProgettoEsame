@@ -30,7 +30,7 @@ public partial class Amministrazione : System.Web.UI.Page
         else
         {
             MessageBox.Show("NON HAI I PERMESSI NECESSARI PER QUESTA PAGINA");
-            Response.AppendHeader("Refresh", "3;url=Default.aspx");
+            Response.AppendHeader("Refresh", "2;url=Default.aspx");
         }
 
     }
