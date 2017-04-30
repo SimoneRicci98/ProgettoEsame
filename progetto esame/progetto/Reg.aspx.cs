@@ -43,7 +43,7 @@ public partial class Reg : System.Web.UI.Page
                 rs.Read();
                 Session["Utente"] = rs["ID_Utente"].ToString();
                 help.disconnetti();
-                Response.Redirect("Default.aspx");
+                Response.Redirect("Seleziona.aspx");
             }
         }
         catch

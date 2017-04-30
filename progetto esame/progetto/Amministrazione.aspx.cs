@@ -50,7 +50,7 @@ public partial class Amministrazione : System.Web.UI.Page
         try
         {
             string utente;
-            string domanda = lstDomande.SelectedValue;
+            string domanda = lstDomande.SelectedIndex.ToString();
             help.connetti();
             help.assegnaComando("SELECT Utente FROM Domande-Risposte WHERE Domanda ='"+domanda+"'");
             rs = help.estraiDati();
