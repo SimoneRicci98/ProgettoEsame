@@ -2,17 +2,36 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-12">
-        <div class="col-md-3">
             <div class="row">
-               Data operazione
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <div class="col-md-3">
+                     Data operazione
+                </div>
+               <div class="col-md-3">
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+               </div>
+                <div class="col-md-3">
+                    <asp:RadioButton ID="radioEmessa" runat="server" GroupName="Fattura" Text="Fattura Emessa" />
+                </div>
+                <div class="col-md-3">
+                    <asp:RadioButton ID="radioRicevuta" runat="server" GroupName="Fattura" Text="Fattura ricevuta" />
+                </div>
                 <br />
                 <br />
             </div>
             <div class="row">
-               Data Fattura <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                <div class="col-md-3">
+                    Data Fattura 
+                </div>
+                <div class="col-md-3">
+                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                </div>
+               <div class="col-md-3">
+                    <asp:RadioButton ID="radioCliente" runat="server" GroupName="ClienteFornitore" Text="Cliente" />
+               </div>
+                <div class="col-md-3">
+                    <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
+                </div>
                 <br />
             </div>
-        </div>
     </div>
 </asp:Content>
