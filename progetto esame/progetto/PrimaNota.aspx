@@ -5,7 +5,7 @@
     <script language="javascript" type="text/javascript">
 
 function openWindow() {
-window.open('Default.aspx','PopUp','width=500,height=500,menubar=yes,toolbar=yes,resizable=yes');
+window.open('AggiungiAnagrafica.aspx','PopUp','width=500,height=500,menubar=yes,toolbar=yes,resizable=yes');
         }
         </script>
 
@@ -41,14 +41,19 @@ window.open('Default.aspx','PopUp','width=500,height=500,menubar=yes,toolbar=yes
                <div class="col-md-4">
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioCliente" runat="server" GroupName="ClienteFornitore" Text="Cliente" />
+                       <br />
+                       <asp:DropDownList ID="DropDownList1" runat="server">
+                       </asp:DropDownList>
                    <br />
-                   <asp:Button ID="btnAggCli" runat="server" Text="Aggiungi cliente" OnClick="openWindow()" />
+                   <input id="Button1" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi cliente" />
                    </div>
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
-                    <br />
-                    <asp:Button ID="btnAggFor" runat="server" Text="Aggiungi fornitore" />
-                   </div>
+                       <br />
+                       <asp:DropDownList ID="DropDownList2" runat="server">
+                       </asp:DropDownList>
+                       <br />
+                   <input id="Button2" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi  fornitore" /></div>
 
                 </div>
                 <br />
