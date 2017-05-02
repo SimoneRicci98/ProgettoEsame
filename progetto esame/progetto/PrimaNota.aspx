@@ -5,7 +5,7 @@
     <script language="javascript" type="text/javascript">
 
 function openWindow() {
-window.open('AggiungiAnagrafica.aspx','PopUp','width=500,height=500,menubar=yes,toolbar=yes,resizable=yes');
+window.open('AggiungiAnagrafica.aspx','PopUp','width=500,height=500,menubar=yes,toolbar=yes,resizable=false');
         }
         </script>
 
