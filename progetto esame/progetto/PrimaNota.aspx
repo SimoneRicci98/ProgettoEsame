@@ -24,9 +24,6 @@ window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes
                     <div class="col-md-6">
                         <asp:RadioButton ID="radioRicevuta" runat="server" GroupName="Fattura" Text="Fattura ricevuta" />
                     </div>
-                    <dialog class="modal-dialog">
-                        
-                    </dialog>
                 </div>
                 <br />
                 <br />
@@ -45,7 +42,7 @@ window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes
                        <asp:DropDownList ID="DropDownList1" runat="server">
                        </asp:DropDownList>
                    <br />
-                   <input id="Button1" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi cliente" />
+                   <input id="Button1" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi cliente" <%Session["Operazione"] = "cli"; %> />
                    </div>
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
@@ -53,7 +50,7 @@ window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes
                        <asp:DropDownList ID="DropDownList2" runat="server">
                        </asp:DropDownList>
                        <br />
-                   <input id="Button2" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi  fornitore" /></div>
+                   <input id="Button2" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi  fornitore" <%Session["Operazione"] = "for"; %>/></div>
 
                 </div>
                 <br />

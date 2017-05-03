@@ -37,6 +37,7 @@ public partial class Registrazione : System.Web.UI.Page
             help.eseguicomando();
             help.disconnetti();
             Session["Utente"] = app.ToString();
+            Session["Azienda"] = "mia";
             Response.Redirect("AggiungiAnagrafica.aspx");
         }
         catch

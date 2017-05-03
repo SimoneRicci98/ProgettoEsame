@@ -12,6 +12,25 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     { 
+        try
+        {
+            switch(Session["Operazione"].ToString())
+            {
+                case "mia": lblAz.Text = " della tua azienda";
+                    break;
+                case "cli": lblAz.Text = " del nuovo cliente";
+                    break;
+                case "for": lblAz.Text = " del nuovo fornitore";
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch
+        {
+
+        }
+
     }
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -50,12 +69,49 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Fax = txtFax.Text;
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
-                #endregion
-        help.connetti();
-        help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
-            "VALUES('"+Session["Utente"].ToString()+"','"+RagioneSociale+"','"+NumCell+"','"+Indirizzo+"','"+PIva+"','"+CodFisc+"','"+NomeCognome+"','"+Provincia+"','"+Cap+"','"+Regione+"','"+Nazione+"','"+Tel+"','"+Email+"')");
-        help.eseguicomando();
-        help.disconnetti();
-        Response.Redirect("Seleziona.aspx");
+        #endregion
+        try
+        {
+            switch (Session["Operazione"].ToString())
+            {
+                case "mia":
+                    #region inserimento dati propria azienda
+                    help.connetti();
+                    help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
+                        "VALUES('" + Session["Utente"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                    help.eseguicomando();
+                    help.disconnetti();
+                    Response.Redirect("Seleziona.aspx");
+                    #endregion
+                    break;
+                case "cli":
+                    #region insetimento dati nella tabella clienti
+                    help.connetti();
+                    help.assegnaComando("INSERT INTO Clienti(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
+                        "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                    help.eseguicomando();
+                    help.disconnetti();
+                    Response.Redirect("Seleziona.aspx");
+                    #endregion
+                    break;
+                case "for":
+                    #region inserimento dati nella tabella fornitori
+                    help.connetti();
+                    help.assegnaComando("INSERT INTO Fornitori(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
+                        "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                    help.eseguicomando();
+                    help.disconnetti();
+                    Response.Redirect("Seleziona.aspx");
+                    #endregion
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        catch
+        {
+
+        }
     }
 }
