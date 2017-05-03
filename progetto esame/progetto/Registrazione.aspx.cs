@@ -15,14 +15,16 @@ public partial class Registrazione : System.Web.UI.Page
 
     }
 
-    protected void Button4_Click(object sender, EventArgs e)
+    protected void Button1_Click(object sender, EventArgs e)
     {
         try
         {
             DateTime oggi = DateTime.Today;
             int app = 0;
-            string email = txtEmailReg.Text;
-            string psw = txtPswReg.Text;
+            string nome = txtNome.Text;
+            string cognome = txtCognome.Text;
+            string email = txtEmail.Text;
+            string psw = txtPass.Text;
             help.connetti();
             help.assegnaComando("SELECT MAX (ID_Utente) AS massimo FROM Utenti");
             rs = help.estraiDati();
@@ -31,7 +33,7 @@ public partial class Registrazione : System.Web.UI.Page
             help.disconnetti();
 
             help.connetti();
-            help.assegnaComando("INSERT INTO Utenti VALUES('" + app + "','" + email + "','" + psw + "','"+Session["Versione"].ToString()+",#"+oggi+"#)");
+            help.assegnaComando("INSERT INTO Utenti VALUES(" + app + ",'" + nome + "','" + cognome + "','" + email + "','" + psw + "','" + Session["Versione"].ToString() + "',#" + oggi + "#)");
             help.eseguicomando();
             help.disconnetti();
             Session["Utente"] = app.ToString();
@@ -39,7 +41,7 @@ public partial class Registrazione : System.Web.UI.Page
         }
         catch
         {
-
+            Response.Write("Qualcosa non va");
         }
     }
 }

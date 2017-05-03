@@ -36,11 +36,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
         string Tel;
         string Email;
         #endregion
-        if (Session["Versione"] != null)
-        {
-            if ((int)Session["Versione"] == 0)
-            {
-                #region assegno valori alle variabili
+        #region assegno valori alle variabili
                 RagioneSociale = txtRagSoc.Text;
                 NomeCognome = txtNomCog.Text;
                 PIva = txtPIva.Text;
@@ -55,12 +51,11 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
                 #endregion
-                help.connetti();
-                help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email "+
-                    "VALUES('"+Session["Utente"].ToString()+"','"+RagioneSociale+"','"+NumCell+"','"+Indirizzo+"','"+PIva+"','"+CodFisc+"','"+NomeCognome+"','"+Provincia+"','"+Cap+"','"+Regione+"','"+Nazione+"','"+Tel+"','"+Email+"')");
-                help.eseguicomando();
-                help.disconnetti();
-            }
-        }
+        help.connetti();
+        help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
+            "VALUES('"+Session["Utente"].ToString()+"','"+RagioneSociale+"','"+NumCell+"','"+Indirizzo+"','"+PIva+"','"+CodFisc+"','"+NomeCognome+"','"+Provincia+"','"+Cap+"','"+Regione+"','"+Nazione+"','"+Tel+"','"+Email+"')");
+        help.eseguicomando();
+        help.disconnetti();
+        Response.Redirect("Seleziona.aspx");
     }
 }
