@@ -60,30 +60,5 @@ public partial class Reg : System.Web.UI.Page
         Response.Redirect("Default.aspx");
     }
 
-    protected void Button4_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            int app = 0;
-            string email = txtEmailReg.Text;
-            string psw = txtPswReg.Text;
-            help.connetti();
-            help.assegnaComando("SELECT MAX (ID_Utente) AS massimo FROM Utenti");
-            rs = help.estraiDati();
-            rs.Read();
-            app = int.Parse(rs["massimo"].ToString()) + 1;
-            help.disconnetti();
-
-            help.connetti();
-            help.assegnaComando("INSERT INTO Utenti VALUES('" + app + "','" + email + "','" + psw + "')");
-            help.eseguicomando();
-            help.disconnetti();
-            Response.Redirect("Default.aspx");
-            Session["Utente"] = app.ToString();
-        }
-        catch
-        {
-            
-        }
-    }
+    
 }

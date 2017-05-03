@@ -55,7 +55,11 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
                 #endregion
-
+                help.connetti();
+                help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email "+
+                    "VALUES('"+Session["Utente"].ToString()+"','"+RagioneSociale+"','"+NumCell+"','"+Indirizzo+"','"+PIva+"','"+CodFisc+"','"+NomeCognome+"','"+Provincia+"','"+Cap+"','"+Regione+"','"+Nazione+"','"+Tel+"','"+Email+"')");
+                help.eseguicomando();
+                help.disconnetti();
             }
         }
     }
