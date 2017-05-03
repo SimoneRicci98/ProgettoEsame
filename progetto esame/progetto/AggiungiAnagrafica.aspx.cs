@@ -40,6 +40,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        int txtvuote = 0;
         #region variabili
         string RagioneSociale;
         string NomeCognome;
@@ -70,6 +71,16 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
         #endregion
+        foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            {
+                if(tb.Text=="")
+                {
+                    txtvuote++;
+                    tb.Text = "Completa prima questo campo";   
+                }
+            }
+        if(txtvuote==0)
+        {
         try
         {
             switch (Session["Operazione"].ToString())
@@ -112,6 +123,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
         catch
         {
 
+        }
         }
     }
 }
