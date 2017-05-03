@@ -44,6 +44,8 @@
 
              <asp:Button ID="Button1" runat="server" Text="Registrati!" OnClick="Button1_Click" />
 
+             <asp:Label ID="lblErr" runat="server" ForeColor="Red"></asp:Label>
+
          </div>
      </div>
 </asp:Content>

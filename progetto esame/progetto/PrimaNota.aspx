@@ -15,7 +15,7 @@ window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes
                      Data operazione
                 </div>
                <div class="col-md-3">
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> dd/mm/yyyy
+                    <asp:TextBox ID="TextBox1" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
                </div>
                 <div class="col-md-4">
                     <div class="col-md-6">
@@ -33,7 +33,7 @@ window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes
                     Data Fattura 
                 </div>
                 <div class="col-md-3">
-                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> dd/mm/yyyy
+                    <asp:TextBox ID="TextBox2" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
                 </div>
                <div class="col-md-4">
                    <div class="col-md-6">
@@ -55,5 +55,25 @@ window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes
                 </div>
                 <br />
             </div>
+        <div class="row" style="margin-top:2%">
+            <div class="col-md-4">
+                N° Documento&nbsp;&nbsp;
+                <asp:TextBox ID="txtNumDoc" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-md-4">
+                Protocollo&nbsp;&nbsp;
+                <asp:TextBox ID="txtProt" runat="server"></asp:TextBox>
+            </div>
+            <div class="col-md-4">
+                Totale documento&nbsp;&nbsp;
+                <asp:TextBox ID="txtTot" runat="server"></asp:TextBox>
+            </div>
+        </div>
+        <div class="row" style="border-color:red;border:solid;margin-top:2%">
+            <div class="col-md-12">
+                Dati obbligatori
+            </div>
+
+        </div>
     </div>
 </asp:Content>
