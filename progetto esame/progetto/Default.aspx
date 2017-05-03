@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="_Default" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server" ID="content1">
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-top:2%">
         <div class="col-md-4">
             
             Inserisci il nome con il quale vuoi essere riconosciuto<br />
@@ -23,10 +23,24 @@
         </div>
         <div class="col-md-4">
             qui le possibilità di acquisti con le relative caratteristiche 
+            <div class="row">
+                Versione di prova <br />
+                Qui potrai provare le potenzialità di questo software web ma con qualche restrizione,
+                come il limite di 10 fatture e avere al massimo 5 clienti e 3 fornitori
+                <br />
+                <asp:Button ID="btnProva" runat="server" Text="Prosegui" OnClick="btnProva_Click" />
+            </div>
+            <div class="row" style="margin-top:1%">
+                Versione completa <br />
+                Qui potrai utilizzare questo software web con tutte le sue caratterestiche,
+                nessuna restrizione e supporto immediato tramite mail
+                <br />
+                <asp:Button ID="btnCompleta" runat="server" Text="Prosegui" OnClick="btnCompleta_Click" />
+            </div>
         </div>
         <div class="col-md-4">
             
-            Qui rispondo alle vostre domande<br />
+            Qui rispondo alle vostre domande settimanalmente<br />
             <asp:ListBox ID="lstRisposte" runat="server" Rows="10" Width="80%"></asp:ListBox>
             
             </div>

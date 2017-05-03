@@ -88,4 +88,16 @@ public partial class _Default : System.Web.UI.Page
     {
 
     }
+
+    protected void btnProva_Click(object sender, EventArgs e)
+    {
+        Session["Versione"] = 0;
+        Response.Redirect("AggiungiAnagrafica.aspx");
+    }
+
+    protected void btnCompleta_Click(object sender, EventArgs e)
+    {
+        Session["Versione"] = 1;
+        Response.Redirect("AggiungiAnagrafica.aspx");
+    }
 }
