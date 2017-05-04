@@ -3,9 +3,8 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script language="javascript" type="text/javascript">
-
-function openWindow() {
-window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
+            function openWindow() {
+            window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
         }
         </script>
 
@@ -73,7 +72,34 @@ window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes
             <div class="col-md-12">
                 Dati obbligatori
             </div>
-
+        </div>
+        <div class="row" style="margin-top:2%">
+            <div class="col-md-12">
+               <asp:gridview ID="Gridview1" runat="server" ShowFooter="true" AutoGenerateColumns="false">
+        <Columns>
+        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" />
+        <asp:TemplateField HeaderText="Header 1">
+            <ItemTemplate>
+                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Header 2">
+            <ItemTemplate>
+                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Header 3">
+            <ItemTemplate>
+                 <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            </ItemTemplate>
+            <FooterStyle HorizontalAlign="Right" />
+            <FooterTemplate>
+             <asp:Button ID="ButtonAdd" runat="server" Text="Add New Row" />
+            </FooterTemplate>
+        </asp:TemplateField>
+        </Columns>
+</asp:gridview>
+            </div>
         </div>
     </div>
 </asp:Content>
