@@ -20,17 +20,23 @@ public partial class PrimaNota : System.Web.UI.Page
     {
         DataTable dt = new DataTable();
         DataRow dr = null;
-        dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
-        dt.Columns.Add(new DataColumn("Column1", typeof(string)));
-        dt.Columns.Add(new DataColumn("Column2", typeof(string)));
-        dt.Columns.Add(new DataColumn("Column3", typeof(string)));
+        dt.Columns.Add(new DataColumn("Numero", typeof(string)));
+        dt.Columns.Add(new DataColumn("Tipo", typeof(string)));
+        dt.Columns.Add(new DataColumn("IVA", typeof(string)));
+        dt.Columns.Add(new DataColumn("Imponibile", typeof(string)));
+        dt.Columns.Add(new DataColumn("Importo iva", typeof(string)));
+        dt.Columns.Add(new DataColumn("Conto di mastro", typeof(string)));
+        dt.Columns.Add(new DataColumn("Descrizione", typeof(string)));
         dr = dt.NewRow();
-        dr["RowNumber"] = 1;
-        dr["Column1"] = string.Empty;
-        dr["Column2"] = string.Empty;
-        dr["Column3"] = string.Empty;
+        dr["Numero"] = 1;
+        dr["Tipo"] = string.Empty;
+        dr["IVA"] = string.Empty;
+        dr["Imponibile"] = string.Empty;
+        dr["Importo IVA"] = string.Empty;
+        dr["Conto di mastro"] = string.Empty;
+        dr["Descrizione"] = string.Empty;
         dt.Rows.Add(dr);
-        //dr = dt.NewRow();
+        dr = dt.NewRow();
 
         //Store the DataTable in ViewState
         ViewState["CurrentTable"] = dt;
@@ -107,5 +113,8 @@ public partial class PrimaNota : System.Web.UI.Page
         AddNewRowToGrid();
     }
 
+    protected void Gridview1_SelectedIndexChanged(object sender, EventArgs e)
+    {
 
+    }
 }

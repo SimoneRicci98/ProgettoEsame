@@ -75,29 +75,71 @@
         </div>
         <div class="row" style="margin-top:2%">
             <div class="col-md-12">
-               <asp:gridview ID="Gridview1" runat="server" ShowFooter="true" AutoGenerateColumns="false">
-        <Columns>
-        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" />
-        <asp:TemplateField HeaderText="Header 1">
+               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+        
+                   <AlternatingRowStyle BackColor="White" />
+                   <Columns>
+        
+        
+        
+        
+       <asp:BoundField DataField="RowNumber" HeaderText="Numero" >
+                       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                       </asp:BoundField>
+                       <asp:TemplateField HeaderText="Tipo">
             <ItemTemplate>
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="comboTipo" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
             </ItemTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Header 2">
+       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="IVA">
             <ItemTemplate>
-                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="comboIVA" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
             </ItemTemplate>
-        </asp:TemplateField>
-        <asp:TemplateField HeaderText="Header 3">
+       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Imponibile">
             <ItemTemplate>
-                 <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                 <asp:TextBox ID="TextBox3" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:TextBox>
             </ItemTemplate>
             <FooterStyle HorizontalAlign="Right" />
             <FooterTemplate>
              <asp:Button ID="ButtonAdd" runat="server" Text="Add New Row" />
             </FooterTemplate>
-        </asp:TemplateField>
-        </Columns>
+       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Importo iva" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
+                       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
+                       <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
+                       <ItemTemplate>
+                        <asp:Label ID="lblImpoIva" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:Label>
+                       </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Conto di mastro">
+                           <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                        <ItemTemplate>
+                        <asp:DropDownList ID="comboConto" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
+                       </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Descrizione" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
+                           <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                       <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
+                       <ItemTemplate>
+                        <asp:TextBox ID="txtDesc" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:TextBox>
+                       </ItemTemplate>
+                       </asp:TemplateField>
+                   </Columns>
+                   <EditRowStyle BackColor="#2461BF" />
+                   <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                   <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                   <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                   <RowStyle BackColor="#EFF3FB" />
+                   <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                   <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                   <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                   <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                   <SortedDescendingHeaderStyle BackColor="#4870BE" />
 </asp:gridview>
             </div>
         </div>
