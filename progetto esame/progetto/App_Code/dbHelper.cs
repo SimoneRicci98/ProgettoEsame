@@ -22,7 +22,7 @@ public class dbHelper
     public void connetti()
     {
         connDb.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|" + nomeDb + ";";
-     connDb.Open();
+        connDb.Open();
 
       
     } //metodo di connessione
@@ -41,9 +41,7 @@ public class dbHelper
     public OleDbDataReader estraiDati()
     {
         OleDbDataReader rsDati;
-       
         rsDati = istruzioneSQL.ExecuteReader();
-
         return rsDati;
     }
     public void eseguicomando()

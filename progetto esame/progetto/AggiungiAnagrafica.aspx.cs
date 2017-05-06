@@ -73,57 +73,57 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
         #endregion
         foreach (TextBox tb in this.Controls.OfType<TextBox>())
             {
-                if(tb.Text=="")
+                if(tb.Text==null)
                 {
                     txtvuote++;
                     tb.Text = "Completa prima questo campo";   
                 }
             }
-        if(txtvuote==0)
+        if (txtvuote == 0)
         {
-        try
-        {
-            switch (Session["Operazione"].ToString())
+            try
             {
-                case "mia":
-                    #region inserimento dati propria azienda
-                    help.connetti();
-                    help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
-                        "VALUES('" + Session["Utente"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
-                    help.eseguicomando();
-                    help.disconnetti();
-                    Response.Redirect("Seleziona.aspx");
-                    #endregion
-                    break;
-                case "cli":
-                    #region insetimento dati nella tabella clienti
-                    help.connetti();
-                    help.assegnaComando("INSERT INTO Clienti(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
-                        "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
-                    help.eseguicomando();
-                    help.disconnetti();
-                    Response.Redirect("Seleziona.aspx");
-                    #endregion
-                    break;
-                case "for":
-                    #region inserimento dati nella tabella fornitori
-                    help.connetti();
-                    help.assegnaComando("INSERT INTO Fornitori(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
-                        "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
-                    help.eseguicomando();
-                    help.disconnetti();
-                    Response.Redirect("Seleziona.aspx");
-                    #endregion
-                    break;
-                default:
-                    break;
+                switch (Session["Operazione"].ToString())
+                {
+                    case "mia":
+                        #region inserimento dati propria azienda
+                        help.connetti();
+                        help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
+                            "VALUES('" + Session["Utente"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                        help.eseguicomando();
+                        help.disconnetti();
+                        Response.Redirect("Seleziona.aspx");
+                        #endregion
+                        break;
+                    case "cli":
+                        #region insetimento dati nella tabella clienti
+                        help.connetti();
+                        help.assegnaComando("INSERT INTO Clienti(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
+                            "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                        help.eseguicomando();
+                        help.disconnetti();
+                        Response.Redirect("Seleziona.aspx");
+                        #endregion
+                        break;
+                    case "for":
+                        #region inserimento dati nella tabella fornitori
+                        help.connetti();
+                        help.assegnaComando("INSERT INTO Fornitori(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
+                            "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                        help.eseguicomando();
+                        help.disconnetti();
+                        Response.Redirect("Seleziona.aspx");
+                        #endregion
+                        break;
+                    default:
+                        break;
 
+                }
             }
-        }
-        catch
-        {
-
-        }
+            catch
+            {
+                Response.Write("Errore");
+            }
         }
     }
 }

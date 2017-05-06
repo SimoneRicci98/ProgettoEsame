@@ -49,8 +49,8 @@
                        <asp:DropDownList ID="DropDownList2" runat="server">
                        </asp:DropDownList>
                        <br />
-                   <input id="Button2" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi  fornitore" <%Session["Operazione"] = "for"; %>/></div>
-
+                   <input id="Button2" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi  fornitore" <%Session["Operazione"] = "for"; %>/>
+                   </div>
                 </div>
                 <br />
             </div>
@@ -75,7 +75,7 @@
         </div>
         <div class="row" style="margin-top:2%">
             <div class="col-md-12">
-               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnSelectedIndexChanged="Gridview1_SelectedIndexChanged1">
         
                    <AlternatingRowStyle BackColor="White" />
                    <Columns>
@@ -83,10 +83,7 @@
         
         
         
-       <asp:BoundField DataField="RowNumber" HeaderText="Numero" >
-                       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                       </asp:BoundField>
-                       <asp:TemplateField HeaderText="Tipo">
+       <asp:TemplateField HeaderText="Tipo">
             <ItemTemplate>
                 <asp:DropDownList ID="comboTipo" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
             </ItemTemplate>
@@ -104,7 +101,7 @@
             </ItemTemplate>
             <FooterStyle HorizontalAlign="Right" />
             <FooterTemplate>
-             <asp:Button ID="ButtonAdd" runat="server" Text="Add New Row" />
+             <asp:Button ID="ButtonAdd" runat="server" Text="Aggiungi una riga" cssClass="btn btn-primary"/>
             </FooterTemplate>
        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                        </asp:TemplateField>
@@ -119,14 +116,6 @@
                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                         <ItemTemplate>
                         <asp:DropDownList ID="comboConto" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
-                       </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Descrizione" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
-                           <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-
-                       <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
-                       <ItemTemplate>
-                        <asp:TextBox ID="txtDesc" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:TextBox>
                        </ItemTemplate>
                        </asp:TemplateField>
                    </Columns>

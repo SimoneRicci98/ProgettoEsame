@@ -26,7 +26,6 @@ public partial class PrimaNota : System.Web.UI.Page
         dt.Columns.Add(new DataColumn("Imponibile", typeof(string)));
         dt.Columns.Add(new DataColumn("Importo iva", typeof(string)));
         dt.Columns.Add(new DataColumn("Conto di mastro", typeof(string)));
-        dt.Columns.Add(new DataColumn("Descrizione", typeof(string)));
         dr = dt.NewRow();
         dr["Numero"] = 1;
         dr["Tipo"] = string.Empty;
@@ -34,9 +33,8 @@ public partial class PrimaNota : System.Web.UI.Page
         dr["Imponibile"] = string.Empty;
         dr["Importo IVA"] = string.Empty;
         dr["Conto di mastro"] = string.Empty;
-        dr["Descrizione"] = string.Empty;
         dt.Rows.Add(dr);
-        dr = dt.NewRow();
+        //dr = dt.NewRow();
 
         //Store the DataTable in ViewState
         ViewState["CurrentTable"] = dt;
@@ -56,17 +54,21 @@ public partial class PrimaNota : System.Web.UI.Page
             {
                 for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                 {
-                    //extract the TextBox values
-                    TextBox box1 = (TextBox)Gridview1.Rows[rowIndex].Cells[1].FindControl("TextBox1");
-                    TextBox box2 = (TextBox)Gridview1.Rows[rowIndex].Cells[2].FindControl("TextBox2");
-                    TextBox box3 = (TextBox)Gridview1.Rows[rowIndex].Cells[3].FindControl("TextBox3");
+                    //estraggo i dati
+                    DropDownList Tipo = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboTipo");
+                    DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[2].FindControl("comboIVA");
+                    TextBox Imponibile = (TextBox)Gridview1.Rows[rowIndex].Cells[3].FindControl("TextBox3");
+                    Label lblImportoIva = (Label)Gridview1.Rows[rowIndex].Cells[4].FindControl("lblImpoIva");
+                    DropDownList ContoMastro = (DropDownList)Gridview1.Rows[rowIndex].Cells[5].FindControl("comboConto");
 
                     drCurrentRow = dtCurrentTable.NewRow();
-                    drCurrentRow["RowNumber"] = i + 1;
+                    drCurrentRow["Numero"] = i + 1;
 
-                    dtCurrentTable.Rows[i - 1]["Column1"] = box1.Text;
-                    dtCurrentTable.Rows[i - 1]["Column2"] = box2.Text;
-                    dtCurrentTable.Rows[i - 1]["Column3"] = box3.Text;
+                    dtCurrentTable.Rows[i - 1]["Tipo"] = Tipo.Text;
+                    dtCurrentTable.Rows[i - 1]["IVA"] = IVA.Text;
+                    dtCurrentTable.Rows[i - 1]["Imponibile"] = Imponibile.Text;
+                    dtCurrentTable.Rows[i - 1]["Importo Iva"] = lblImportoIva.Text;
+                    dtCurrentTable.Rows[i - 1]["Conto di mastro"] = ContoMastro.Text;
 
                     rowIndex++;
                 }
@@ -95,13 +97,18 @@ public partial class PrimaNota : System.Web.UI.Page
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    TextBox box1 = (TextBox)Gridview1.Rows[rowIndex].Cells[1].FindControl("TextBox1");
-                    TextBox box2 = (TextBox)Gridview1.Rows[rowIndex].Cells[2].FindControl("TextBox2");
-                    TextBox box3 = (TextBox)Gridview1.Rows[rowIndex].Cells[3].FindControl("TextBox3");
+                    DropDownList Tipo = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboTipo");
+                    DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[2].FindControl("comboIVA");
+                    TextBox Imponibile = (TextBox)Gridview1.Rows[rowIndex].Cells[3].FindControl("TextBox3");
+                    Label lblImportoIva = (Label)Gridview1.Rows[rowIndex].Cells[4].FindControl("lblImpoIva");
+                    DropDownList ContoMastro = (DropDownList)Gridview1.Rows[rowIndex].Cells[5].FindControl("comboTipo");
 
-                    box1.Text = dt.Rows[i]["Column1"].ToString();
-                    box2.Text = dt.Rows[i]["Column2"].ToString();
-                    box3.Text = dt.Rows[i]["Column3"].ToString();
+
+                    Tipo.Text = dt.Rows[i]["Tipo"].ToString();
+                    IVA.Text = dt.Rows[i]["IVA"].ToString();
+                    Imponibile.Text = dt.Rows[i]["Imponibile"].ToString();
+                    lblImportoIva.Text = dt.Rows[i]["Importo iva"].ToString();
+                    ContoMastro.Text = dt.Rows[i]["Conto di mastro"].ToString();
 
                     rowIndex++;
                 }
@@ -114,6 +121,11 @@ public partial class PrimaNota : System.Web.UI.Page
     }
 
     protected void Gridview1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Gridview1_SelectedIndexChanged1(object sender, EventArgs e)
     {
 
     }
