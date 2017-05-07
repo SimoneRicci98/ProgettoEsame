@@ -10,10 +10,18 @@ public partial class PrimaNota : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        int rowIndex = 0;
         if (!IsPostBack)
         {
             SetInitialRow();
         }
+
+        DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboIVA");
+        string[] iva = { "4", "10", "22" };
+        IVA.Items.Add(iva[0]);
+        IVA.Items.Add(iva[1]);
+        IVA.Items.Add(iva[2]);
+
     }
 
     private void SetInitialRow()
@@ -61,10 +69,16 @@ public partial class PrimaNota : System.Web.UI.Page
                     TextBox Imponibile = (TextBox)Gridview1.Rows[rowIndex].Cells[2].FindControl("TextBox3");
                     Label lblImportoIva = (Label)Gridview1.Rows[rowIndex].Cells[3].FindControl("lblImpoIva");
                     DropDownList ContoMastro = (DropDownList)Gridview1.Rows[rowIndex].Cells[4].FindControl("comboConto");
+                    Imponibile.Text = "0";
+                    string[] iva = { "4", "10", "22" };
+                    IVA.Items.Add(iva[0]);
+                    IVA.Items.Add(iva[1]);
+                    IVA.Items.Add(iva[2]);
+                    int importoiva= int.Parse(Imponibile.Text) * int.Parse(Imponibile.Text) / 100 * int.Parse(IVA.SelectedItem.ToString());
+                    lblImportoIva.Text = importoiva.ToString();
 
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["Numero"] = i + 1;
-
                     dtCurrentTable.Rows[i - 1]["Tipo"] = Tipo.Text;
                     dtCurrentTable.Rows[i - 1]["IVA"] = IVA.Text;
                     dtCurrentTable.Rows[i - 1]["Imponibile"] = Imponibile.Text;

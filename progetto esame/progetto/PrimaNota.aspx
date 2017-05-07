@@ -97,7 +97,7 @@
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Imponibile">
             <ItemTemplate>
-                 <asp:TextBox ID="TextBox3" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:TextBox>
+                 <asp:TextBox ID="TextBox3" Text="0" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:TextBox>
             </ItemTemplate>
             <FooterStyle HorizontalAlign="Right" />
             <FooterTemplate>
