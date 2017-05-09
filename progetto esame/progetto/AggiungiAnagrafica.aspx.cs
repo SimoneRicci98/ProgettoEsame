@@ -71,14 +71,24 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
         #endregion
-        foreach (TextBox tb in this.Controls.OfType<TextBox>())
-            {
-                if(tb.Text==null)
+                foreach (Control c in this.Controls)
                 {
-                    txtvuote++;
-                    tb.Text = "Completa prima questo campo";   
+                    if (c is TextBox)
+                    {
+                        TextBox textBox = c as TextBox;
+                        if (textBox.Text == string.Empty)
+                        {
+                            textBox.Text = "please fill your empty textbox ";
+                            txtvuote++;
+                        }
+
+                        else
+                        {
+                            // if my textbox all are fill i put my code to save data in datebase here
+                        }
+                    }
                 }
-            }
+ 
         if (txtvuote == 0)
         {
             try
