@@ -5,22 +5,42 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.OleDb;
 
 public partial class PrimaNota : System.Web.UI.Page
 {
+    int rowIndex = 0;
+    dbHelper help = new dbHelper("ContabilitàDB.accdb");
+    OleDbDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
-        int rowIndex = 0;
         if (!IsPostBack)
         {
             SetInitialRow();
+            DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboIVA");
+            string[] iva = { "4", "10", "22" };
+            IVA.Items.Add(iva[0]);
+            IVA.Items.Add(iva[1]);
+            IVA.Items.Add(iva[2]);
         }
-
-        DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboIVA");
-        string[] iva = { "4", "10", "22" };
-        IVA.Items.Add(iva[0]);
-        IVA.Items.Add(iva[1]);
-        IVA.Items.Add(iva[2]);
+        #region carico dropdownlist
+        help.connetti();
+        help.assegnaComando("SELECT RagioneSociale FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+"'");
+        rs = help.estraiDati();
+        while(rs.Read())
+        {
+            DropDownList1.Items.Add(rs["RagioneSociale"].ToString());
+        }
+        help.disconnetti();
+        help.connetti();
+        help.assegnaComando("SELECT RagioneSociale FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() + "'");
+        rs = help.estraiDati();
+        while (rs.Read())
+        {
+            DropDownList2.Items.Add(rs["RagioneSociale"].ToString());
+        }
+        help.disconnetti();
+        #endregion
 
     }
 
@@ -28,14 +48,12 @@ public partial class PrimaNota : System.Web.UI.Page
     {
         DataTable dt = new DataTable();
         DataRow dr = null;
-        dt.Columns.Add(new DataColumn("Numero", typeof(string)));
         dt.Columns.Add(new DataColumn("Tipo", typeof(string)));
         dt.Columns.Add(new DataColumn("IVA", typeof(string)));
         dt.Columns.Add(new DataColumn("Imponibile", typeof(string)));
         dt.Columns.Add(new DataColumn("Importo iva", typeof(string)));
         dt.Columns.Add(new DataColumn("Conto di mastro", typeof(string)));
         dr = dt.NewRow();
-        dr["Numero"] = 1;
         dr["Tipo"] = string.Empty;
         dr["IVA"] = string.Empty;
         dr["Imponibile"] = string.Empty;
@@ -137,13 +155,4 @@ public partial class PrimaNota : System.Web.UI.Page
         AddNewRowToGrid();
     }
 
-    protected void Gridview1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Gridview1_SelectedIndexChanged1(object sender, EventArgs e)
-    {
-
-    }
 }

@@ -3,8 +3,13 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script language="javascript" type="text/javascript">
-            function openWindow() {
+        function openWindowcli() {
+            <%Session["Operazione"] = "cli"; %>
             window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
+        }
+        function openWindowfor() {
+            <%Session["Operazione"] = "for";%>
+            window.open('AggiungiAnagrafica.aspx', 'PopUp', 'width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
         }
         </script>
 
@@ -41,7 +46,7 @@
                        <asp:DropDownList ID="DropDownList1" runat="server">
                        </asp:DropDownList>
                    <br />
-                   <input id="Button1" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi cliente" <%Session["Operazione"] = "cli"; %> />
+                   <input id="Button1" type="button" language="javascript" onclick="return openWindowcli()" value="Aggiungi cliente"  />
                    </div>
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
@@ -49,7 +54,7 @@
                        <asp:DropDownList ID="DropDownList2" runat="server">
                        </asp:DropDownList>
                        <br />
-                   <input id="Button2" type="button" language="javascript" onclick="return openWindow()" value="Aggiungi  fornitore" <%Session["Operazione"] = "for"; %>/>
+                   <input id="Button2" type="button" language="javascript" onclick="return openWindowfor()" value="Aggiungi  fornitore" />
                    </div>
                 </div>
                 <br />

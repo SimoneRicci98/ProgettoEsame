@@ -17,17 +17,6 @@ public partial class Registrazione : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        int txtvuote = 0;
-        foreach (TextBox tb in this.Controls.OfType<TextBox>()) //Non funziona
-        {
-            if (tb.Text=="")
-            {
-                txtvuote++;
-                tb.Text = "Completa prima questo campo";
-            }
-        }
-        if (txtvuote == 0)
-        {
             try
             {
                 DateTime oggi = DateTime.Today;
@@ -72,7 +61,5 @@ public partial class Registrazione : System.Web.UI.Page
             {
                 Response.Write("Qualcosa non va");
             }
-        }
-        
     }
 }

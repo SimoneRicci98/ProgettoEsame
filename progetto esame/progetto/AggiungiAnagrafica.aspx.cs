@@ -40,7 +40,6 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        int txtvuote = 0;
         #region variabili
         string RagioneSociale;
         string NomeCognome;
@@ -71,26 +70,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
         #endregion
-                foreach (Control c in this.Controls)
-                {
-                    if (c is TextBox)
-                    {
-                        TextBox textBox = c as TextBox;
-                        if (textBox.Text == string.Empty)
-                        {
-                            textBox.Text = "please fill your empty textbox ";
-                            txtvuote++;
-                        }
-
-                        else
-                        {
-                            // if my textbox all are fill i put my code to save data in datebase here
-                        }
-                    }
-                }
  
-        if (txtvuote == 0)
-        {
             try
             {
                 switch (Session["Operazione"].ToString())
@@ -134,6 +114,5 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
             {
                 Response.Write("Errore");
             }
-        }
     }
 }

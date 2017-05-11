@@ -9,6 +9,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Label1.Text = "Effettua il login";
+        if(Session["Utente"] != null)
+        {
+            Label1.Text = "Benvenuto!";
+        }
+        else
+        {
+            Label1.Text = "Effettua il login";
+        }
+        
     }
 }
