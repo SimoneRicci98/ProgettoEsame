@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Data.OleDb;
+using System.Data.SqlClient;
 
 public class dbHelper
 {
     string nomeDb;
-    OleDbConnection connDb;
-    OleDbCommand istruzioneSQL;
+    
+    SqlConnection connDb;
+    SqlCommand istruzioneSQL;
 
 	public dbHelper(string nomeDb) //costruttore con parametro
 	{
 
-        connDb=new OleDbConnection();
+        connDb=new SqlConnection();
         this.nomeDb = nomeDb;
 
 	}
@@ -21,7 +22,13 @@ public class dbHelper
 
     public void connetti()
     {
-        connDb.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|" + nomeDb + ";";
+
+        SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+        builder.DataSource = "tcp:progettoesame2017.database.windows.net,1433";
+        builder.UserID = "SimoneRicci";
+        builder.Password = "S1m0x_DJ";
+        builder.InitialCatalog = "ContabilitàDB";
+        connDb.ConnectionString = builder.ConnectionString;
         connDb.Open();
 
       
@@ -33,14 +40,14 @@ public class dbHelper
 
     public void assegnaComando(string istruzione) //istruzione di comando SQL
     {
-        istruzioneSQL=new OleDbCommand();
+        istruzioneSQL=new SqlCommand();
         istruzioneSQL.CommandText = istruzione;
         istruzioneSQL.Connection = connDb;
     }
 
-    public OleDbDataReader estraiDati()
+    public SqlDataReader estraiDati()
     {
-        OleDbDataReader rsDati;
+        SqlDataReader rsDati;
         rsDati = istruzioneSQL.ExecuteReader();
         return rsDati;
     }

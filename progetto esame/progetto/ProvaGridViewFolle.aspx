@@ -110,7 +110,7 @@ input[type="submit"] {
     <form id="form1" runat="server">
     <div>
         
-               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnSelectedIndexChanged="Gridview1_SelectedIndexChanged1">       
+               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">       
                    <AlternatingRowStyle BackColor="White" />
                    <Columns>
        <asp:TemplateField HeaderText="Tipo">

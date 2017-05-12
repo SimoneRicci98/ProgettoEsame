@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OleDb;
+using System.Data.SqlClient;
 
 
 public partial class Reg : System.Web.UI.Page
 {
     dbHelper help = new dbHelper("ContabilitàDB.accdb");
-    OleDbDataReader rs;
+    SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
 

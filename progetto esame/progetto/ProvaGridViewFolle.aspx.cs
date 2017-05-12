@@ -10,7 +10,7 @@ public partial class ProvaGridViewFolle : System.Web.UI.Page
     struct grid
     {
         DropDownList IVA;
-        DropDownList
+        DropDownList ii;
     }
     protected void Page_Load(object sender, EventArgs e)
     {

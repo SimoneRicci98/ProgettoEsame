@@ -80,7 +80,7 @@
         </div>
         <div class="row" style="margin-top:2%">
             <div class="col-md-12">
-               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnSelectedIndexChanged="Gridview1_SelectedIndexChanged1">
+               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
         
                    <AlternatingRowStyle BackColor="White" />
                    <Columns>
