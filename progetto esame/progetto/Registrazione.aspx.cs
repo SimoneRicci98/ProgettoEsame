@@ -19,7 +19,6 @@ public partial class Registrazione : System.Web.UI.Page
     {
             try
             {
-            DateTime oggi = DateTime.Today;
                 bool presente = false;
                 int app = 0;
                 string nome = txtNome.Text;
@@ -49,7 +48,7 @@ public partial class Registrazione : System.Web.UI.Page
                 help.disconnetti();
 
                 help.connetti();
-                help.assegnaComando("INSERT INTO Utenti VALUES(" + app + ",'" + nome + "','" + cognome + "','" + email + "','" + psw + "','" + Session["Versione"].ToString() + "','" + oggi + "')");
+                help.assegnaComando("INSERT INTO Utenti VALUES(" + app + ",'" + nome + "','" + cognome + "','" + email + "','" + psw + "','" + Session["Versione"].ToString() +"')");
                 help.eseguicomando();
                 help.disconnetti();
                 Session["Utente"] = app.ToString();

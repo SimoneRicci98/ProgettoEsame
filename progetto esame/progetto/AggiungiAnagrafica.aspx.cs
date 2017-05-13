@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OleDb;
 
 public partial class AggiungiAnagrafica : System.Web.UI.Page
 {
@@ -14,19 +13,24 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
     { 
         try
         {
-            if((bool)Session["Cliente"])
+            if(Session["Cliente"] != null)
             {
                 lblAz.Text = " del cliente";
                 Session["Operazione"] = "cli";
             }
             else
-            if ((bool)Session["Fornitore"])
+            if (Session["Fornitore"]!= null)
             {
                 lblAz.Text = " del fornitore";
                 Session["Operazione"] = "for";
             }
             else
             if (Session["Azienda"] is int)
+            {
+                lblAz.Text = " della tua azienda";
+                Session["Operazione"] = "mia";
+            }
+            else if(Session["Azienda"]!=null)
             {
                 lblAz.Text = " della tua azienda";
                 Session["Operazione"] = "mia";
