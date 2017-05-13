@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 public partial class Amministrazione : System.Web.UI.Page
 {
-    dbHelper help = new dbHelper("ContabilitàDB.accdb");
+    dbHelper help = new dbHelper();
     SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {

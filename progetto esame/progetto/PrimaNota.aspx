@@ -4,11 +4,11 @@
 
     <script language="javascript" type="text/javascript">
         function openWindowcli() {
-            <%Session["Operazione"] = "cli"; %>
+            <%Session["Cliente"] = true; %>
             window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
         }
         function openWindowfor() {
-            <%Session["Operazione"] = "for";%>
+            <%Session["Fornitore"] = true;%>
             window.open('AggiungiAnagrafica.aspx', 'PopUp', 'width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
         }
         </script>
@@ -80,61 +80,60 @@
         </div>
         <div class="row" style="margin-top:2%">
             <div class="col-md-12">
-               <asp:gridview ID="Gridview1" runat="server" ShowFooter="True" AutoGenerateColumns="False" OnRowCommand="ButtonAdd_Click" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
-        
-                   <AlternatingRowStyle BackColor="White" />
+        
+               <asp:GridView ID="grvStudentDetails" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%">
                    <Columns>
-        
-        
-        
-        
-       <asp:TemplateField HeaderText="Tipo">
-            <ItemTemplate>
-                <asp:DropDownList ID="comboTipo" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
-            </ItemTemplate>
-       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="IVA">
-            <ItemTemplate>
-                <asp:DropDownList ID="comboIVA" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
-            </ItemTemplate>
-       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Imponibile">
-            <ItemTemplate>
-                 <asp:TextBox ID="TextBox3" Text="0" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:TextBox>
-            </ItemTemplate>
-            <FooterStyle HorizontalAlign="Right" />
-            <FooterTemplate>
-             <asp:Button ID="ButtonAdd" runat="server" Text="Aggiungi una riga" cssClass="btn btn-primary"/>
-            </FooterTemplate>
-       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Importo iva" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
-                       <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
-                       <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"></ItemStyle>
-                       <ItemTemplate>
-                        <asp:Label ID="lblImpoIva" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:Label>
-                       </ItemTemplate>
-                       </asp:TemplateField>
+                       <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
                        <asp:TemplateField HeaderText="Conto di mastro">
-                           <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                        <ItemTemplate>
-                        <asp:DropDownList ID="comboConto" runat="server" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"></asp:DropDownList>
-                       </ItemTemplate>
+                           <ItemTemplate>
+                               <asp:DropDownList ID="drpConto" runat="server">
+                                   <asp:ListItem>Seleziona conto</asp:ListItem>
+                                   <asp:ListItem Value="conto1">conto1</asp:ListItem>
+                                   <asp:ListItem Value="conto2">conto2</asp:ListItem>
+                                   <asp:ListItem Value="conto3">conto3</asp:ListItem>
+                               </asp:DropDownList>
+                               <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="drpIva" ErrorMessage="*" InitialValue="Select"></asp:RequiredFieldValidator>
+                           </ItemTemplate>
+                        </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Avere">
+                           <ItemTemplate>
+                               <asp:TextBox ID="txtAvere" runat="server" MaxLength="50"></asp:TextBox>
+                               <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAvere" ErrorMessage="*" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                           </ItemTemplate>
                        </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Dare">
+                           <ItemTemplate>
+                               <asp:TextBox ID="txtDare" runat="server" MaxLength="3" Width="66px"></asp:TextBox>
+                               <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtDare" ErrorMessage="*" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                           </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Iva">
+                           <ItemTemplate>
+                               <asp:DropDownList ID="drpIva" runat="server">
+                                   <asp:ListItem Value="4">4</asp:ListItem>
+                                   <asp:ListItem Value="10">10</asp:ListItem>
+                                   <asp:ListItem Value="22">22</asp:ListItem>
+                               </asp:DropDownList>
+                               <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="drpIva" ErrorMessage="*" InitialValue="Select"></asp:RequiredFieldValidator>
+                           </ItemTemplate>
+                           <FooterStyle HorizontalAlign="Right" />
+                           <FooterTemplate>
+                               <asp:Button ID="ButtonAdd" runat="server" OnClick="ButtonAdd_Click" Text="Add New Row" />
+                           </FooterTemplate>
+                       </asp:TemplateField>
+                       <asp:CommandField ShowDeleteButton="True" />
                    </Columns>
-                   <EditRowStyle BackColor="#2461BF" />
                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                   <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                   <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
                    <RowStyle BackColor="#EFF3FB" />
+                   <EditRowStyle BackColor="#2461BF" />
                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                   <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                   <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                   <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                   <SortedDescendingHeaderStyle BackColor="#4870BE" />
-</asp:gridview>
+                   <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                   <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                   <AlternatingRowStyle BackColor="White" />
+               </asp:GridView>
+        
+                <br />
+        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save Data" />
             </div>
         </div>
     </div>

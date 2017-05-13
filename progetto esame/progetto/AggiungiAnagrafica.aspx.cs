@@ -8,22 +8,26 @@ using System.Data.OleDb;
 
 public partial class AggiungiAnagrafica : System.Web.UI.Page
 {
-    dbHelper help = new dbHelper("ContabilitàDB.accdb");
+    dbHelper help = new dbHelper();
 
     protected void Page_Load(object sender, EventArgs e)
     { 
         try
         {
-            switch(Session["Operazione"].ToString())
+            if((bool)Session["Cliente"])
             {
-                case "mia": lblAz.Text = " della tua azienda";
-                    break;
-                case "cli": lblAz.Text = " del nuovo cliente";
-                    break;
-                case "for": lblAz.Text = " del nuovo fornitore";
-                    break;
-                default:
-                    break;
+                lblAz.Text = " del cliente";
+                Session["Operazione"] = "cli";
+            }
+            if ((bool)Session["Fornitore"])
+            {
+                lblAz.Text = " del fornitore";
+                Session["Operazione"] = "for";
+            }
+            if (Session["Azienda"] is int)
+            {
+                lblAz.Text = " della tua azienda";
+                Session["Operazione"] = "mia";
             }
         }
         catch

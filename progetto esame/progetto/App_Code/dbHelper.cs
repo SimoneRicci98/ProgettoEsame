@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 
 public class dbHelper
 {
-    string nomeDb;
-    
+    //OleDbConnection connDb;
     SqlConnection connDb;
     SqlCommand istruzioneSQL;
 
-	public dbHelper(string nomeDb) //costruttore con parametro
+	public dbHelper() //costruttore con parametro
 	{
 
         connDb=new SqlConnection();
-        this.nomeDb = nomeDb;
 
 	}
-    public void setNomeDb(string nomeDb)
-    {
-        this.nomeDb=nomeDb;
-    } //costruttore senza parametro
-
     public void connetti()
     {
-
+        
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
         builder.DataSource = "tcp:progettoesame2017.database.windows.net,1433";
         builder.UserID = "SimoneRicci";

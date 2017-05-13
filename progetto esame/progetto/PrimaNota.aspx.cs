@@ -10,66 +10,46 @@ using System.Data.SqlClient;
 public partial class PrimaNota : System.Web.UI.Page
 {
     int rowIndex = 0;
-    dbHelper help = new dbHelper("ContabilitàDB.accdb");
+    dbHelper help = new dbHelper();
     SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+    if (!IsPostBack)
         {
-            SetInitialRow();
-            DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboIVA");
-            string[] iva = { "4", "10", "22" };
-            IVA.Items.Add(iva[0]);
-            IVA.Items.Add(iva[1]);
-            IVA.Items.Add(iva[2]);
+            FirstGridViewRow();
         }
-        #region carico dropdownlist
-        help.connetti();
-        help.assegnaComando("SELECT RagioneSociale FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+"'");
-        rs = help.estraiDati();
-        while(rs.Read())
-        {
-            DropDownList1.Items.Add(rs["RagioneSociale"].ToString());
-        }
-        help.disconnetti();
-        help.connetti();
-        help.assegnaComando("SELECT RagioneSociale FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() + "'");
-        rs = help.estraiDati();
-        while (rs.Read())
-        {
-            DropDownList2.Items.Add(rs["RagioneSociale"].ToString());
-        }
-        help.disconnetti();
-        #endregion
-
     }
 
-    private void SetInitialRow()
+    private void FirstGridViewRow()
     {
         DataTable dt = new DataTable();
         DataRow dr = null;
-        dt.Columns.Add(new DataColumn("Tipo", typeof(string)));
-        dt.Columns.Add(new DataColumn("IVA", typeof(string)));
-        dt.Columns.Add(new DataColumn("Imponibile", typeof(string)));
-        dt.Columns.Add(new DataColumn("Importo iva", typeof(string)));
-        dt.Columns.Add(new DataColumn("Conto di mastro", typeof(string)));
+        dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
+        dt.Columns.Add(new DataColumn("Col1", typeof(string)));
+        dt.Columns.Add(new DataColumn("Col2", typeof(string)));
+        dt.Columns.Add(new DataColumn("Col3", typeof(string)));
+        dt.Columns.Add(new DataColumn("Col4", typeof(string)));
+        dt.Columns.Add(new DataColumn("Col5", typeof(string)));
         dr = dt.NewRow();
-        dr["Tipo"] = string.Empty;
-        dr["IVA"] = string.Empty;
-        dr["Imponibile"] = string.Empty;
-        dr["Importo IVA"] = string.Empty;
-        dr["Conto di mastro"] = string.Empty;
+        dr["RowNumber"] = 1;
+        dr["Col1"] = string.Empty;
+        dr["Col2"] = string.Empty;
+        dr["Col3"] = string.Empty;
+        dr["Col4"] = string.Empty;
+        dr["Col5"] = string.Empty;
         dt.Rows.Add(dr);
-        dr = dt.NewRow();
 
-        //Store the DataTable in ViewState
         ViewState["CurrentTable"] = dt;
 
-        Gridview1.DataSource = dt;
-        Gridview1.DataBind();
-    }
 
-    private void AddNewRowToGrid()
+        grvStudentDetails.DataSource = dt;
+        grvStudentDetails.DataBind();
+
+        Button btnAdd = (Button)grvStudentDetails.FooterRow.Cells[5].FindControl("ButtonAdd");
+        Page.Form.DefaultFocus = btnAdd.ClientID;
+
+    }
+    private void AddNewRow()
     {
         int rowIndex = 0;
 
@@ -81,48 +61,35 @@ public partial class PrimaNota : System.Web.UI.Page
             {
                 for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                 {
-                    //estraggo i dati
-                    DropDownList Tipo = (DropDownList)Gridview1.Rows[rowIndex].Cells[0].FindControl("comboTipo");
-                    DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboIVA");
-                    TextBox Imponibile = (TextBox)Gridview1.Rows[rowIndex].Cells[2].FindControl("TextBox3");
-                    Label lblImportoIva = (Label)Gridview1.Rows[rowIndex].Cells[3].FindControl("lblImpoIva");
-                    DropDownList ContoMastro = (DropDownList)Gridview1.Rows[rowIndex].Cells[4].FindControl("comboConto");
-                    Imponibile.Text = "0";
-                    string[] iva = { "4", "10", "22" };
-                    IVA.Items.Add(iva[0]);
-                    IVA.Items.Add(iva[1]);
-                    IVA.Items.Add(iva[2]);
-                    int importoiva= int.Parse(Imponibile.Text) * int.Parse(Imponibile.Text) / 100 * int.Parse(IVA.SelectedItem.ToString());
-                    lblImportoIva.Text = importoiva.ToString();
-
+                    DropDownList ContoMastro = (DropDownList)grvStudentDetails.Rows[rowIndex].Cells[1].FindControl("drpConto");
+                    TextBox Avere = (TextBox)grvStudentDetails.Rows[rowIndex].Cells[2].FindControl("txtAvere");
+                    TextBox Dare = (TextBox)grvStudentDetails.Rows[rowIndex].Cells[3].FindControl("txtDare");
+                    DropDownList Iva = (DropDownList)grvStudentDetails.Rows[rowIndex].Cells[4].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
-                    drCurrentRow["Numero"] = i + 1;
-                    dtCurrentTable.Rows[i - 1]["Tipo"] = Tipo.Text;
-                    dtCurrentTable.Rows[i - 1]["IVA"] = IVA.Text;
-                    dtCurrentTable.Rows[i - 1]["Imponibile"] = Imponibile.Text;
-                    dtCurrentTable.Rows[i - 1]["Importo Iva"] = lblImportoIva.Text;
-                    dtCurrentTable.Rows[i - 1]["Conto di mastro"] = ContoMastro.Text;
+                    drCurrentRow["RowNumber"] = i + 1;
 
+                    dtCurrentTable.Rows[i - 1]["Col1"] = ContoMastro.Text;
+                    dtCurrentTable.Rows[i - 1]["Col2"] = Avere.Text;
+                    dtCurrentTable.Rows[i - 1]["Col3"] = Dare.Text;
+                    dtCurrentTable.Rows[i - 1]["Col4"] = Iva.SelectedValue;
                     rowIndex++;
                 }
                 dtCurrentTable.Rows.Add(drCurrentRow);
                 ViewState["CurrentTable"] = dtCurrentTable;
 
-                Gridview1.DataSource = dtCurrentTable;
-                Gridview1.DataBind();
+                grvStudentDetails.DataSource = dtCurrentTable;
+                grvStudentDetails.DataBind();
             }
         }
         else
         {
             Response.Write("ViewState is null");
         }
-
-        //Set Previous Data on Postbacks
         SetPreviousData();
     }
-
     private void SetPreviousData()
     {
+       
         int rowIndex = 0;
         if (ViewState["CurrentTable"] != null)
         {
@@ -131,28 +98,124 @@ public partial class PrimaNota : System.Web.UI.Page
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    DropDownList Tipo = (DropDownList)Gridview1.Rows[rowIndex].Cells[0].FindControl("comboTipo");
-                    DropDownList IVA = (DropDownList)Gridview1.Rows[rowIndex].Cells[1].FindControl("comboIVA");
-                    TextBox Imponibile = (TextBox)Gridview1.Rows[rowIndex].Cells[2].FindControl("TextBox3");
-                    Label lblImportoIva = (Label)Gridview1.Rows[rowIndex].Cells[3].FindControl("lblImpoIva");
-                    DropDownList ContoMastro = (DropDownList)Gridview1.Rows[rowIndex].Cells[4].FindControl("comboTipo");
+                    DropDownList ContoMastro = (DropDownList)grvStudentDetails.Rows[rowIndex].Cells[1].FindControl("drpConto");
+                    TextBox Avere = (TextBox)grvStudentDetails.Rows[rowIndex].Cells[2].FindControl("txtAvere");
+                    TextBox Dare = (TextBox)grvStudentDetails.Rows[rowIndex].Cells[3].FindControl("txtDare");
+                    DropDownList Iva = (DropDownList)grvStudentDetails.Rows[rowIndex].Cells[4].FindControl("drpIva");
 
 
-                    Tipo.Text = dt.Rows[i]["Tipo"].ToString();
-                    IVA.Text = dt.Rows[i]["IVA"].ToString();
-                    Imponibile.Text = dt.Rows[i]["Imponibile"].ToString();
-                    lblImportoIva.Text = dt.Rows[i]["Importo iva"].ToString();
-                    ContoMastro.Text = dt.Rows[i]["Conto di mastro"].ToString();
-
+                    grvStudentDetails.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
+                    ContoMastro.Text = dt.Rows[i]["Col1"].ToString();
+                    Avere.Text = dt.Rows[i]["Col2"].ToString();
+                    Dare.Text = dt.Rows[i]["Col3"].ToString();
+                    Iva.SelectedValue = dt.Rows[i]["Col4"].ToString();
                     rowIndex++;
                 }
             }
         }
     }
-
     protected void ButtonAdd_Click(object sender, EventArgs e)
     {
-        AddNewRowToGrid();
+        AddNewRow();
+    }
+    protected void grvStudentDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        SetRowData();
+        if (ViewState["CurrentTable"] != null)
+        {
+            DataTable dt = (DataTable)ViewState["CurrentTable"];
+            DataRow drCurrentRow = null;
+            int rowIndex = Convert.ToInt32(e.RowIndex);
+            if (dt.Rows.Count > 1)
+            {
+                dt.Rows.Remove(dt.Rows[rowIndex]);
+                drCurrentRow = dt.NewRow();
+                ViewState["CurrentTable"] = dt;
+                grvStudentDetails.DataSource = dt;
+                grvStudentDetails.DataBind();
+
+                for (int i = 0; i < grvStudentDetails.Rows.Count - 1; i++)
+                {
+                    grvStudentDetails.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
+                }
+                SetPreviousData();
+            }
+        }
     }
 
+    private void SetRowData()
+    {
+        int rowIndex = 0;
+
+        if (ViewState["CurrentTable"] != null)
+        {
+            DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+            DataRow drCurrentRow = null;
+            if (dtCurrentTable.Rows.Count > 0)
+            {
+                for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
+                {
+                    DropDownList ContoMastro = (DropDownList)grvStudentDetails.Rows[rowIndex].Cells[1].FindControl("drpConto");
+                    TextBox Avere = (TextBox)grvStudentDetails.Rows[rowIndex].Cells[2].FindControl("txtAvere");
+                    TextBox Dare = (TextBox)grvStudentDetails.Rows[rowIndex].Cells[3].FindControl("txtDare");
+                    DropDownList Iva = (DropDownList)grvStudentDetails.Rows[rowIndex].Cells[4].FindControl("drpIva");
+                    drCurrentRow = dtCurrentTable.NewRow();
+                    drCurrentRow["RowNumber"] = i + 1;
+
+                    dtCurrentTable.Rows[i - 1]["Col1"] = ContoMastro.Text;
+                    dtCurrentTable.Rows[i - 1]["Col2"] = Avere.Text;
+                    dtCurrentTable.Rows[i - 1]["Col3"] = Dare.Text;
+                    dtCurrentTable.Rows[i - 1]["Col4"] = Iva.SelectedValue;
+                    rowIndex++;
+                }
+
+                ViewState["CurrentTable"] = dtCurrentTable;
+            }
+        }
+        else
+        {
+            Response.Write("ViewState is null");
+        }
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        string codCliFor = "";
+
+        try
+        {
+            SetRowData();
+            DataTable table = ViewState["CurrentTable"] as DataTable;
+
+            if (table != null)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    string ContoMastro = row.ItemArray[1] as string;
+                    string Avere = row.ItemArray[2] as string;
+                    string Dare = row.ItemArray[3] as string;
+                    string Iva = row.ItemArray[4] as string;
+                    if(Dare != null)
+                    {
+                        help.connetti();
+                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Dare+"','"+Iva+"','"+codCliFor+"')");
+                        help.eseguicomando();
+                        help.disconnetti();
+                    }
+                    else
+                    {
+                        help.connetti();
+                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Avere+"','"+Iva+"','"+codCliFor+"')");
+                        help.eseguicomando();
+                        help.disconnetti();
+                    }
+
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 }

@@ -5,9 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Data;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 public partial class ProvaGridViewFolle : System.Web.UI.Page
 {
+    dbHelper help = new dbHelper();
+    SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Page.IsPostBack)
@@ -84,6 +87,7 @@ public partial class ProvaGridViewFolle : System.Web.UI.Page
     }
     private void SetPreviousData()
     {
+       
         int rowIndex = 0;
         if (ViewState["CurrentTable"] != null)
         {
@@ -173,6 +177,8 @@ public partial class ProvaGridViewFolle : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        string codCliFor = "";
+
         try
         {
             SetRowData();
@@ -182,24 +188,21 @@ public partial class ProvaGridViewFolle : System.Web.UI.Page
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    string txName = row.ItemArray[1] as string;
-                    string txAge = row.ItemArray[2] as string;
-                    string txAdd = row.ItemArray[3] as string;
-                    string rbGen = row.ItemArray[4] as string;
-                    string drpQual = row.ItemArray[5] as string;
-
-
-                    if (txName != null ||
-                        txAge != null ||
-                        txAdd != null ||
-                        rbGen != null ||
-                        drpQual != null)
+                    string ContoMastro = row.ItemArray[1] as string;
+                    string Avere = row.ItemArray[2] as string;
+                    string Dare = row.ItemArray[3] as string;
+                    string Iva = row.ItemArray[4] as string;
+                    if(Dare != null)
                     {
+                        help.connetti();
+                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Dare+"','"+Iva+"','"+codCliFor+"')");
+                        help.eseguicomando();
+                        help.disconnetti();
                         // Do whatever is needed with this data, 
                         // Possibily push it in database
                         // I am just printing on the page to demonstrate that it is working.
-                        Response.Write(string.Format("{0} {1} {2} {3} {4}<br/>", txName, txAge, txAdd, rbGen, drpQual));
                     }
+
 
                 }
             }
