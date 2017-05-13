@@ -26,6 +26,8 @@ public partial class EmettiFattura : System.Web.UI.Page
         dt.Columns.Add(new DataColumn("Col3", typeof(string)));
         dt.Columns.Add(new DataColumn("Col4", typeof(string)));
         dt.Columns.Add(new DataColumn("Col5", typeof(string)));
+        dt.Columns.Add(new DataColumn("Col6", typeof(string)));
+        dt.Columns.Add(new DataColumn("Col7", typeof(string)));
         dr = dt.NewRow();
         dr["RowNumber"] = 1;
         dr["Col1"] = string.Empty;
@@ -33,6 +35,8 @@ public partial class EmettiFattura : System.Web.UI.Page
         dr["Col3"] = string.Empty;
         dr["Col4"] = string.Empty;
         dr["Col5"] = string.Empty;
+        dr["Col6"] = string.Empty;
+        dr["Col7"] = string.Empty;
         dt.Rows.Add(dr);
 
         ViewState["CurrentTable"] = dt;
@@ -57,17 +61,24 @@ public partial class EmettiFattura : System.Web.UI.Page
             {
                 for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                 {
-                    DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpConto");
-                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtAvere");
-                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtDare");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
+                    TextBox CodiceArticolo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("txtCodArt");
+                    TextBox Descrizione = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtDesc");
+                    TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtQta");
+                    TextBox PrezzoUnitario = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("txtPrezzo");
+                    TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[5].FindControl("txtSconto");
+                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("txtImporto");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
-                    dtCurrentTable.Rows[i - 1]["Col1"] = ContoMastro.Text;
-                    dtCurrentTable.Rows[i - 1]["Col2"] = Avere.Text;
-                    dtCurrentTable.Rows[i - 1]["Col3"] = Dare.Text;
-                    dtCurrentTable.Rows[i - 1]["Col4"] = Iva.SelectedValue;
+                    dtCurrentTable.Rows[i - 1]["Col1"] = CodiceArticolo.Text;
+                    dtCurrentTable.Rows[i - 1]["Col2"] = Descrizione.Text;
+                    dtCurrentTable.Rows[i - 1]["Col3"] = Quantità.Text;
+                    dtCurrentTable.Rows[i - 1]["Col4"] = PrezzoUnitario.Text;
+                    dtCurrentTable.Rows[i - 1]["Col5"] = Sconto.Text;
+                    dtCurrentTable.Rows[i - 1]["Col6"] = Importo.Text;
+                    dtCurrentTable.Rows[i - 1]["Col7"] = Iva.SelectedValue;
+
                     rowIndex++;
                 }
                 dtCurrentTable.Rows.Add(drCurrentRow);
@@ -94,17 +105,23 @@ public partial class EmettiFattura : System.Web.UI.Page
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpConto");
-                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtAvere");
-                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtDare");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
+                    TextBox CodiceArticolo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("txtCodArt");
+                    TextBox Descrizione = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtDesc");
+                    TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtQta");
+                    TextBox PrezzoUnitario = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("txtPrezzo");
+                    TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[5].FindControl("txtSconto");
+                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("txtImporto");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("drpIva");
 
 
                     grvPrimaNota.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
-                    ContoMastro.Text = dt.Rows[i]["Col1"].ToString();
-                    Avere.Text = dt.Rows[i]["Col2"].ToString();
-                    Dare.Text = dt.Rows[i]["Col3"].ToString();
-                    Iva.SelectedValue = dt.Rows[i]["Col4"].ToString();
+                    CodiceArticolo.Text = dt.Rows[i]["Col1"].ToString();
+                    Descrizione.Text = dt.Rows[i]["Col2"].ToString();
+                    Quantità.Text = dt.Rows[i]["Col3"].ToString();
+                    PrezzoUnitario.Text = dt.Rows[i]["Col4"].ToString();
+                    Sconto.Text = dt.Rows[i]["Col5"].ToString();
+                    Importo.Text = dt.Rows[i]["Col6"].ToString();
+                    Iva.SelectedValue = dt.Rows[i]["Col7"].ToString();
                     rowIndex++;
                 }
             }
@@ -151,17 +168,24 @@ public partial class EmettiFattura : System.Web.UI.Page
             {
                 for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                 {
-                    DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpConto");
-                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtAvere");
-                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtDare");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
+                    TextBox CodiceArticolo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("txtCodArt");
+                    TextBox Descrizione = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtDesc");
+                    TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtQta");
+                    TextBox PrezzoUnitario = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("txtPrezzo");
+                    TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[5].FindControl("txtSconto");
+                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("txtImporto");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
-                    dtCurrentTable.Rows[i - 1]["Col1"] = ContoMastro.Text;
-                    dtCurrentTable.Rows[i - 1]["Col2"] = Avere.Text;
-                    dtCurrentTable.Rows[i - 1]["Col3"] = Dare.Text;
-                    dtCurrentTable.Rows[i - 1]["Col4"] = Iva.SelectedValue;
+                    dtCurrentTable.Rows[i - 1]["Col1"] = CodiceArticolo.Text;
+                    dtCurrentTable.Rows[i - 1]["Col2"] = Descrizione.Text;
+                    dtCurrentTable.Rows[i - 1]["Col3"] = Quantità.Text;
+                    dtCurrentTable.Rows[i - 1]["Col4"] = PrezzoUnitario.Text;
+                    dtCurrentTable.Rows[i - 1]["Col5"] = Sconto.Text;
+                    dtCurrentTable.Rows[i - 1]["Col6"] = Importo.Text;
+                    dtCurrentTable.Rows[i - 1]["Col7"] = Iva.SelectedValue;
+
                     rowIndex++;
                 }
 
@@ -175,8 +199,6 @@ public partial class EmettiFattura : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        string codCliFor = "";
-
         try
         {
             dbHelper help = new dbHelper();
@@ -187,11 +209,14 @@ public partial class EmettiFattura : System.Web.UI.Page
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    string ContoMastro = row.ItemArray[1] as string;
-                    string Avere = row.ItemArray[2] as string;
-                    string Dare = row.ItemArray[3] as string;
-                    string Iva = row.ItemArray[4] as string;
-                    if (Dare != null)
+                    string CodiceArticolo = row.ItemArray[1] as string;
+                    string Descrizione = row.ItemArray[2] as string;
+                    string Quantità = row.ItemArray[3] as string;
+                    string PrezzoUnitario = row.ItemArray[4] as string;
+                    string Sconto = row.ItemArray[5] as string;
+                    string Importo = row.ItemArray[6] as string;
+                    string Iva = row.ItemArray[7] as string;
+                    /*if (Dare != null)
                     {
                         help.connetti();
                         help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','" + Dare + "','" + Iva + "','" + codCliFor + "')");
@@ -204,7 +229,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                         help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','" + Avere + "','" + Iva + "','" + codCliFor + "')");
                         help.eseguicomando();
                         help.disconnetti();
-                    }
+                    }*/
 
 
                 }

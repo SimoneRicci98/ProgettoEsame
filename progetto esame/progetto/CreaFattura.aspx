@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EmettiFattura.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="EmettiFattura" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CreaFattura.aspx.cs" UnobtrusiveValidationMode="none" MasterPageFile="~/MasterPage.master" Inherits="EmettiFattura" %>
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-12">
         <div class="col-md-3">
@@ -17,7 +17,7 @@
             <asp:TextBox ID="txtOggetto" runat="server"></asp:TextBox>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
 
             Fattura numero&nbsp;
             <asp:TextBox ID="txtNumero" runat="server" Width="27px"></asp:TextBox>
@@ -75,7 +75,7 @@
                            </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>
-                               <asp:Button ID="ButtonAdd" runat="server" OnClick="ButtonAdd_Click" Text="Add New Row" />
+                               <asp:Button CssClass="btn btn-primary" ID="ButtonAdd" runat="server" OnClick="ButtonAdd_Click" Text="Aggiungi nuova riga" />
                            </FooterTemplate>
                        </asp:TemplateField>
                        <asp:CommandField ShowDeleteButton="True" />
@@ -89,6 +89,6 @@
                    <AlternatingRowStyle BackColor="White" />
                </asp:GridView>
                 <br />
-        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save Data" />
+        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva" />
     </div>
 </asp:Content>
