@@ -5,14 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
 
-public partial class PrimaNota : System.Web.UI.Page
+public partial class EmettiFattura : System.Web.UI.Page
 {
-    
     protected void Page_Load(object sender, EventArgs e)
     {
-    if (!IsPostBack)
+        if (!IsPostBack)
         {
             FirstGridViewRow();
         }
@@ -87,7 +85,7 @@ public partial class PrimaNota : System.Web.UI.Page
     }
     private void SetPreviousData()
     {
-       
+
         int rowIndex = 0;
         if (ViewState["CurrentTable"] != null)
         {
@@ -193,17 +191,17 @@ public partial class PrimaNota : System.Web.UI.Page
                     string Avere = row.ItemArray[2] as string;
                     string Dare = row.ItemArray[3] as string;
                     string Iva = row.ItemArray[4] as string;
-                    if(Dare != null)
+                    if (Dare != null)
                     {
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Dare+"','"+Iva+"','"+codCliFor+"')");
+                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','" + Dare + "','" + Iva + "','" + codCliFor + "')");
                         help.eseguicomando();
                         help.disconnetti();
                     }
                     else
                     {
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Avere+"','"+Iva+"','"+codCliFor+"')");
+                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','" + Avere + "','" + Iva + "','" + codCliFor + "')");
                         help.eseguicomando();
                         help.disconnetti();
                     }

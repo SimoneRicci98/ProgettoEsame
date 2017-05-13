@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PrimaNota.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="PrimaNota" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode="none" CodeFile="PrimaNota.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="PrimaNota" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -75,13 +75,19 @@
         </div>
         <div class="row" style="border-color:red;border:solid;margin-top:2%">
             <div class="col-md-12">
-                Dati obbligatori
+                <div class="col-md-6">
+                    Dati obbligatori
+                </div>
+                <div class="col-md-6">
+                    Descrizione &nbsp;&nbsp; <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                </div>
+                
             </div>
         </div>
         <div class="row" style="margin-top:2%">
             <div class="col-md-12">
         
-               <asp:GridView ID="grvStudentDetails" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%">
+               <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%">
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
                        <asp:TemplateField HeaderText="Conto di mastro">
@@ -97,14 +103,12 @@
                         </asp:TemplateField>
                        <asp:TemplateField HeaderText="Avere">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtAvere" runat="server" MaxLength="50"></asp:TextBox>
-                               <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAvere" ErrorMessage="*" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                               <asp:TextBox ID="txtAvere" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Dare">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtDare" runat="server" MaxLength="3" Width="66px"></asp:TextBox>
-                               <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtDare" ErrorMessage="*" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                               <asp:TextBox ID="txtDare" runat="server"></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Iva">
@@ -114,7 +118,7 @@
                                    <asp:ListItem Value="10">10</asp:ListItem>
                                    <asp:ListItem Value="22">22</asp:ListItem>
                                </asp:DropDownList>
-                               <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="drpIva" ErrorMessage="*" InitialValue="Select"></asp:RequiredFieldValidator>
+                               <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="drpIva" ErrorMessage="*"  InitialValue="Select"></asp:RequiredFieldValidator>
                            </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>

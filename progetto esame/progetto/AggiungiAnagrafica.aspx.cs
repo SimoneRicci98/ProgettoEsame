@@ -19,11 +19,13 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 lblAz.Text = " del cliente";
                 Session["Operazione"] = "cli";
             }
+            else
             if ((bool)Session["Fornitore"])
             {
                 lblAz.Text = " del fornitore";
                 Session["Operazione"] = "for";
             }
+            else
             if (Session["Azienda"] is int)
             {
                 lblAz.Text = " della tua azienda";
