@@ -235,47 +235,64 @@ public partial class PrimaNota : System.Web.UI.Page
                 codCliFor = "Fornitore_" + rs["ID_Azienda"].ToString();
                 help.disconnetti();
             }
-
-            SetRowData();
-            DataTable table = ViewState["CurrentTable"] as DataTable;
-
-            if (table != null)
+            if(!radioFornitore.Checked && !radioCliente.Checked)
             {
-                foreach (DataRow row in table.Rows)
+                MessageBox.Show("Selezionare cliente o fornitore");
+            }
+            else
+            {
+                SetRowData();
+                DataTable table = ViewState["CurrentTable"] as DataTable;
+
+                if (table != null)
                 {
-                    string ContoMastro = row.ItemArray[1] as string;
-                    string Avere = row.ItemArray[2] as string;
-                    string Dare = row.ItemArray[3] as string;
-                    string Iva = row.ItemArray[4] as string;
-                    if(Dare != null)
+                    foreach (DataRow row in table.Rows)
                     {
+
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore,Descrizione,Iva,NumDoc,Protocollo)" +
-                            " VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Dare_"+Dare+"','"+totDoc+"','"+codCliFor+"','"+descrizione+"','"+Iva+"','"+NumDoc+"','"+protocollo+"')");
-                        help.eseguicomando();
+                        help.assegnaComando("SELECT MAX (ID_Scrittura) AS massimo FROM Giornale");
+                        rs = help.estraiDati();
+                        rs.Read();
+                        int app = int.Parse(rs["massimo"].ToString()) + 1;
                         help.disconnetti();
-                    }
-                    else
-                    {
-                        help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore,Descrizione,Iva,NumDoc,Protocollo)"+
-                            " VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Avere_"+Avere+"','"+totDoc+"','"+codCliFor+"','"+descrizione+"','"+Iva+"','"+NumDoc+"','"+protocollo+"')");
-                        help.eseguicomando();
-                        help.disconnetti();
+                        string ContoMastro = row.ItemArray[1] as string;
+                        string Avere = row.ItemArray[2] as string;
+                        string Dare = row.ItemArray[3] as string;
+                        string Iva = row.ItemArray[4] as string;
+                        if (Dare != string.Empty)
+                        {
+                            help.connetti();
+                            help.assegnaComando("INSERT INTO Giornale" +
+                                " VALUES('" + app + "','" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Dare_" + Dare + "','" + totDoc + "','" + codCliFor + "','" + descrizione + "','" + Iva + "','" + NumDoc + "','" + protocollo + "')");
+                            help.eseguicomando();
+                            help.disconnetti();
+                        }
+                        else
+                        {
+                            help.connetti();
+                            help.assegnaComando("INSERT INTO Giornale" +
+                                " VALUES('" + app + "','" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Avere_" + Avere + "','" + totDoc + "','" + codCliFor + "','" + descrizione + "','" + Iva + "','" + NumDoc + "','" + protocollo + "')");
+                            help.eseguicomando();
+                            help.disconnetti();
+                        }
                     }
                 }
             }
+
+            
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
+            MessageBox.Show(ex.Message);
         }
     }
 
     protected void btnAggCli_Click(object sender, EventArgs e)
-    {  
+    {
+       
         if (myCookie == null)
         {
+            myCookie = new HttpCookie("PopUp");
             DateTime now = DateTime.Now;
             myCookie.Value = "";
             myCookie.Expires = now.AddYears(10);
@@ -291,6 +308,7 @@ public partial class PrimaNota : System.Web.UI.Page
     {
         if (myCookie == null)
         {
+            myCookie = new HttpCookie("PopUp");
             DateTime now = DateTime.Now;
             myCookie.Value = "";
             myCookie.Expires = now.AddYears(10); 

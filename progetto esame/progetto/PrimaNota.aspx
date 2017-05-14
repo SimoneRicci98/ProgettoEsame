@@ -106,6 +106,7 @@
                        <asp:TemplateField HeaderText="Iva">
                            <ItemTemplate>
                                <asp:DropDownList ID="drpIva" runat="server">
+                                   <asp:ListItem Value=" "> </asp:ListItem>
                                    <asp:ListItem Value="4">4</asp:ListItem>
                                    <asp:ListItem Value="10">10</asp:ListItem>
                                    <asp:ListItem Value="22">22</asp:ListItem>

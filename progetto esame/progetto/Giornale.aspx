@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Giornale.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="Giornale" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-left:1%">
         <div class="row">Azienda&nbsp;
             <asp:Label ID="lblAzienda" runat="server"></asp:Label>
         </div>
@@ -15,14 +15,16 @@
             <asp:Label ID="lblIndirizzo" runat="server"></asp:Label>
         </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-left:1%">
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="90%">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="NumDoc" HeaderText="Numero documento" />
-                <asp:BoundField DataField="Proto" HeaderText="Protocollo" />
+                <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
+                <asp:BoundField DataField="Fornitore" HeaderText="Fornitore" />
                 <asp:BoundField DataField="ContoMastro" HeaderText="Conto di mastro" />
+                <asp:BoundField DataField="Proto" HeaderText="Protocollo" />
                 <asp:BoundField DataField="Desc" HeaderText="Descrizione" />
                 <asp:BoundField DataField="Dare" HeaderText="Dare" />
                 <asp:BoundField DataField="Avere" HeaderText="Avere" />
