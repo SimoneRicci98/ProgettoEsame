@@ -173,6 +173,6 @@
          <br />
         <asp:Button ID="Button1" runat="server" Text="Inserisci" OnClick="Button1_Click" ValidationGroup="control" CssClass="btn-default" />
     &nbsp;&nbsp;
-        <asp:Button ID="btnChiudi" runat="server" OnClick="btnChiudi_Click" Text="Chiudi" />
+     <asp:Button ID="btnChiudi" runat="server" OnClick="btnChiudi_Click" Text="Chiudi" />
     </div>  
 </asp:Content>

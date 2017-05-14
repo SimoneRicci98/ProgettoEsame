@@ -209,6 +209,11 @@ public partial class EmettiFattura : System.Web.UI.Page
             {
                 foreach (DataRow row in table.Rows)
                 {
+                    string numero = txtNumero.Text;
+                    string oggetto = txtOggetto.Text;
+                    string data = txtData.Text;
+                    string tipoPagamento = txtPagamento.Text;
+
                     string CodiceArticolo = row.ItemArray[1] as string;
                     string Descrizione = row.ItemArray[2] as string;
                     string Quantità = row.ItemArray[3] as string;
@@ -216,12 +221,18 @@ public partial class EmettiFattura : System.Web.UI.Page
                     string Sconto = row.ItemArray[5] as string;
                     string Importo = row.ItemArray[6] as string;
                     string Iva = row.ItemArray[7] as string;
+
+                    help.connetti();
+                    help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Data) "+
+                        "VALUES('"+numero+"','"+CodiceArticolo+"','"+Descrizione+"','"+Quantità+"','"+PrezzoUnitario+"','"+Sconto+"','"+Importo+"','"+Iva+"','"+oggetto+"','"+tipoPagamento+"','"+data+"')");
+                    help.eseguicomando();
+                    help.disconnetti();
                 }
             }
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
+            MessageBox.Show(ex.Message);
         }
     }
 }

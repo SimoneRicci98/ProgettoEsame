@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta  name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
     <title>nome programma</title>
   <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
     <asp:ContentPlaceHolder id="head" runat="server">
