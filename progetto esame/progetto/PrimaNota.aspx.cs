@@ -320,4 +320,9 @@ public partial class PrimaNota : System.Web.UI.Page
         Session["Cliente"] = false;
         ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1120,width=620,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Giornale.aspx");
+    }
 }

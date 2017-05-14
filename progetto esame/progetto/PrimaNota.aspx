@@ -131,7 +131,9 @@
         
                 <br />
         <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva dati" />
-            &nbsp; Salvare solo a fine operazione!</div>
+            &nbsp; Salvare solo a fine operazione!&nbsp;
+                <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="Button1_Click" Text="Stampa a video" />
+            </div>
         </div>
     </div>
 </asp:Content>
