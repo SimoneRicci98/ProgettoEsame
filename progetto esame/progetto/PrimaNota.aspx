@@ -43,16 +43,26 @@
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioCliente" runat="server" GroupName="ClienteFornitore" Text="Cliente" />
                        <br />
-                       <asp:DropDownList ID="DropDownList1" runat="server">
+                       <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="sqlEstraiClienti" DataTextField="RagioneSociale" DataValueField="RagioneSociale">
                        </asp:DropDownList>
+                       <asp:SqlDataSource ID="sqlEstraiClienti" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Clienti] WHERE ([COD_Azienda] = @COD_Azienda)">
+                           <SelectParameters>
+                               <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
+                           </SelectParameters>
+                       </asp:SqlDataSource>
                    <br />
                    <input id="Button1" type="button" language="javascript" onclick="return openWindowcli()" value="Aggiungi cliente"  />
                    </div>
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
                        <br />
-                       <asp:DropDownList ID="DropDownList2" runat="server">
+                       <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlEstraiFornitori" DataTextField="RagioneSociale" DataValueField="RagioneSociale">
                        </asp:DropDownList>
+                       <asp:SqlDataSource ID="SqlEstraiFornitori" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Fornitori] WHERE ([COD_Azienda] = @COD_Azienda)">
+                           <SelectParameters>
+                               <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
+                           </SelectParameters>
+                       </asp:SqlDataSource>
                        <br />
                    <input id="Button2" type="button" language="javascript" onclick="return openWindowfor()" value="Aggiungi  fornitore" />
                    </div>
@@ -79,7 +89,7 @@
                     Dati obbligatori
                 </div>
                 <div class="col-md-6">
-                    Descrizione &nbsp;&nbsp; <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                    Descrizione &nbsp;&nbsp; <asp:TextBox ID="TextBox3" runat="server" TextMode="MultiLine"></asp:TextBox>
                 </div>
                 
             </div>
@@ -122,7 +132,7 @@
                            </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>
-                               <asp:Button ID="ButtonAdd" runat="server" OnClick="ButtonAdd_Click" Text="Add New Row" />
+                               <asp:Button ID="ButtonAdd" CssClass="btn btn-primary" runat="server" OnClick="ButtonAdd_Click" Text="Aggiungi una riga" />
                            </FooterTemplate>
                        </asp:TemplateField>
                        <asp:CommandField ShowDeleteButton="True" />
@@ -137,8 +147,8 @@
                </asp:GridView>
         
                 <br />
-        <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save Data" />
-            </div>
+        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva dati" />
+            &nbsp; Salvare solo a fine operazione!</div>
         </div>
     </div>
 </asp:Content>

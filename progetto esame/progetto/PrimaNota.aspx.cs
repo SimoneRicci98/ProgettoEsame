@@ -12,7 +12,8 @@ public partial class PrimaNota : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-    if (!IsPostBack)
+        
+        if (!IsPostBack)
         {
             FirstGridViewRow();
         }
@@ -177,11 +178,33 @@ public partial class PrimaNota : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        string codCliFor = "";
 
         try
         {
+            string codCliFor="";
             dbHelper help = new dbHelper();
+            SqlDataReader rs;
+            if(radioCliente.Checked)
+            {
+                help.connetti();
+                help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+
+                    "' AND RagioneSociale = '"+DropDownList1.SelectedValue+"'");
+                rs = help.estraiDati();
+                rs.Read();
+                codCliFor = "Cliente_" + rs["ID_Azienda"].ToString();
+                help.disconnetti();
+            }
+            if (radioFornitore.Checked)
+            {
+                help.connetti();
+                help.assegnaComando("SELECT ID_Azienda FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() +
+                    "' AND RagioneSociale = '" + DropDownList2.SelectedValue + "'");
+                rs = help.estraiDati();
+                rs.Read();
+                codCliFor = "Fornitore_" + rs["ID_Azienda"].ToString();
+                help.disconnetti();
+            }
+
             SetRowData();
             DataTable table = ViewState["CurrentTable"] as DataTable;
 
@@ -195,6 +218,7 @@ public partial class PrimaNota : System.Web.UI.Page
                     string Iva = row.ItemArray[4] as string;
                     if(Dare != null)
                     {
+                        //mettere un id per il salvataggio, altrimenti è un casino
                         help.connetti();
                         help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Dare+"','"+Iva+"','"+codCliFor+"')");
                         help.eseguicomando();

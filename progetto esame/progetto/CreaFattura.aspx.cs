@@ -216,22 +216,6 @@ public partial class EmettiFattura : System.Web.UI.Page
                     string Sconto = row.ItemArray[5] as string;
                     string Importo = row.ItemArray[6] as string;
                     string Iva = row.ItemArray[7] as string;
-                    /*if (Dare != null)
-                    {
-                        help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','" + Dare + "','" + Iva + "','" + codCliFor + "')");
-                        help.eseguicomando();
-                        help.disconnetti();
-                    }
-                    else
-                    {
-                        help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','" + Avere + "','" + Iva + "','" + codCliFor + "')");
-                        help.eseguicomando();
-                        help.disconnetti();
-                    }*/
-
-
                 }
             }
         }
