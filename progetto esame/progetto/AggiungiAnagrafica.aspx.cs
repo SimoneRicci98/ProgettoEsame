@@ -17,23 +17,27 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
             {
                 lblAz.Text = " del cliente";
                 Session["Operazione"] = "cli";
+                btnChiudi.Visible = true;
             }
             else
             if (Session["Fornitore"]!= null)
             {
                 lblAz.Text = " del fornitore";
                 Session["Operazione"] = "for";
+                btnChiudi.Visible = true;
             }
             else
             if (Session["Azienda"] is int)
             {
                 lblAz.Text = " della tua azienda";
                 Session["Operazione"] = "mia";
+                btnChiudi.Visible = false;
             }
             else if(Session["Azienda"]!=null)
             {
                 lblAz.Text = " della tua azienda";
                 Session["Operazione"] = "mia";
+                btnChiudi.Visible = false;
             }
         }
         catch
@@ -102,9 +106,8 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                             "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
                         help.eseguicomando();
                         help.disconnetti();
-                        Response.Redirect("Seleziona.aspx");
                         #endregion
-                        break;
+                    break;
                     case "for":
                         #region inserimento dati nella tabella fornitori
                         help.connetti();
@@ -112,9 +115,8 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                             "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
                         help.eseguicomando();
                         help.disconnetti();
-                        Response.Redirect("Seleziona.aspx");
-                        #endregion
-                        break;
+                    #endregion
+                    break;
                     default:
                         break;
 
@@ -124,5 +126,10 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
             {
                 Response.Write("Errore");
             }
+    }
+
+    protected void btnChiudi_Click(object sender, EventArgs e)
+    {
+        ClientScript.RegisterStartupScript(typeof(Page), "closePage", "window.close();", true);
     }
 }

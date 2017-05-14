@@ -15,7 +15,7 @@
             <asp:Label ID="lblErr1" runat="server" ForeColor="#CC0000"></asp:Label>
             
             <br />
-            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"  Text="Invia" />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"  Text="Invia" Enabled="False" />
             <br />
             <br />
             <asp:ListBox ID="lstDomande" runat="server" Rows="10" Width="80%"></asp:ListBox>

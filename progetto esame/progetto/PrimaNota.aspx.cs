@@ -11,9 +11,10 @@ public partial class PrimaNota : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
     SqlDataReader rs;
+    HttpCookie myCookie;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        myCookie = Request.Cookies["PopUp"];
         if (!IsPostBack)
         {
             FirstGridViewRow();
@@ -38,8 +39,6 @@ public partial class PrimaNota : System.Web.UI.Page
         dr["Col4"] = string.Empty;
         dr["Col5"] = string.Empty;
         dt.Rows.Add(dr);
-
-        Session["Azienda"] = 4;
 
         ViewState["CurrentTable"] = dt;
 
@@ -180,7 +179,7 @@ public partial class PrimaNota : System.Web.UI.Page
             DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
             DataRow drCurrentRow = null;
             if (dtCurrentTable.Rows.Count > 0)
-            {
+            { 
                 for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                 {
                     DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpConto");
@@ -211,7 +210,10 @@ public partial class PrimaNota : System.Web.UI.Page
         try
         {
             string codCliFor="";
-            
+            string descrizione = txtDesc.Text;
+            string protocollo = txtProt.Text;
+            string NumDoc = txtNumDoc.Text;
+            string totDoc = txtTot.Text;
             
             if(radioCliente.Checked)
             {
@@ -247,21 +249,20 @@ public partial class PrimaNota : System.Web.UI.Page
                     string Iva = row.ItemArray[4] as string;
                     if(Dare != null)
                     {
-                        //mettere un id per il salvataggio, altrimenti è un casino
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Dare+"','"+Iva+"','"+codCliFor+"')");
+                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore,Descrizione,Iva,NumDoc,Protocollo)" +
+                            " VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Dare_"+Dare+"','"+totDoc+"','"+codCliFor+"','"+descrizione+"','"+Iva+"','"+NumDoc+"','"+protocollo+"')");
                         help.eseguicomando();
                         help.disconnetti();
                     }
                     else
                     {
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore) VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','"+Avere+"','"+Iva+"','"+codCliFor+"')");
+                        help.assegnaComando("INSERT INTO Giornale(COD_Azienda,ContoMastro,DareAvere,Imponibile,COD_Cliente/Fornitore,Descrizione,Iva,NumDoc,Protocollo)"+
+                            " VALUES('" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Avere_"+Avere+"','"+totDoc+"','"+codCliFor+"','"+descrizione+"','"+Iva+"','"+NumDoc+"','"+protocollo+"')");
                         help.eseguicomando();
                         help.disconnetti();
                     }
-
-
                 }
             }
         }
@@ -269,5 +270,36 @@ public partial class PrimaNota : System.Web.UI.Page
         {
             throw new Exception(ex.Message);
         }
+    }
+
+    protected void btnAggCli_Click(object sender, EventArgs e)
+    {  
+        if (myCookie == null)
+        {
+            DateTime now = DateTime.Now;
+            myCookie.Value = "";
+            myCookie.Expires = now.AddYears(10);
+            Response.Cookies.Add(myCookie);
+            MessageBox.Show("Nel caso non si aprisse alcuna finestra è possibile che il vostro broswer blocchi i pop-up, è possibile attivare i pop-up per questa pagina nella casella dell'url, a destra");
+        }
+        Session["Fornitore"] = false;
+        Session["Cliente"] = true;
+        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1120,width=620,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
+    }
+
+    protected void btnAggFor_Click(object sender, EventArgs e)
+    {
+        if (myCookie == null)
+        {
+            DateTime now = DateTime.Now;
+            myCookie.Value = "";
+            myCookie.Expires = now.AddYears(10); 
+            Response.Cookies.Add(myCookie);
+            MessageBox.Show("Nel caso non si aprisse alcuna finestra è possibile che il vostro broswer blocchi i pop-up, è possibile attivare i pop-up per questa pagina nella casella dell'url, a destra");
+        }
+        
+        Session["Fornitore"] = true;
+        Session["Cliente"] = false;
+        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1120,width=620,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
     }
 }

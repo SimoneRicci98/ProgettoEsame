@@ -9,13 +9,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Session["Utente"] != null)
+        if(Session["Utente"] == null)
         {
-            Label1.Text = "Benvenuto!";
+            lblLogin.Visible = true;
+            lblBenv.Visible = false;
         }
         else
         {
-            Label1.Text = "Effettua il login";
+            lblLogin.Visible = false;
+            lblBenv.Visible = true;
         }
         
     }

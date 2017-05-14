@@ -160,7 +160,6 @@ public partial class ContiDiMastro : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-
         try
         {
             dbHelper help = new dbHelper();
@@ -176,7 +175,6 @@ public partial class ContiDiMastro : System.Web.UI.Page
                     string Nome = row.ItemArray[2] as string;
                     string Cod_azienda = Session["Azienda"].ToString();
 
-                    //mettere un id per il salvataggio, altrimenti è un casino
                     help.connetti();
                     help.assegnaComando("INSERT INTO ContiDiMastro VALUES(" + Codice + ",'" + Nome + "','" + Cod_azienda + "')");
                     help.eseguicomando();

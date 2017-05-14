@@ -1,18 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode="none" CodeFile="PrimaNota.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="PrimaNota" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <script language="javascript" type="text/javascript">
-        function openWindowcli() {
-            <%Session["Cliente"] = true; %>
-            window.open('AggiungiAnagrafica.aspx','PopUp','width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
-        }
-        function openWindowfor() {
-            <%Session["Fornitore"] = true;%>
-            window.open('AggiungiAnagrafica.aspx', 'PopUp', 'width=1000,height=500,menubar=yes,toolbar=yes,resizable=no');
-        }
-        </script>
-
     <div class="col-md-12">
             <div class="row">
                 <div class="col-md-2">
@@ -20,7 +8,7 @@
                 </div>
                <div class="col-md-3">
                     <asp:TextBox ID="TextBox1" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
-               </div>
+                    </div>
                 <div class="col-md-4">
                     <div class="col-md-6">
                         <asp:RadioButton ID="radioEmessa" runat="server" GroupName="Fattura" Text="Fattura Emessa" />
@@ -49,9 +37,8 @@
                            <SelectParameters>
                                <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
                            </SelectParameters>
-                       </asp:SqlDataSource>
-                   <br />
-                   <input id="Button1" type="button" language="javascript" onclick="return openWindowcli()" value="Aggiungi cliente"  />
+                       </asp:SqlDataSource><br />
+                   <asp:Button ID="btnAggCli" runat="server" OnClick="btnAggCli_Click" Text="Aggiugi cliente" />
                    </div>
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
@@ -62,9 +49,8 @@
                            <SelectParameters>
                                <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
                            </SelectParameters>
-                       </asp:SqlDataSource>
-                       <br />
-                   <input id="Button2" type="button" language="javascript" onclick="return openWindowfor()" value="Aggiungi  fornitore" />
+                       </asp:SqlDataSource><br />
+                   <asp:Button ID="btnAggFor" runat="server" Text="Aggiungi fornitore" OnClick="btnAggFor_Click" />
                    </div>
                 </div>
                 <br />
@@ -89,7 +75,7 @@
                     Dati obbligatori
                 </div>
                 <div class="col-md-6">
-                    Descrizione &nbsp;&nbsp; <asp:TextBox ID="TextBox3" runat="server" TextMode="MultiLine"></asp:TextBox>
+                    Descrizione &nbsp;&nbsp; <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
                 </div>
                 
             </div>

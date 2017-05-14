@@ -14,12 +14,15 @@
     <form id="form1" runat="server">
     <div class="row">
         <div class="col-md-12">
-        <div class="col-md-offset-3 col-md-4"><h1><a href ="Default.aspx"> Nome programma</a></h1></div>
+        <div class="col-md-offset-3 col-md-4"><h1><a href ="Default.aspx"> Progetto esame</a></h1></div>
         <div class="col-md-4" style="text-align:center; margin-top:2%">
-        <a href="Login.aspx"><asp:Label ID="Label1" runat="server" Text=""></asp:Label></a>
+        <a href="Login.aspx"><asp:Label ID="lblLogin" runat="server" Visible="False" Text="Effettua il login!"></asp:Label>
+        <a href="Seleziona.aspx"><asp:Label ID="lblBenv" runat="server" Text="Benvenuto!" Visible="False"></asp:Label></a>
+            </a>
             </div>
         <div class="col-md-12" style="text-align:center">
             DESCRIZIONE
+        <br />
         </div>
         </div>
         <div class="col-md-12">

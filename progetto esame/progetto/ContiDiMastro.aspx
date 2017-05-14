@@ -3,6 +3,8 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-12">
         
+               Aggiungui in questa tabella i tuoi conti di mastro, questi verranno sommati a quelli di default<br />
+        
                <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%" >
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
