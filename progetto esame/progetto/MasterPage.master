@@ -20,8 +20,20 @@
         <a href="Seleziona.aspx"><asp:Label ID="lblBenv" runat="server" Text="Benvenuto!" Visible="False"></asp:Label></a>
             </a>
             </div>
-        <div class="col-md-12" style="text-align:center">
-            DESCRIZIONE
+        <div class="col-md-12" style="text-align:center;padding:15px">
+           “Progetto Esame” è un software di contabilità online che permette di creare fatture, di registrarle in prima
+
+nota e visualizzare il giornale. Il programma offre inoltre la possibilità di salvare l’anagrafica clienti/fornitori
+
+e di avere una costante assistenza per quanto riguarda i dubbi sul funzionamento del programma o
+
+eventuali consigli di miglioramento. È composto da una versione prova e una completa, la prima presenta
+
+delle restrizioni nel numero di fatture da creare e limita la possibilità di aggiunta di fornitori e clienti. La
+
+versione completa permette di utilizzare il software web con tutte le sue caratteristiche e offre anche un
+
+supporto immediato tramite mail.
         <br />
         </div>
         </div>
