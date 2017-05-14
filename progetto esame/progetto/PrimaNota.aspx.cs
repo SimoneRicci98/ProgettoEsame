@@ -9,7 +9,8 @@ using System.Data.SqlClient;
 
 public partial class PrimaNota : System.Web.UI.Page
 {
-    
+    dbHelper help = new dbHelper();
+    SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -38,12 +39,23 @@ public partial class PrimaNota : System.Web.UI.Page
         dr["Col5"] = string.Empty;
         dt.Rows.Add(dr);
 
+        Session["Azienda"] = 4;
+
         ViewState["CurrentTable"] = dt;
 
+        
 
         grvPrimaNota.DataSource = dt;
         grvPrimaNota.DataBind();
-
+        help.connetti();
+        help.assegnaComando("Select Conto from ContiDiMastro WHERE COD_Azienda=0 OR COD_Azienda="+Session["Azienda"].ToString());
+        rs = help.estraiDati();
+        DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[0].Cells[1].FindControl("drpConto");
+        while(rs.Read())
+        {
+            ContoMastro.Items.Add(rs["Conto"].ToString());
+        }
+        help.disconnetti();
         Button btnAdd = (Button)grvPrimaNota.FooterRow.Cells[5].FindControl("ButtonAdd");
         Page.Form.DefaultFocus = btnAdd.ClientID;
 
@@ -66,6 +78,15 @@ public partial class PrimaNota : System.Web.UI.Page
                     DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
+
+                    help.connetti();
+                    help.assegnaComando("Select Conto from ContiDiMastro WHERE COD_Azienda=0 OR COD_Azienda=" + Session["Azienda"].ToString());
+                    rs = help.estraiDati();
+                    while (rs.Read())
+                    {
+                        ContoMastro.Items.Add(rs["Conto"].ToString());
+                    }
+                    help.disconnetti();
 
                     dtCurrentTable.Rows[i - 1]["Col1"] = ContoMastro.Text;
                     dtCurrentTable.Rows[i - 1]["Col2"] = Avere.Text;
@@ -102,6 +123,14 @@ public partial class PrimaNota : System.Web.UI.Page
                     TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtDare");
                     DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
 
+                    help.connetti();
+                    help.assegnaComando("Select Conto from ContiDiMastro WHERE COD_Azienda=0 OR COD_Azienda=" + Session["Azienda"].ToString());
+                    rs = help.estraiDati();
+                    while (rs.Read())
+                    {
+                        ContoMastro.Items.Add(rs["Conto"].ToString());
+                    }
+                    help.disconnetti();
 
                     grvPrimaNota.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
                     ContoMastro.Text = dt.Rows[i]["Col1"].ToString();
@@ -182,8 +211,8 @@ public partial class PrimaNota : System.Web.UI.Page
         try
         {
             string codCliFor="";
-            dbHelper help = new dbHelper();
-            SqlDataReader rs;
+            
+            
             if(radioCliente.Checked)
             {
                 help.connetti();

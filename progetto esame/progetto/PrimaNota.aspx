@@ -103,10 +103,6 @@
                        <asp:TemplateField HeaderText="Conto di mastro">
                            <ItemTemplate>
                                <asp:DropDownList ID="drpConto" runat="server">
-                                   <asp:ListItem>Seleziona conto</asp:ListItem>
-                                   <asp:ListItem Value="conto1">conto1</asp:ListItem>
-                                   <asp:ListItem Value="conto2">conto2</asp:ListItem>
-                                   <asp:ListItem Value="conto3">conto3</asp:ListItem>
                                </asp:DropDownList>
                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="drpIva" ErrorMessage="*" InitialValue="Select"></asp:RequiredFieldValidator>
                            </ItemTemplate>
