@@ -31,25 +31,17 @@
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioCliente" runat="server" GroupName="ClienteFornitore" Text="Cliente" />
                        <br />
-                       <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="sqlEstraiClienti" DataTextField="RagioneSociale" DataValueField="RagioneSociale">
+                       <asp:DropDownList ID="DropDownList1" runat="server">
                        </asp:DropDownList>
-                       <asp:SqlDataSource ID="sqlEstraiClienti" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Clienti] WHERE ([COD_Azienda] = @COD_Azienda)">
-                           <SelectParameters>
-                               <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
-                           </SelectParameters>
-                       </asp:SqlDataSource><br />
+                       <br />
                    <asp:Button ID="btnAggCli" runat="server" OnClick="btnAggCli_Click" Text="Aggiugi cliente" />
                    </div>
                    <div class="col-md-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
                        <br />
-                       <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlEstraiFornitori" DataTextField="RagioneSociale" DataValueField="RagioneSociale">
+                       <asp:DropDownList ID="DropDownList2" runat="server">
                        </asp:DropDownList>
-                       <asp:SqlDataSource ID="SqlEstraiFornitori" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Fornitori] WHERE ([COD_Azienda] = @COD_Azienda)">
-                           <SelectParameters>
-                               <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
-                           </SelectParameters>
-                       </asp:SqlDataSource><br />
+                       <br />
                    <asp:Button ID="btnAggFor" runat="server" Text="Aggiungi fornitore" OnClick="btnAggFor_Click" />
                    </div>
                 </div>

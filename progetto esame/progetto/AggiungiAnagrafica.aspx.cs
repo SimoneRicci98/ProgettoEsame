@@ -13,14 +13,14 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
     { 
         try
         {
-            if(Session["Cliente"] != null)
+            if((bool)Session["Cliente"])
             {
                 lblAz.Text = " del cliente";
                 Session["Operazione"] = "cli";
                 btnChiudi.Visible = true;
             }
             else
-            if (Session["Fornitore"]!= null)
+            if ((bool)Session["Fornitore"])
             {
                 lblAz.Text = " del fornitore";
                 Session["Operazione"] = "for";

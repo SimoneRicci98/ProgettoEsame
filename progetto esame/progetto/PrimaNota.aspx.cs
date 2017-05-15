@@ -14,6 +14,24 @@ public partial class PrimaNota : System.Web.UI.Page
     HttpCookie myCookie;
     protected void Page_Load(object sender, EventArgs e)
     {
+        DropDownList1.Items.Clear();
+        DropDownList2.Items.Clear();
+        help.connetti();
+        help.assegnaComando("SELECT RagioneSociale FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+"'");
+        rs = help.estraiDati();
+        while(rs.Read())
+        {
+            DropDownList1.Items.Add(rs["RagioneSociale"].ToString());
+        }
+        help.disconnetti();
+        help.connetti();
+        help.assegnaComando("SELECT RagioneSociale FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() + "'");
+        rs = help.estraiDati();
+        while (rs.Read())
+        {
+            DropDownList2.Items.Add(rs["RagioneSociale"].ToString());
+        }
+        help.disconnetti();
         myCookie = Request.Cookies["PopUp"];
         if (!IsPostBack)
         {
@@ -301,7 +319,7 @@ public partial class PrimaNota : System.Web.UI.Page
         }
         Session["Fornitore"] = false;
         Session["Cliente"] = true;
-        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1120,width=620,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
+        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1000,width=920,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
     }
 
     protected void btnAggFor_Click(object sender, EventArgs e)
@@ -318,7 +336,7 @@ public partial class PrimaNota : System.Web.UI.Page
         
         Session["Fornitore"] = true;
         Session["Cliente"] = false;
-        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1120,width=620,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
+        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1000,width=920,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
     }
 
     protected void Button1_Click(object sender, EventArgs e)
