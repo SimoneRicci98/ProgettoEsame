@@ -16,6 +16,8 @@ public partial class PrimaNota : System.Web.UI.Page
     {
         DropDownList1.Items.Clear();
         DropDownList2.Items.Clear();
+        DropDownList1.Text = "";
+        DropDownList2.Text = "";
         help.connetti();
         help.assegnaComando("SELECT RagioneSociale FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+"'");
         rs = help.estraiDati();
@@ -295,6 +297,7 @@ public partial class PrimaNota : System.Web.UI.Page
                         }
                     }
                 }
+                pulisciPagina();
             }
 
             
@@ -303,6 +306,23 @@ public partial class PrimaNota : System.Web.UI.Page
         {
             MessageBox.Show(ex.Message);
         }
+    }
+
+    private void pulisciPagina()
+    {
+        txtDesc.Text = string.Empty;
+        txtNumDoc.Text = string.Empty;
+        txtProt.Text = string.Empty;
+        txtTot.Text = string.Empty;
+        FirstGridViewRow();
+        DropDownList1.Text = "";
+        DropDownList2.Text = "";
+        TextBox1.Text = string.Empty;
+        TextBox2.Text = string.Empty;
+        radioCliente.Checked = false;
+        radioEmessa.Checked = false;
+        radioFornitore.Checked = false;
+        radioRicevuta.Checked = false;
     }
 
     protected void btnAggCli_Click(object sender, EventArgs e)

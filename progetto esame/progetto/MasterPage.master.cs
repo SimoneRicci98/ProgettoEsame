@@ -13,12 +13,21 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             lblLogin.Visible = true;
             lblBenv.Visible = false;
+            btnLogout.Visible = false;
         }
         else
         {
             lblLogin.Visible = false;
             lblBenv.Visible = true;
+            btnLogout.Visible = true;
         }
         
+    }
+    protected void btnLogout_Click(object sender, EventArgs e)
+    {
+        Session.Clear();
+        Session.Abandon();
+        Session.RemoveAll();
+        Response.Redirect("Default.aspx");
     }
 }
