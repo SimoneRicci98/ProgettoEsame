@@ -7,7 +7,8 @@
                      Data operazione
                 </div>
                <div class="col-md-3">
-                    <asp:TextBox ID="TextBox1" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
+                    <asp:TextBox ID="txtDataOperazione" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
+                    <asp:Label ID="lblErr1" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
                     </div>
                 <div class="col-md-4">
                     <div class="col-md-6">
@@ -25,7 +26,8 @@
                     Data Fattura 
                 </div>
                 <div class="col-md-3">
-                    <asp:TextBox ID="TextBox2" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
+                    <asp:TextBox ID="txtDataFattura" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
+                    <asp:Label ID="lblErr2" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
                 </div>
                <div class="col-md-4">
                    <div class="col-md-6">

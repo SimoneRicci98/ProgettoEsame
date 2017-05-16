@@ -229,12 +229,14 @@ public partial class PrimaNota : System.Web.UI.Page
 
         try
         {
+            #region assegno variabili
             string codCliFor="";
             string descrizione = txtDesc.Text;
             string protocollo = txtProt.Text;
             string NumDoc = txtNumDoc.Text;
             string totDoc = txtTot.Text;
-            
+            #endregion
+            #region controllo radiobutton
             if(radioCliente.Checked)
             {
                 help.connetti();
@@ -255,18 +257,23 @@ public partial class PrimaNota : System.Web.UI.Page
                 codCliFor = "Fornitore_" + rs["ID_Azienda"].ToString();
                 help.disconnetti();
             }
+            #endregion
             if(!radioFornitore.Checked && !radioCliente.Checked)
             {
                 MessageBox.Show("Selezionare cliente o fornitore");
             }
             else
             {
-                SetRowData();
-                DataTable table = ViewState["CurrentTable"] as DataTable;
-
-                if (table != null)
+                DateTime oggi = DateTime.Today;
+                if(DateTime.Parse(txtDataFattura.Text)<=oggi && DateTime.Parse(txtDataOperazione.Text) <= oggi)
                 {
-                    foreach (DataRow row in table.Rows)
+                    lblErr1.Visible = false;
+                    lblErr2.Visible = false;
+                    SetRowData();
+                    DataTable table = ViewState["CurrentTable"] as DataTable;
+                    if (table != null)
+                    {
+                        foreach (DataRow row in table.Rows)
                     {
 
                         help.connetti();
@@ -296,11 +303,26 @@ public partial class PrimaNota : System.Web.UI.Page
                             help.disconnetti();
                         }
                     }
+                    }
+                    pulisciPagina();
                 }
-                pulisciPagina();
-            }
+                else
+                {
+                    if(DateTime.Parse(txtDataFattura.Text) > oggi)
+                    {
+                        lblErr1.Visible = true;
+                    }
+                    if(DateTime.Parse(txtDataOperazione.Text) > oggi)
+                    {
+                        lblErr2.Visible = true;
+                    }
+                }
 
-            
+            }            
+        }
+        catch(FormatException)
+        {
+            MessageBox.Show("Inserire le date in modo corretto");
         }
         catch (Exception ex)
         {
@@ -317,12 +339,13 @@ public partial class PrimaNota : System.Web.UI.Page
         FirstGridViewRow();
         DropDownList1.Text = "";
         DropDownList2.Text = "";
-        TextBox1.Text = string.Empty;
-        TextBox2.Text = string.Empty;
+        txtDataOperazione.Text = string.Empty;
+        txtDataFattura.Text = string.Empty;
         radioCliente.Checked = false;
         radioEmessa.Checked = false;
         radioFornitore.Checked = false;
         radioRicevuta.Checked = false;
+        Response.Redirect(Request.Url.PathAndQuery, true);
     }
 
     protected void btnAggCli_Click(object sender, EventArgs e)
