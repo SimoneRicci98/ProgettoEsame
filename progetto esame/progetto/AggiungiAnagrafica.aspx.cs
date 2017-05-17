@@ -65,7 +65,6 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
         string Regione;
         string Nazione;
         string NumCell;
-        string Fax;
         string Tel;
         string Email;
         #endregion
@@ -80,7 +79,6 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Regione = txtReg.Text;
                 Nazione = txtNaz.Text;
                 NumCell = txtNUmCell.Text;
-                Fax = txtFax.Text;
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
         #endregion

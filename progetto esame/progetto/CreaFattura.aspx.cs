@@ -45,7 +45,7 @@ public partial class EmettiFattura : System.Web.UI.Page
         grvPrimaNota.DataSource = dt;
         grvPrimaNota.DataBind();
 
-        Button btnAdd = (Button)grvPrimaNota.FooterRow.Cells[5].FindControl("ButtonAdd");
+        Button btnAdd = (Button)grvPrimaNota.FooterRow.Cells[7].FindControl("ButtonAdd");
         Page.Form.DefaultFocus = btnAdd.ClientID;
 
     }
@@ -66,8 +66,8 @@ public partial class EmettiFattura : System.Web.UI.Page
                     TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtQta");
                     TextBox PrezzoUnitario = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("txtPrezzo");
                     TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[5].FindControl("txtSconto");
-                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("txtImporto");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("drpIva");
+                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("txtImporto");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
@@ -110,8 +110,8 @@ public partial class EmettiFattura : System.Web.UI.Page
                     TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtQta");
                     TextBox PrezzoUnitario = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("txtPrezzo");
                     TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[5].FindControl("txtSconto");
-                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("txtImporto");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("drpIva");
+                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("txtImporto");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("drpIva");
 
 
                     grvPrimaNota.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
@@ -173,8 +173,8 @@ public partial class EmettiFattura : System.Web.UI.Page
                     TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtQta");
                     TextBox PrezzoUnitario = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("txtPrezzo");
                     TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[5].FindControl("txtSconto");
-                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("txtImporto");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("drpIva");
+                    TextBox Importo = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[7].FindControl("txtImporto");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[6].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
@@ -219,8 +219,8 @@ public partial class EmettiFattura : System.Web.UI.Page
                     string Quantità = row.ItemArray[3] as string;
                     string PrezzoUnitario = row.ItemArray[4] as string;
                     string Sconto = row.ItemArray[5] as string;
-                    string Importo = row.ItemArray[6] as string;
-                    string Iva = row.ItemArray[7] as string;
+                    string Importo = row.ItemArray[7] as string;
+                    string Iva = row.ItemArray[6] as string;
 
                     help.connetti();
                     help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Data) "+
@@ -234,5 +234,10 @@ public partial class EmettiFattura : System.Web.UI.Page
         {
             MessageBox.Show(ex.Message);
         }
+    }
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }

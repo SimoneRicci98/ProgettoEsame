@@ -87,14 +87,14 @@
                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="drpIva" ErrorMessage="*" InitialValue="Select"></asp:RequiredFieldValidator>
                            </ItemTemplate>
                         </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Avere">
-                           <ItemTemplate>
-                               <asp:TextBox ID="txtAvere" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
                        <asp:TemplateField HeaderText="Dare">
                            <ItemTemplate>
                                <asp:TextBox ID="txtDare" runat="server"></asp:TextBox>
+                           </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Avere">
+                           <ItemTemplate>
+                               <asp:TextBox ID="txtAvere" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Iva">

@@ -73,15 +73,14 @@
             </div>   
         </div>
         <div class="row">
-            <div class="col-md-3">Nazione<br />
-            <asp:TextBox ID="txtNaz" runat="server" ValidationGroup="text"></asp:TextBox>
-                
-              <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
+            <div class="col-md-3">Cap<br />
+            <asp:TextBox ID="txtCap" runat="server" ValidationGroup="text"></asp:TextBox>
+     <asp:RequiredFieldValidator ID="RequiredFieldValidator9"
          runat="server"
-             ValidationGroup="control"
             Text="Compila questo campo"
+             ValidationGroup="control"
          ErrorMessage="Compila questo campo"
-         ControlToValidate="txtNaz" CssClass="alert-danger">
+         ControlToValidate="txtCap" CssClass="alert-danger">
     </asp:RequiredFieldValidator><br />
             </div>
             <div class="col-md-3">Regione<br />
@@ -97,24 +96,25 @@
             <div class="row">
             <div class="col-md-3">Provincia<br />
             <asp:TextBox ID="txtProv" runat="server" ValidationGroup="text"></asp:TextBox>
-                
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8"
+           <asp:RequiredFieldValidator ID="RequiredFieldValidator14"
          runat="server"
-            Text="Compila questo campo"
+         Text="Compila questo campo"
              ValidationGroup="control"
          ErrorMessage="Compila questo campo"
          ControlToValidate="txtProv" CssClass="alert-danger">
-    </asp:RequiredFieldValidator><br />
+    </asp:RequiredFieldValidator>
+                <br />
             </div>
-            <div class="col-md-3">Cap<br />
-            <asp:TextBox ID="txtCap" runat="server" ValidationGroup="text"></asp:TextBox>
-     <asp:RequiredFieldValidator ID="RequiredFieldValidator9"
+            <div class="col-md-3">Nazione<br />
+            <asp:TextBox ID="txtNaz" runat="server" ValidationGroup="text"></asp:TextBox>
+                
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
          runat="server"
-            Text="Compila questo campo"
              ValidationGroup="control"
+            Text="Compila questo campo"
          ErrorMessage="Compila questo campo"
-         ControlToValidate="txtCap" CssClass="alert-danger">
-    </asp:RequiredFieldValidator><br />
+         ControlToValidate="txtNaz" CssClass="alert-danger">
+    </asp:RequiredFieldValidator>
             </div>
             </div>
             </div>

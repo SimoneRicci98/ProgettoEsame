@@ -3,11 +3,11 @@
     <div class="col-md-12">
         <div class="col-md-3">
             Selezionare cliente 
-            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="RagioneSociale" DataValueField="RagioneSociale">
+            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="sqlEstraiClienti" DataTextField="RagioneSociale" DataValueField="RagioneSociale" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             </asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Clienti] WHERE ([COD_Azienda] = @COD_Azienda)">
+            <asp:SqlDataSource ID="sqlEstraiClienti" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Clienti] WHERE ([COD_Azienda] = @COD_Azienda)">
                 <SelectParameters>
-                    <asp:SessionParameter Name="COD_Azienda" SessionField="ID_Azienda" Type="String" />
+                    <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
         </div>
@@ -31,48 +31,48 @@
     </div>
         <div class="col-md-12">
 
-               <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%">
+               <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="95%">
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
                           <asp:TemplateField HeaderText="Codice articolo">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtCodArt" runat="server" ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtCodArt" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Descrizione">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtDesc" runat="server" ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtDesc" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Quantità">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtQta" runat="server" ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtQta" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Prezzo unitario">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtPrezzo" runat="server" ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtPrezzo" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Sconto">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtSconto" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Importo">
-                           <ItemTemplate>
-                               <asp:TextBox ID="txtImporto" runat="server"></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtSconto" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Iva">
                            <ItemTemplate>
                                <asp:DropDownList ID="drpIva" runat="server">
-                                   <asp:ListItem Value="4">0</asp:ListItem>
+                                   <asp:ListItem Value="0">0</asp:ListItem>
                                    <asp:ListItem Value="4">4</asp:ListItem>
                                    <asp:ListItem Value="10">10</asp:ListItem>
                                    <asp:ListItem Value="22">22</asp:ListItem>
                                </asp:DropDownList>
                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="drpIva" ErrorMessage="*"  InitialValue="Select"></asp:RequiredFieldValidator>
+                           </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Importo">
+                           <ItemTemplate>
+                               <asp:TextBox Width="90%" ID="txtImporto" runat="server"></asp:TextBox>
                            </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>

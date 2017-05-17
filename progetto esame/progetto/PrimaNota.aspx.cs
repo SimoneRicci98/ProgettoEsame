@@ -16,8 +16,6 @@ public partial class PrimaNota : System.Web.UI.Page
     {
         DropDownList1.Items.Clear();
         DropDownList2.Items.Clear();
-        DropDownList1.Text = "";
-        DropDownList2.Text = "";
         help.connetti();
         help.assegnaComando("SELECT RagioneSociale FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+"'");
         rs = help.estraiDati();
@@ -40,7 +38,6 @@ public partial class PrimaNota : System.Web.UI.Page
             FirstGridViewRow();
         }
     }
-
     private void FirstGridViewRow()
     {
         DataTable dt = new DataTable();
@@ -92,8 +89,8 @@ public partial class PrimaNota : System.Web.UI.Page
                 for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                 {
                     DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpConto");
-                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtAvere");
-                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtDare");
+                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtAvere");
+                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtDare");
                     DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
@@ -138,8 +135,8 @@ public partial class PrimaNota : System.Web.UI.Page
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpConto");
-                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtAvere");
-                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtDare");
+                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtAvere");
+                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtDare");
                     DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
 
                     help.connetti();
@@ -203,8 +200,8 @@ public partial class PrimaNota : System.Web.UI.Page
                 for (int i = 1; i <= dtCurrentTable.Rows.Count; i++)
                 {
                     DropDownList ContoMastro = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpConto");
-                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtAvere");
-                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtDare");
+                    TextBox Avere = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtAvere");
+                    TextBox Dare = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtDare");
                     DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
@@ -336,16 +333,13 @@ public partial class PrimaNota : System.Web.UI.Page
         txtNumDoc.Text = string.Empty;
         txtProt.Text = string.Empty;
         txtTot.Text = string.Empty;
-        FirstGridViewRow();
-        DropDownList1.Text = "";
-        DropDownList2.Text = "";
         txtDataOperazione.Text = string.Empty;
         txtDataFattura.Text = string.Empty;
         radioCliente.Checked = false;
         radioEmessa.Checked = false;
         radioFornitore.Checked = false;
         radioRicevuta.Checked = false;
-        Response.Redirect(Request.Url.PathAndQuery, true);
+        FirstGridViewRow();
     }
 
     protected void btnAggCli_Click(object sender, EventArgs e)

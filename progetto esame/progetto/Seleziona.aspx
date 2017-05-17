@@ -2,9 +2,10 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <ul>
-        <li><a href="CreaFattura.aspx">Emetti fattura</a></li>
+        <li class=""><a href="CreaFattura.aspx">Crea fattura</a></li>
         <li><a href="PrimaNota.aspx">Prima nota</a></li>
         <li><a href="Giornale.aspx">Visualizza giornale </a></li>
         <li><a href="ContiDiMastro.aspx">Aggiungi conti di mastro</a></li>
+        <li><a href="AreaPersonale.aspx">AreaPersonale</a></li>
     </ul>
 </asp:Content>
