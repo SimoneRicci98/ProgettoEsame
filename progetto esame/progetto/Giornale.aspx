@@ -20,14 +20,30 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="90%">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="NumDoc" HeaderText="Numero documento" />
-                <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
-                <asp:BoundField DataField="Fornitore" HeaderText="Fornitore" />
-                <asp:BoundField DataField="ContoMastro" HeaderText="Conto di mastro" />
-                <asp:BoundField DataField="Proto" HeaderText="Protocollo" />
-                <asp:BoundField DataField="Desc" HeaderText="Descrizione" />
-                <asp:BoundField DataField="Dare" HeaderText="Dare" />
-                <asp:BoundField DataField="Avere" HeaderText="Avere" />
+                <asp:BoundField DataField="NumDoc" HeaderText="Numero documento" >
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Cliente" HeaderText="Cliente" >
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Fornitore" HeaderText="Fornitore" >
+                <HeaderStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="ContoMastro" HeaderText="Conto di mastro" >
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Proto" HeaderText="Protocollo" >
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Desc" HeaderText="Descrizione" >
+                <HeaderStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Dare" HeaderText="Dare" >
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Avere" HeaderText="Avere" >
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
             </Columns>
             <EditRowStyle BackColor="#2461BF" />
             <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

@@ -53,9 +53,13 @@ public partial class Giornale : System.Web.UI.Page
         help.assegnaComando("SELECT NumDoc,ContoMastro,Descrizione,DareAvere,Protocollo,Cod_CliFor FROM Giornale " +
             "WHERE COD_Azienda ='" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
+        appoggio = rs;
+        rs.Read();
+        int numDoc = int.Parse(rs["NumDoc"].ToString());
+        rs = appoggio;
         while (rs.Read())
         {
-            int numDoc = int.Parse(rs["NumDoc"].ToString());
+            
             if (numDoc == int.Parse(rs["NumDoc"].ToString()))
             {
                 appoggio = rs;
@@ -94,7 +98,7 @@ public partial class Giornale : System.Web.UI.Page
             }
             else
             {
-                dt.Rows.Add("","","","","","","","");
+                dt.Rows.Add("--------------------", "--------------------", "--------------------", "--------------------", "--------------------", "--------------------", "--------------------", "--------------------");
                 rs = appoggio;
                 numDoc = int.Parse(rs["NumDoc"].ToString());
             }
