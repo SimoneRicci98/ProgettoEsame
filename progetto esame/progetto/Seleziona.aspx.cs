@@ -8,8 +8,8 @@ using System.Data.SqlClient;
 
 public partial class Fatturazione : System.Web.UI.Page
 {
-    dbHelper help = new dbHelper();
-    SqlDataReader rs;
+     dbHelper help = new dbHelper();
+     SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
         help.connetti();
