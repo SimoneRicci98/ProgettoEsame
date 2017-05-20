@@ -82,7 +82,19 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
         #endregion
- 
+        if (CodFisc.Length != 16 || CodFisc.Length != 11 || PIva.Length!=11)
+        {
+            if (CodFisc.Length != 16 || CodFisc.Length != 11)
+            {
+                lblErr0.Text = "Codice fiascale inserito in modo errato";
+            }
+            if(PIva.Length!=11)
+            {
+                lblErr0.Text = "Partita iva inserita in modo errato";
+            }
+        }
+        else
+        {
             try
             {
                 switch (Session["Operazione"].ToString())
@@ -124,6 +136,9 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
             {
                 Response.Write("Errore");
             }
+        }
+ 
+
     }
 
     protected void btnChiudi_Click(object sender, EventArgs e)

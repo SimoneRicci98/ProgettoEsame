@@ -43,7 +43,9 @@
              ValidationGroup="control"
          ErrorMessage="Compila questo campo"
          ControlToValidate="txtPIva" CssClass="alert-danger">
-    </asp:RequiredFieldValidator><br />
+    </asp:RequiredFieldValidator>&nbsp;
+                <asp:Label ID="lblErr0" runat="server" CssClass="alert-danger"></asp:Label>
+                <br />
             </div> 
         </div>
         <div class="row">
@@ -55,7 +57,9 @@
             Text="Compila questo campo"
              ValidationGroup="control"
          ErrorMessage="Compila questo campo"
-         ControlToValidate="txtCodF" CssClass="alert-danger"></asp:RequiredFieldValidator><br />
+         ControlToValidate="txtCodF" CssClass="alert-danger"></asp:RequiredFieldValidator>&nbsp;
+                <asp:Label ID="lblErr1" runat="server" CssClass="alert-danger"></asp:Label>
+                <br />
             </div>
         </div>
         <div class="row">
@@ -83,17 +87,7 @@
          ControlToValidate="txtCap" CssClass="alert-danger">
     </asp:RequiredFieldValidator><br />
             </div>
-            <div class="col-md-3">Regione<br />
-            <asp:TextBox ID="txtReg" runat="server" ValidationGroup="text"></asp:TextBox>
-           <asp:RequiredFieldValidator ID="RequiredFieldValidator7"
-         runat="server"
-         Text="Compila questo campo"
-             ValidationGroup="control"
-         ErrorMessage="Compila questo campo"
-         ControlToValidate="txtReg" CssClass="alert-danger">
-    </asp:RequiredFieldValidator>
-            </div>
-            <div class="row">
+         <div class="row">
             <div class="col-md-3">Provincia<br />
             <asp:TextBox ID="txtProv" runat="server" ValidationGroup="text"></asp:TextBox>
            <asp:RequiredFieldValidator ID="RequiredFieldValidator14"
@@ -102,6 +96,15 @@
              ValidationGroup="control"
          ErrorMessage="Compila questo campo"
          ControlToValidate="txtProv" CssClass="alert-danger">
+    </asp:RequiredFieldValidator>
+                Regione<br />
+            <asp:TextBox ID="txtReg" runat="server" ValidationGroup="text"></asp:TextBox>
+           <asp:RequiredFieldValidator ID="RequiredFieldValidator7"
+         runat="server"
+         Text="Compila questo campo"
+             ValidationGroup="control"
+         ErrorMessage="Compila questo campo"
+         ControlToValidate="txtReg" CssClass="alert-danger">
     </asp:RequiredFieldValidator>
                 <br />
             </div>
@@ -129,18 +132,6 @@
               ValidationGroup="control"
          ErrorMessage="Compila questo campo"
          ControlToValidate="txtTel" CssClass="alert-danger">
-    </asp:RequiredFieldValidator>
-                <br />
-            </div>
-            <div class="col-md-3">
-                Fax<br />
-            <asp:TextBox ID="txtFax" runat="server" ValidationGroup="text"></asp:TextBox>
-     <asp:RequiredFieldValidator ID="RequiredFieldValidator11"
-         runat="server"
-         Text="Compila questo campo"
-         ValidationGroup="control"
-         ErrorMessage="Compila questo campo"
-         ControlToValidate="txtFax" CssClass="alert-danger">
     </asp:RequiredFieldValidator>
                 <br />
             </div>

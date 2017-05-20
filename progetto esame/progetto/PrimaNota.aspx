@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode="none" CodeFile="PrimaNota.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="PrimaNota" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12">
+    <div class="col-md-12" style="border-color:red;border:solid;margin-top:2%">
             <div class="row">
                 <div class="col-md-2">
                      Data operazione
@@ -62,21 +62,18 @@
                 Totale documento&nbsp;&nbsp;
                 <asp:TextBox ID="txtTot" runat="server"></asp:TextBox>
             </div>
-        </div>
-        <div class="row" style="border-color:red;border:solid;margin-top:2%">
-            <div class="col-md-12">
-                <div class="col-md-6">
-                    Dati obbligatori
-                </div>
-                <div class="col-md-6">
-                    Descrizione &nbsp;&nbsp; <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
-                </div>
-                
-            </div>
-        </div>
+        </div>                
+        <div class="col-md-6">
+             Descrizione &nbsp;&nbsp; <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
+         </div>
         <div class="row" style="margin-top:2%">
             <div class="col-md-12">
-        
+               Dati obbligatori
+            </div>
+        </div>
+            </div>
+        <div class="row" style="margin-top:2%">
+            <div class="col-md-12">
                <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%">
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />

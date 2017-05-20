@@ -356,7 +356,7 @@ public partial class PrimaNota : System.Web.UI.Page
         }
         Session["Fornitore"] = false;
         Session["Cliente"] = true;
-        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1000,width=920,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
+        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "window.open( 'AggiungiAnagrafica.aspx', null, 'height=700,width=1200,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
     }
 
     protected void btnAggFor_Click(object sender, EventArgs e)
