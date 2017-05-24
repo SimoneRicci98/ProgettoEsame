@@ -15,8 +15,7 @@ public class dbHelper
 
 	}
     public void connetti()
-    {
-        
+    {       
         SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
         builder.DataSource = "tcp:progettoesame2017.database.windows.net,1433";
         builder.UserID = "SimoneRicci";
@@ -24,8 +23,6 @@ public class dbHelper
         builder.InitialCatalog = "ContabilitàDB";
         connDb.ConnectionString = builder.ConnectionString;
         connDb.Open();
-
-      
     } //metodo di connessione
     public void disconnetti()
     {

@@ -2,10 +2,13 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-12">
-        <a href="CreaFattura.aspx"><div class="col-md-3"><div class="col-md-12" style="border:solid 1px blue">Crea fattura</div></div></a>
+        <a href="CreaFattura.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Crea fattura</div></div></a>
         <a href="PrimaNota.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Prima nota</div></div></a>
         <a href="Giornale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Visualizza giornale</div></div></a>
         <a href="ContiDiMastro.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Aggiungi conti di mastro</div></div></a>
-        <a href="AreaPersonale.aspx"><div class="col-md-3"><div class="col-md-12" style="border:solid 1px blue">Area personale</div></div></a>
-    </div>    
+        <a href="AreaPersonale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Area personale</div></div></a>
+        <a href="AreaPersonale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">
+            <asp:Button ID="btnAssistenza" runat="server" Text="Assistenza via email" CssClass="btn-link" Width="135px" />
+           </div></div></a>
+    </div>
 </asp:Content>

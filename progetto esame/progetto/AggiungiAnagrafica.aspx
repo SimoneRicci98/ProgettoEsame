@@ -97,7 +97,9 @@
          ErrorMessage="Compila questo campo"
          ControlToValidate="txtProv" CssClass="alert-danger">
     </asp:RequiredFieldValidator>
-                Regione<br />
+            </div>
+             <div class="col-md-3">
+             Regione<br />
             <asp:TextBox ID="txtReg" runat="server" ValidationGroup="text"></asp:TextBox>
            <asp:RequiredFieldValidator ID="RequiredFieldValidator7"
          runat="server"
@@ -106,8 +108,7 @@
          ErrorMessage="Compila questo campo"
          ControlToValidate="txtReg" CssClass="alert-danger">
     </asp:RequiredFieldValidator>
-                <br />
-            </div>
+             </div>
             <div class="col-md-3">Nazione<br />
             <asp:TextBox ID="txtNaz" runat="server" ValidationGroup="text"></asp:TextBox>
                 
@@ -162,8 +163,10 @@
             </div>
         </div>
          <br />
-        <asp:Button ID="Button1" runat="server" Text="Inserisci" OnClick="Button1_Click" ValidationGroup="control" CssClass="btn-default" />
+        <div class="col-md-6">
+        <asp:Button ID="Button1" runat="server" Text="Inserisci" OnClick="Button1_Click" CssClass="btn btn-default" />
     &nbsp;&nbsp;
-     <asp:Button ID="btnChiudi" runat="server" OnClick="btnChiudi_Click" Text="Chiudi" />
+     <asp:Button ID="btnChiudi" runat="server" OnClick="btnChiudi_Click" Text="Chiudi" CssClass="btn btn-default"/>
+        </div>
     </div>  
 </asp:Content>

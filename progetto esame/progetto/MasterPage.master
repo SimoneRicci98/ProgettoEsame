@@ -22,7 +22,7 @@
             &nbsp;&nbsp;
             <asp:Button ID="btnLogout" runat="server" Text="Logout" CssClass="btn-link" OnClick="btnLogout_Click" />
             </div>
-        <div class="col-md-12" style="text-align:center;padding:15px">
+        <div class="col-md-12" style="text-align:center;padding:15px; text-align:justify">
            “Progetto Esame” è un software di contabilità online che permette di creare fatture, di registrarle in prima
 
 nota e visualizzare il giornale. Il programma offre inoltre la possibilità di salvare l’anagrafica clienti/fornitori

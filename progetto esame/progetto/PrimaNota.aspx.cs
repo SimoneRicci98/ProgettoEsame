@@ -16,6 +16,7 @@ public partial class PrimaNota : System.Web.UI.Page
     {
         DropDownList1.Items.Clear();
         DropDownList2.Items.Clear();
+        #region carico clienti
         help.connetti();
         help.assegnaComando("SELECT RagioneSociale FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+"'");
         rs = help.estraiDati();
@@ -24,6 +25,8 @@ public partial class PrimaNota : System.Web.UI.Page
             DropDownList1.Items.Add(rs["RagioneSociale"].ToString());
         }
         help.disconnetti();
+        #endregion
+        #region carico fornitori
         help.connetti();
         help.assegnaComando("SELECT RagioneSociale FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
@@ -32,6 +35,7 @@ public partial class PrimaNota : System.Web.UI.Page
             DropDownList2.Items.Add(rs["RagioneSociale"].ToString());
         }
         help.disconnetti();
+#endregion
         myCookie = Request.Cookies["PopUp"];
         if (!IsPostBack)
         {
@@ -56,11 +60,7 @@ public partial class PrimaNota : System.Web.UI.Page
         dr["Col4"] = string.Empty;
         dr["Col5"] = string.Empty;
         dt.Rows.Add(dr);
-
         ViewState["CurrentTable"] = dt;
-
-        
-
         grvPrimaNota.DataSource = dt;
         grvPrimaNota.DataBind();
         help.connetti();
@@ -74,7 +74,6 @@ public partial class PrimaNota : System.Web.UI.Page
         help.disconnetti();
         Button btnAdd = (Button)grvPrimaNota.FooterRow.Cells[5].FindControl("ButtonAdd");
         Page.Form.DefaultFocus = btnAdd.ClientID;
-
     }
     private void AddNewRow()
     {
@@ -344,7 +343,6 @@ public partial class PrimaNota : System.Web.UI.Page
 
     protected void btnAggCli_Click(object sender, EventArgs e)
     {
-       
         if (myCookie == null)
         {
             myCookie = new HttpCookie("PopUp");
@@ -356,7 +354,7 @@ public partial class PrimaNota : System.Web.UI.Page
         }
         Session["Fornitore"] = false;
         Session["Cliente"] = true;
-        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "window.open( 'AggiungiAnagrafica.aspx', null, 'height=700,width=1200,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
+        ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1000,width=920,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
     }
 
     protected void btnAggFor_Click(object sender, EventArgs e)
