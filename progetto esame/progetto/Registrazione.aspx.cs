@@ -37,7 +37,6 @@ public partial class Registrazione : System.Web.UI.Page
                     }
                 }
             help.disconnetti();
-
             if (!presente)
             {
                 help.connetti();

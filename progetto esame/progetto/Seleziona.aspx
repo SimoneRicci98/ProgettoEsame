@@ -7,8 +7,6 @@
         <a href="Giornale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Visualizza giornale</div></div></a>
         <a href="ContiDiMastro.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Aggiungi conti di mastro</div></div></a>
         <a href="AreaPersonale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Area personale</div></div></a>
-        <a href="AreaPersonale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">
-            <asp:Button ID="btnAssistenza" runat="server" Text="Assistenza via email" CssClass="btn-link" Width="135px" />
-           </div></div></a>
+        <a href="Assistenza.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Assistenza via mail</div></div></a>
     </div>
 </asp:Content>
