@@ -2,11 +2,27 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-12">
-        <a href="CreaFattura.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Crea fattura</div></div></a>
-        <a href="PrimaNota.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Prima nota</div></div></a>
-        <a href="Giornale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Visualizza giornale</div></div></a>
-        <a href="ContiDiMastro.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Aggiungi conti di mastro</div></div></a>
-        <a href="AreaPersonale.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Area personale</div></div></a>
-        <a href="Assistenza.aspx"><div class="col-md-2"><div class="col-md-12" style="border:solid 1px blue">Assistenza via mail</div></div></a>
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnFatt" runat="server" CssClass="btn btn-link" Text="Crea fattura" OnClick="btnFatt_Click" Width="100%" />
+            </div></div>
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnPrimaNota" runat="server" CssClass="btn btn-link" Height="36px" Text="Prima nota" Width="100%" OnClick="btnPrimaNota_Click" />
+            </div></div>
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnGiornale" runat="server" CssClass="btn btn-link" Text="Visualizza giornale" OnClick="btnGiornale_Click" Width="100%" />
+            </div></div>
+        </div>
+    <div class="col-md-12" style="margin-top:2%">
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnContiMastro" runat="server" CssClass="btn btn-link" Text="Aggiungi conto di mastro" OnClick="btnContiMastro_Click" Width="100%" />
+            </div></div>
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnAreaPers" runat="server" CssClass="btn btn-link" Text="Area personale" OnClick="btnAreaPers_Click" Width="100%" />
+            </div></div>
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnAssistenza" runat="server" CssClass="btn btn-link" Text="Assistenza via email" OnClick="btnAssistenza_Click" Width="100%" />
+            <br />
+            <asp:Label ID="lblVers" runat="server" Text="Questa funzione è disponibile solo nella versione completa" Visible="False"></asp:Label>
+            </div></div>
     </div>
 </asp:Content>

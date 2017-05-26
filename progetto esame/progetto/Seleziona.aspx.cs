@@ -13,10 +13,51 @@ public partial class Fatturazione : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         help.connetti();
+        help.assegnaComando("SELECT Versione FROM Utenti WHERE ID_Utente = " + Session["Utente"].ToString());
+        rs = help.estraiDati();
+        rs.Read();
+        if (Convert.ToInt16(rs["Versione"].ToString()) == 0)
+        {
+            btnAssistenza.Enabled = false;
+            lblVers.Visible = false;
+        }
+        help.disconnetti();
+
+        help.connetti();
         help.assegnaComando("SELECT ID_Azienda FROM Aziende WHERE COD_Proprietario ='" + Session["Utente"].ToString()+"'");
         rs = help.estraiDati();
         rs.Read();
         Session["Azienda"] = rs["ID_Azienda"].ToString();
         help.disconnetti();
+    }
+
+    protected void btnFatt_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CreaFattura.aspx");
+    }
+
+    protected void btnPrimaNota_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("PrimaNota.aspx");
+    }
+
+    protected void btnGiornale_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Giornale.aspx");
+    }
+
+    protected void btnContiMastro_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("ContiDiMastro.aspx");
+    }
+
+    protected void btnAreaPers_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AreaPersonale.aspx");
+    }
+
+    protected void btnAssistenza_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Assistenza.aspx");
     }
 }

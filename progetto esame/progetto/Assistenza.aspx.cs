@@ -46,7 +46,7 @@ public partial class Assistenza : System.Web.UI.Page
         }
         catch
         {
-            MessageBox.Show("Qualcosa è andato storto nell'invio della mail");
+            MessageBox.Show("C'è stato un errore nell'invio della mail");
         }
 
 
