@@ -60,4 +60,16 @@ public partial class Fatturazione : System.Web.UI.Page
     {
         Response.Redirect("Assistenza.aspx");
     }
+
+    protected void btnCli_Click(object sender, EventArgs e)
+    {
+        Session["Operazione"] = "Cli";
+        Response.Redirect("VisualizzaDati.aspx");
+    }
+
+    protected void btnFor_Click(object sender, EventArgs e)
+    {
+        Session["Operazione"] = "For";
+        Response.Redirect("VisualizzaDati.aspx");
+    }
 }

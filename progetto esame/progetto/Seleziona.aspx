@@ -25,4 +25,12 @@
             <asp:Label ID="lblVers" runat="server" Text="Questa funzione è disponibile solo nella versione completa" Visible="False"></asp:Label>
             </div></div>
     </div>
+    <div class="col-md-12" style="margin-top:2%">
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnCli" runat="server" CssClass="btn btn-link" Text="Visualizza i tuoi clienti" Width="100%" OnClick="btnCli_Click" />
+            </div></div>
+        <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            <asp:Button ID="btnFor" runat="server" CssClass="btn btn-link" Text="Visualizza i tuoi fornitori" Width="100%" OnClick="btnFor_Click" />
+            </div></div>
+    </div>
 </asp:Content>
