@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="VisualizzaDati.aspx.cs" Inherits="VisualizzaDati" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="95%">
+    <div class="col-md-12">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="95%">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="Nome" HeaderText="Nome" />
@@ -20,6 +20,10 @@
         <SortedAscendingHeaderStyle BackColor="#6D95E1" />
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
-    </asp:GridView>
-
+        </asp:GridView>
+    </div>
+    <div class="col-md-3">
+        <asp:Button ID="btnAgg" runat="server" Text="Aggiungi" OnClick="btnAgg_Click" />
+    </div>
+    
 </asp:Content>

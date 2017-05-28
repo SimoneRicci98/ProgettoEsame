@@ -10,6 +10,7 @@
                     <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
+            <asp:HiddenField ID="HiddenField1" runat="server" OnValueChanged="HiddenField1_ValueChanged" />
         </div>
         <div class="col-md-3">
 

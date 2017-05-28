@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 public partial class EmettiFattura : System.Web.UI.Page
 {
@@ -96,7 +97,6 @@ public partial class EmettiFattura : System.Web.UI.Page
     }
     private void SetPreviousData()
     {
-
         int rowIndex = 0;
         if (ViewState["CurrentTable"] != null)
         {
@@ -202,6 +202,7 @@ public partial class EmettiFattura : System.Web.UI.Page
         try
         {
             dbHelper help = new dbHelper();
+            SqlDataReader rs;
             SetRowData();
             DataTable table = ViewState["CurrentTable"] as DataTable;
 
@@ -209,7 +210,9 @@ public partial class EmettiFattura : System.Web.UI.Page
             {
                 foreach (DataRow row in table.Rows)
                 {
-                    string numero = txtNumero.Text;
+                    string NomeCliente = DropDownList1.SelectedItem.Text;
+
+                    Session["Numero"] = txtNumero.Text;
                     string oggetto = txtOggetto.Text;
                     string data = txtData.Text;
                     string tipoPagamento = txtPagamento.Text;
@@ -223,8 +226,26 @@ public partial class EmettiFattura : System.Web.UI.Page
                     string Iva = row.ItemArray[6] as string;
 
                     help.connetti();
-                    help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Data) "+
-                        "VALUES('"+numero+"','"+CodiceArticolo+"','"+Descrizione+"','"+Quantità+"','"+PrezzoUnitario+"','"+Sconto+"','"+Importo+"','"+Iva+"','"+oggetto+"','"+tipoPagamento+"','"+data+"')");
+                    help.assegnaComando("SELECT ID_Cliente FROM Clienti WHERE RagioneSociale = '"+NomeCliente+"'");
+                    rs = help.estraiDati();
+                    rs.Read();
+                    Session["ID_Cliente"] = rs["ID_Cliente"].ToString();
+                    help.disconnetti();
+
+                    help.connetti();
+                    help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Dat,COD_Cliente) " +
+                        "VALUES('" + Session["Numero"].ToString() + 
+                        "','" + CodiceArticolo + 
+                        "','" + Descrizione + 
+                        "','" + Quantità + 
+                        "','" + PrezzoUnitario + 
+                        "','" + Sconto + 
+                        "','" + Importo + 
+                        "','" + Iva + 
+                        "','" + oggetto +
+                        "','" + tipoPagamento + 
+                        "','" + data + 
+                        "','" + Session["ID_Cliente"].ToString() + "')");
                     help.eseguicomando();
                     help.disconnetti();
                 }
@@ -237,6 +258,11 @@ public partial class EmettiFattura : System.Web.UI.Page
     }
 
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void HiddenField1_ValueChanged(object sender, EventArgs e)
     {
 
     }
