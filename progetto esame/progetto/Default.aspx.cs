@@ -61,7 +61,7 @@ public partial class _Default : System.Web.UI.Page
         if(domanda!="" && utente!="")
         {
             help.connetti();
-            help.assegnaComando("INSERT INTO DomandeRisposte(Utente,Domanda,Risposta,Data) VALUES('"+utente+"','"+domanda+"','blank',#"+oggi+"#)");
+            help.assegnaComando("INSERT INTO DomandeRisposte(Utente,Domanda,Risposta,Data) VALUES('"+utente+"','"+domanda+"','blank','"+oggi+"')");
             help.eseguicomando();
             help.disconnetti();
             txtDomanda.Text = "";

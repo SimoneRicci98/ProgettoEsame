@@ -15,9 +15,6 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     double totFatt;
     protected void Page_Load(object sender, EventArgs e)
     {
-        Session["Azienda"] = 4;
-        Session["ID_Cliente"] = 3;
-        Session["Numero"] = 1;
         help.connetti();
         help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
@@ -44,7 +41,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         lblNumTelCliFor.Text = rs["TelAzienda"].ToString();
         #endregion
         help.disconnetti();
-        Session["ID_Cliente"] = 4;
+
         help.connetti();
         help.assegnaComando("SELECT Numero,Oggetto,Data,TipoPagamento FROM Fattura WHERE Numero = '" + Session["Numero"].ToString() + "' AND COD_Cliente = '" + Session["ID_Cliente"].ToString() + "'");
         rs = help.estraiDati();
