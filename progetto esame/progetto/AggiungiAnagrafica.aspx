@@ -33,7 +33,7 @@
          ControlToValidate="txtNomCog" CssClass="alert-danger">
     </asp:RequiredFieldValidator><br />
             </div> 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 P.IVA<br />
                 <asp:TextBox ID="txtPIva" runat="server" ValidationGroup="text"></asp:TextBox>
                 
@@ -49,7 +49,7 @@
             </div> 
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 COD Fiscale<br />
                 <asp:TextBox ID="txtCodF" runat="server" ValidationGroup="text"></asp:TextBox>    
      <asp:RequiredFieldValidator ID="RequiredFieldValidator4"

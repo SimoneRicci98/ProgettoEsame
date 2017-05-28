@@ -84,11 +84,17 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
         #endregion
         if (CodFisc.Length != 16 || CodFisc.Length != 11 || PIva.Length!=11)
         {
-            if (CodFisc.Length != 16 || CodFisc.Length != 11)
+            switch (CodFisc.Length)
             {
-                lblErr0.Text = "Codice fiascale inserito in modo errato";
+                case 11:
+                    break;
+                case 16:
+                    break;
+                default:
+                    lblErr1.Text = "Codice fiscale inserito in modo errato";
+                    break;
             }
-            if(PIva.Length!=11)
+            if (PIva.Length!=11)
             {
                 lblErr0.Text = "Partita iva inserita in modo errato";
             }
