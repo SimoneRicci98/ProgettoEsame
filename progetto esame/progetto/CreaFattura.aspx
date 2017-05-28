@@ -10,7 +10,6 @@
                     <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
-            <asp:HiddenField ID="HiddenField1" runat="server" OnValueChanged="HiddenField1_ValueChanged" />
         </div>
         <div class="col-md-3">
 
@@ -23,7 +22,7 @@
             Fattura numero&nbsp;
             <asp:TextBox ID="txtNumero" runat="server" Width="27px"></asp:TextBox>
             &nbsp;del
-            <asp:TextBox ID="txtData" runat="server" TextMode="DateTime"></asp:TextBox>
+            <asp:TextBox ID="txtData" runat="server" TextMode="Date"></asp:TextBox>
         </div>
     </div>
     <div class="col-md-12">
@@ -68,8 +67,7 @@
                                    <asp:ListItem Value="10">10</asp:ListItem>
                                    <asp:ListItem Value="22">22</asp:ListItem>
                                </asp:DropDownList>
-                               <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="drpIva" ErrorMessage="*"  InitialValue="Select"></asp:RequiredFieldValidator>
-                           </ItemTemplate>
+                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Importo">
                            <ItemTemplate>
@@ -92,5 +90,7 @@
                </asp:GridView>
                 <br />
         <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnVisual" runat="server" CssClass="btn btn-primary" Text="Visualizza" Enabled="False" OnClick="btnVisual_Click" />
     </div>
 </asp:Content>

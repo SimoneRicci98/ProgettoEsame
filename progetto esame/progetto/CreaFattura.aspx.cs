@@ -222,18 +222,19 @@ public partial class EmettiFattura : System.Web.UI.Page
                     string Quantità = row.ItemArray[3] as string;
                     string PrezzoUnitario = row.ItemArray[4] as string;
                     string Sconto = row.ItemArray[5] as string;
-                    string Importo = row.ItemArray[7] as string;
                     string Iva = row.ItemArray[6] as string;
+                    string Importo = row.ItemArray[7] as string;
+                    
 
                     help.connetti();
-                    help.assegnaComando("SELECT ID_Cliente FROM Clienti WHERE RagioneSociale = '"+NomeCliente+"'");
+                    help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '"+NomeCliente+"'");
                     rs = help.estraiDati();
                     rs.Read();
-                    Session["ID_Cliente"] = rs["ID_Cliente"].ToString();
+                    Session["ID_Cliente"] = rs["COD_Azienda"].ToString();
                     help.disconnetti();
 
                     help.connetti();
-                    help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Dat,COD_Cliente) " +
+                    help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Data,COD_Cliente,COD_Azienda) " +
                         "VALUES('" + Session["Numero"].ToString() + 
                         "','" + CodiceArticolo + 
                         "','" + Descrizione + 
@@ -245,9 +246,11 @@ public partial class EmettiFattura : System.Web.UI.Page
                         "','" + oggetto +
                         "','" + tipoPagamento + 
                         "','" + data + 
-                        "','" + Session["ID_Cliente"].ToString() + "')");
+                        "','" + Session["ID_Cliente"].ToString() +
+                        "','" + Session["Azienda"].ToString() + "')");
                     help.eseguicomando();
                     help.disconnetti();
+                    btnVisual.Enabled = true;
                 }
             }
         }
@@ -265,5 +268,13 @@ public partial class EmettiFattura : System.Web.UI.Page
     protected void HiddenField1_ValueChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnVisual_Click(object sender, EventArgs e)
+    {
+        if (Session["Numero"] != null)
+            Response.Redirect("VisualizzaFattura.aspx");
+        else
+            MessageBox.Show("Inserire prima i dati dell fattura");
     }
 }

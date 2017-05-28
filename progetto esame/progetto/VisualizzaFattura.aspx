@@ -32,18 +32,20 @@
         <div class="col-md-8">Fattura numero <asp:Label ID="lblNumFatt" runat="server"></asp:Label>&nbsp;del <asp:Label ID="lblDataFatt" runat="server"></asp:Label></div>
     </div>
     <div class="col-md-12">
-        pagamento <asp:Label ID="lblTipoPagamento" runat="server"></asp:Label>
+        <div class="col-md-5">
+            pagamento <asp:Label ID="lblTipoPagamento" runat="server"></asp:Label>
+        </div>
     </div>
     <div class="col-md-12">
         <div class="col-md-1">cod articolo</div>
-        <div class="col-md-4">descrizione</div>
+        <div class="col-md-5">descrizione</div>
         <div class="col-md-1">quantità</div>
         <div class="col-md-2">prezzo unitario</div>
         <div class="col-md-1">sconto</div>
         <div class="col-md-1">importo</div>
         <div class="col-md-1">iva</div>
     </div>
-
+       <%=caricatabella_imponibili()%> 
     <div class="col-md-12" style="text-align:right">
         imponibile <asp:Label ID="lblImponibile" runat="server"></asp:Label><br />
         imposta iva <asp:Label ID="lblImpostaIva" runat="server"></asp:Label><br />
