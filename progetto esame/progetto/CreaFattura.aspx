@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="col-md-3">
             Selezionare cliente 
-            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="sqlEstraiClienti" DataTextField="RagioneSociale" DataValueField="RagioneSociale" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="sqlEstraiClienti" DataTextField="RagioneSociale" DataValueField="RagioneSociale" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" CssClass="form-control">
             </asp:DropDownList>
             <asp:SqlDataSource ID="sqlEstraiClienti" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Clienti] WHERE ([COD_Azienda] = @COD_Azienda)">
                 <SelectParameters>
@@ -14,20 +14,21 @@
         <div class="col-md-3">
 
             Oggetto&nbsp;&nbsp;
-            <asp:TextBox ID="txtOggetto" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtOggetto" runat="server" CssClass="form-control"></asp:TextBox>
 
         </div>
         <div class="col-md-6">
 
             Fattura numero&nbsp;
-            <asp:TextBox ID="txtNumero" runat="server" Width="27px"></asp:TextBox>
+            <asp:TextBox ID="txtNumero" runat="server" Width="27px" CssClass="form-control"></asp:TextBox>
             &nbsp;del
-            <asp:TextBox ID="txtData" runat="server" TextMode="Date"></asp:TextBox>
+            <asp:TextBox ID="txtData" runat="server" TextMode="Date" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
     <div class="col-md-12">
         Tipo di pagamento&nbsp;
-        <asp:TextBox ID="txtPagamento" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtPagamento" runat="server" CssClass="form-control"></asp:TextBox>
+        <br />
     </div>
         <div class="col-md-12">
 

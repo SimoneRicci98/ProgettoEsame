@@ -10,7 +10,7 @@
                  Nome
              </div>
              <div class="col-md-3">
-                 <asp:TextBox ID="txtNome" runat="server" Width="100%"></asp:TextBox>
+                 <asp:TextBox ID="txtNome" runat="server" Width="100%" CssClass="form-control"></asp:TextBox>
              </div>
          </div>
          <br />
@@ -19,7 +19,7 @@
                  Cognome
              </div>
              <div class="col-md-3">
-                 <asp:TextBox ID="txtCognome" runat="server" Width="100%"></asp:TextBox>
+                 <asp:TextBox ID="txtCognome" runat="server" Width="100%" CssClass="form-control"></asp:TextBox>
              </div>
          </div>
          <br />
@@ -28,7 +28,7 @@
                  Email
              </div>
              <div class="col-md-3">
-                <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Width="100%"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" Width="100%" CssClass="form-control"></asp:TextBox>
              </div>
          </div>
          <br />
@@ -37,12 +37,12 @@
                  Password
              </div>
              <div class="col-md-3">
-                 <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Width="100%"></asp:TextBox>
+                 <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Width="100%" CssClass="form-control"></asp:TextBox>
              </div>
          </div>
          <div class="col-md-3">
 
-             <asp:Button ID="Button1" runat="server" Text="Registrati!" OnClick="Button1_Click" />
+             <asp:Button ID="Button1" runat="server" Text="Registrati!" OnClick="Button1_Click" CssClass="btn btn-primary" />
 
              <asp:Label ID="lblErr" runat="server" ForeColor="Red"></asp:Label>
 

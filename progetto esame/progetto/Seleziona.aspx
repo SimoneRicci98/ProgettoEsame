@@ -32,5 +32,10 @@
         <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
             <asp:Button ID="btnFor" runat="server" CssClass="btn btn-link" Text="Visualizza i tuoi fornitori" Width="100%" OnClick="btnFor_Click" />
             </div></div>
+                <div class="col-md-4"><div class="col-md-12" style="border:solid 1px blue; align-items:center">
+            
+                    <asp:Label ID="lblLimitazioni" runat="server"></asp:Label>
+            
+            </div></div>
     </div>
 </asp:Content>

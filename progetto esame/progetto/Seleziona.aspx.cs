@@ -29,6 +29,28 @@ public partial class Fatturazione : System.Web.UI.Page
         rs.Read();
         Session["Azienda"] = rs["ID_Azienda"].ToString();
         help.disconnetti();
+        #region conto clienti, fornitori e fatture create
+        help.connetti();
+        help.assegnaComando("SELECT COUNT(COD_Azienda) FROM Clienti WHERE COD_Azienda = " + Session["Azienda"].ToString());
+        rs = help.estraiDati();
+        string numClienti = rs[0].ToString();
+        help.disconnetti();
+        help.connetti();
+        help.assegnaComando("SELECT COUNT(COD_Azienda) FROM Fornitori WHERE COD_Azienda = " + Session["Azienda"].ToString());
+        rs = help.estraiDati();
+        string numFornitori = rs[0].ToString();
+        help.disconnetti();
+        help.connetti();
+        help.assegnaComando("CREATE VIEW vista1 as(SELECT DISTINCT COUNT(ID_Fattura) as conta FROM Fattura WHERE COD_Azienda ="+Session["Azienda"].ToString()+")");
+        help.eseguicomando();
+        help.disconnetti();
+        help.connetti();
+        help.assegnaComando("SELECT DISTINCT COUNT(Conta) FROM vista1");
+        rs = help.estraiDati();
+        string numFatture = rs[0].ToString();
+        help.disconnetti();
+        #endregion
+        lblLimitazioni.Text = "Hai "+numClienti+" clienti, "+numFornitori+" fornitori e hai creato "+numFatture+" fatture finora.";
     }
 
     protected void btnFatt_Click(object sender, EventArgs e)

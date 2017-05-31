@@ -14,16 +14,16 @@
     </div>
            <div class="col-md-3">
         <div class="row">
-                    <asp:TextBox ID="TxtEmail" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TxtEmail" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
         <div class="row" style="margin-top:2%">
-                    <asp:TextBox ID="TxtPass" runat="server" TextMode="Password"></asp:TextBox>
+                    <asp:TextBox ID="TxtPass" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
         </div>
     </div>
     </div>
           <p>
-             &nbsp;&nbsp; <asp:Button ID="Button1" runat="server" Text="Entra" OnClick="Button1_Click" />
-              &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblErr" runat="server"></asp:Label>
+             &nbsp;&nbsp; <asp:Button ID="Button1" runat="server" Text="Entra" OnClick="Button1_Click" CssClass="btn btn-primary" />
+              &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblErr" runat="server" ForeColor="Red"></asp:Label>
          </p>
 
 

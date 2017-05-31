@@ -13,27 +13,23 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
     { 
         try
         {
-            if((bool)Session["Cliente"])
+            if (Session["Cliente"] != null && Session["Fornitore"] != null)
             {
-                lblAz.Text = " del cliente";
-                Session["Operazione"] = "cli";
-                btnChiudi.Visible = true;
+                if ((bool)Session["Cliente"])
+                {
+                    lblAz.Text = " del cliente";
+                    Session["Operazione"] = "cli";
+                    btnChiudi.Visible = true;
+                }
+                else
+                if ((bool)Session["Fornitore"])
+                {
+                    lblAz.Text = " del fornitore";
+                    Session["Operazione"] = "for";
+                    btnChiudi.Visible = true;
+                }
             }
-            else
-            if ((bool)Session["Fornitore"])
-            {
-                lblAz.Text = " del fornitore";
-                Session["Operazione"] = "for";
-                btnChiudi.Visible = true;
-            }
-            else
-            if (Session["Azienda"] is int)
-            {
-                lblAz.Text = " della tua azienda";
-                Session["Operazione"] = "mia";
-                btnChiudi.Visible = false;
-            }
-            else if(Session["Azienda"]!=null)
+            if (Session["Azienda"] != null)
             {
                 lblAz.Text = " della tua azienda";
                 Session["Operazione"] = "mia";
@@ -42,7 +38,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
         }
         catch
         {
-
+            MessageBox.Show("C'è stato un errore");
         }
 
     }
@@ -81,32 +77,33 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 NumCell = txtNUmCell.Text;
                 Tel = txtTel.Text;
                 Email = txtEmail.Text;
+                bool err1 = false;
+                bool err2 = false;
         #endregion
-        if (CodFisc.Length != 16 || CodFisc.Length != 11 || PIva.Length!=11)
-        {
             switch (CodFisc.Length)
             {
                 case 11:
                     break;
                 case 16:
                     break;
-                default:
+                default: err1 = true;
                     lblErr1.Text = "Codice fiscale inserito in modo errato";
                     break;
             }
             if (PIva.Length!=11)
             {
+                err2 = true;
                 lblErr0.Text = "Partita iva inserita in modo errato";
             }
-        }
-        else
+        if(!err1 && !err2)
         {
             try
             {
-                switch (Session["Operazione"].ToString())
+                string operazione = Session["Operazione"].ToString();
+                switch (operazione)
                 {
                     case "mia":
-                        #region inserimento dati propria azienda
+                        #region inserimento dati propria azienda 
                         help.connetti();
                         help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
                             "VALUES('" + Session["Utente"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
@@ -114,6 +111,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                         help.disconnetti();
                         Response.Redirect("Seleziona.aspx");
                         #endregion
+
                         break;
                     case "cli":
                         #region insetimento dati nella tabella clienti

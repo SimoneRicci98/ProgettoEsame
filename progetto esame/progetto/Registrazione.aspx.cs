@@ -17,14 +17,16 @@ public partial class Registrazione : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-            try
+        try
+        {
+            bool presente = false;
+            int app = 0;
+            string nome = txtNome.Text;
+            string cognome = txtCognome.Text;
+            string email = txtEmail.Text;
+            string psw = txtPass.Text;
+            if (nome.Trim() == "" || cognome.Trim() == "" || email.Trim() == "" || psw.Trim() == "")
             {
-                bool presente = false;
-                int app = 0;
-                string nome = txtNome.Text;
-                string cognome = txtCognome.Text;
-                string email = txtEmail.Text;
-                string psw = txtPass.Text;
                 help.connetti();
                 help.assegnaComando("SELECT Email FROM Utenti");
                 rs = help.estraiDati();
@@ -36,29 +38,34 @@ public partial class Registrazione : System.Web.UI.Page
                         presente = true;
                     }
                 }
-            help.disconnetti();
-            if (!presente)
-            {
-                help.connetti();
-                help.assegnaComando("SELECT MAX (ID_Utente) AS massimo FROM Utenti");
-                rs = help.estraiDati();
-                rs.Read();
-                app = int.Parse(rs["massimo"].ToString()) + 1;
                 help.disconnetti();
+                if (!presente)
+                {
+                    help.connetti();
+                    help.assegnaComando("SELECT MAX (ID_Utente) AS massimo FROM Utenti");
+                    rs = help.estraiDati();
+                    rs.Read();
+                    app = int.Parse(rs["massimo"].ToString()) + 1;
+                    help.disconnetti();
 
-                help.connetti();
-                help.assegnaComando("INSERT INTO Utenti VALUES(" + app + ",'" + nome + "','" + cognome + "','" + email + "','" + psw + "','" + Session["Versione"].ToString() +"')");
-                help.eseguicomando();
-                help.disconnetti();
-                Session["Utente"] = app.ToString();
-                Session["Azienda"] = true;
-                Response.Redirect("AggiungiAnagrafica.aspx");
+                    help.connetti();
+                    help.assegnaComando("INSERT INTO Utenti VALUES(" + app + ",'" + nome + "','" + cognome + "','" + email + "','" + psw + "','" + Session["Versione"].ToString() + "')");
+                    help.eseguicomando();
+                    help.disconnetti();
+                    Session["Utente"] = app.ToString();
+                    Session["Azienda"] = true;
+                    Response.Redirect("AggiungiAnagrafica.aspx");
+                }
             }
-            }
-
-            catch
+            else
             {
-                Response.Write("Qualcosa non va");
+                lblErr.Text = "Compila tutti i campi";
             }
+        }
+        catch
+        {
+            Response.Write("Qualcosa non va");
+        }
     }
+
 }

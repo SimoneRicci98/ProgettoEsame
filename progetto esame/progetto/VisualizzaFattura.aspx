@@ -10,7 +10,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="col-md-4">
+     <div class="col-md-4">
         <div class="row">nome/azienda <asp:Label ID="lblRagSoc" runat="server"></asp:Label></div>
         <div class="row">indirizzo <asp:Label ID="lblIndirizzoMio" runat="server"></asp:Label> </div>
         <div class="row">Codice fiscale <asp:Label ID="lblCodFisc" runat="server"></asp:Label> </div>

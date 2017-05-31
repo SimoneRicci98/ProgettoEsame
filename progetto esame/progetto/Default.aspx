@@ -10,7 +10,7 @@
             <asp:Label ID="lblErr2" runat="server" ForeColor="#CC0000"></asp:Label>
             <br />
             Inserisci qui la domanda<br />
-            <asp:TextBox ID="txtDomanda" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="MultiLine" Width="90%" CssClass="form-control" Rows="5" ></asp:TextBox>
+            <asp:TextBox ID="txtDomanda" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="MultiLine" Width="90%" CssClass="form-control" Rows="2" ></asp:TextBox>
             
             <asp:Label ID="lblErr1" runat="server" ForeColor="#CC0000"></asp:Label>
             
@@ -22,13 +22,12 @@
             
         </div>
         <div class="col-md-4">
-            qui le possibilità di acquisti con le relative caratteristiche 
-            <div class="row">
+            &nbsp;<div class="row">
                 Versione di prova <br />
                 Qui potrai provare le potenzialità di questo software web ma con qualche restrizione,
-                come il limite di 10 fatture e avere al massimo 5 clienti e 3 fornitori
-                <br />
+                come il limite di 10 fatture, avere al massimo 5 clienti e 3 fornitori e supporto solo tramite domande pubblche<br />
                 <asp:Button ID="btnProva" runat="server" Text="Prosegui" OnClick="btnProva_Click" CssClass="btn btn-primary" />
+                <br />
             </div>
             <div class="row" style="margin-top:1%">
                 Versione completa <br />
