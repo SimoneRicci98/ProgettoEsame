@@ -1,14 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode="none" CodeFile="PrimaNota.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="PrimaNota" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12" style="border-color:red;border:solid;margin-top:2%">
+    <div class="col-md-12">
             <div class="row">
                 <div class="col-md-2">
                      Data operazione
                 </div>
                <div class="col-md-3">
-                    <asp:TextBox ID="txtDataOperazione" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
-                    <asp:Label ID="lblErr1" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
+                    <asp:TextBox ID="txtDataOperazione" runat="server" TextMode="Date"></asp:TextBox> &nbsp;<asp:Label ID="lblErr1" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
                     </div>
                 <div class="col-md-4">
                     <div class="col-md-6">
@@ -26,8 +25,7 @@
                     Data Fattura 
                 </div>
                 <div class="col-md-3">
-                    <asp:TextBox ID="txtDataFattura" runat="server" TextMode="DateTime"></asp:TextBox> dd/mm/yyyy
-                    <asp:Label ID="lblErr2" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
+                    <asp:TextBox ID="txtDataFattura" runat="server" TextMode="Date"></asp:TextBox> &nbsp;<asp:Label ID="lblErr2" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
                 </div>
                <div class="col-md-4">
                    <div class="col-md-6">

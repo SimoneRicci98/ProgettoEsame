@@ -46,7 +46,7 @@ public partial class Fatturazione : System.Web.UI.Page
         numFornitori = rs[0].ToString();
         help.disconnetti();
         help.connetti();
-        help.assegnaComando("CREATE VIEW vista1 as(SELECT DISTINCT COUNT(ID_Fattura) as conta FROM Fattura WHERE COD_Azienda ='"+Session["Azienda"].ToString()+"')");
+        help.assegnaComando("CREATE VIEW vista1 as(SELECT COUNT(DISTINCT Numero) as conta FROM Fattura WHERE COD_Azienda ='"+Session["Azienda"].ToString()+"')");
         help.eseguicomando();
         help.disconnetti();
         help.connetti();

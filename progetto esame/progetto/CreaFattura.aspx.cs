@@ -230,7 +230,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                     help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '"+NomeCliente+"'");
                     rs = help.estraiDati();
                     rs.Read();
-                    Session["ID_Cliente"] = rs["COD_Azienda"].ToString();
+                    Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
                     help.disconnetti();
 
                     help.connetti();

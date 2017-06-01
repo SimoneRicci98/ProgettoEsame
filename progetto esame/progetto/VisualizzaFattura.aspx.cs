@@ -5,11 +5,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 public partial class VisualizzaFattura : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
     SqlDataReader rs;
+    string ragsocCliente;
     double imponibile;
     double imponibile_iva;
     double totFatt;
@@ -38,6 +43,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         lblIndirizzoCliFor.Text = rs["Indirizzo"].ToString();
         lblPartIvaCliFor.Text = rs["PartitaIVA"].ToString();
         lblRagSocCliFor.Text = rs["RagioneSociale"].ToString();
+        ragsocCliente = rs["RagioneSociale"].ToString();
         lblNumTelCliFor.Text = rs["TelAzienda"].ToString();
         #endregion
         help.disconnetti();
@@ -63,14 +69,14 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         rs = help.estraiDati();
         while (rs.Read())
         {
-            tabella += "<div class=\"col-md-12\">" +
-            "<div class=\"col-md-1\" style=\"border: solid 1px black\">" + rs["CodArticolo"].ToString() + "</div>" +
-            "<div class=\"col-md-5\" style=\"border: solid 1px black\">" + rs["Descrizione"].ToString() + "</div>" +
-            "<div class=\"col-md-1\" style=\"border: solid 1px black\">" + rs["Quantità"].ToString() + "</div>" +
-            "<div class=\"col-md-2\" style=\"border: solid 1px black\">" + rs["PrezzoUnitario"].ToString() + "</div>" +
-            "<div class=\"col-md-1\" style=\"border: solid 1px black\">" + rs["Sconto"].ToString() + "</div>" +
-            "<div class=\"col-md-1\" style=\"border: solid 1px black\">" + rs["Iva"].ToString() + "</div>" +
-            "<div class=\"col-md-1\" style=\"border: solid 1px black\">" + rs["Importo"].ToString() + "</div>" +
+            tabella += "<div class=\"col-xs-12\">" +
+            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["CodArticolo"].ToString() + "</div>" +
+            "<div class=\"col-xs-5\" style=\"border: solid 1px black\">" + rs["Descrizione"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Quantità"].ToString() + "</div>" +
+            "<div class=\"col-xs-2\" style=\"border: solid 1px black\">" + rs["PrezzoUnitario"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Sconto"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Iva"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Importo"].ToString() + "</div>" +
             "</div>";
             imponibile += Convert.ToDouble(rs["Iva"].ToString());
             imponibile_iva += ((Convert.ToDouble(rs["PrezzoUnitario"].ToString()) * Convert.ToDouble(rs["Quantità"].ToString())) / 100) * Convert.ToDouble(rs["Importo"].ToString()); 
@@ -81,5 +87,28 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         lblImpostaIva.Text = imponibile_iva.ToString();
         lblTotFatt.Text = totFatt.ToString();
         return tabella;
+    }
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+    }
+
+    protected void btnStampa_Click(object sender, EventArgs e)
+    {
+        Response.ContentType="Application/pdf";
+        Response.AddHeader("content-disposition","attachment; filename = fattura n"+Session["Numero"].ToString()+" per "+ragsocCliente+".pdf");
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter htw = new HtmlTextWriter(sw);
+        this.Page.RenderControl(htw);
+        StringReader sr = new StringReader(sw.ToString());
+        Document pdfDoc = new Document(PageSize.A3, 10f,10f,10f,10f);
+        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+        pdfDoc.Open();
+        htmlparser.Parse(sr);
+        pdfDoc.Close();
+        Response.Write(pdfDoc);
+        Response.End();
     }
 }
