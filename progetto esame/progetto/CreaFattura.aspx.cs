@@ -277,4 +277,19 @@ public partial class EmettiFattura : System.Web.UI.Page
         else
             MessageBox.Show("Inserire prima i dati dell fattura");
     }
+
+    protected void txtData_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtNumero_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtOggetto_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }

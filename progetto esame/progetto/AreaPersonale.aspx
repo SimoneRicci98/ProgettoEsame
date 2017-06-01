@@ -72,7 +72,7 @@
             </div>
             <div class="col-md-6">
                 Password :
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
 &nbsp;<asp:Button ID="btnChiudi0" runat="server" OnClick="btnChiudi_Click" Text="Visualizza/nascondi password" CssClass="btn btn-primary" />
             </div>
         </div>

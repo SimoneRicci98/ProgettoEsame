@@ -11,7 +11,7 @@
             <div class="col-md-3">
                 Ragione Sociale
                 <br />
-                <asp:TextBox ID="txtRagSoc" runat="server" ValidationGroup="text"></asp:TextBox>
+                <asp:TextBox ID="txtRagSoc" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
                 
      <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
          runat="server"
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-3">
                 Nome e cognome<br />
-            <asp:TextBox ID="txtNomCog" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtNomCog" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
                 
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
          runat="server"
@@ -35,7 +35,7 @@
             </div> 
             <div class="col-md-4">
                 P.IVA<br />
-                <asp:TextBox ID="txtPIva" runat="server" ValidationGroup="text"></asp:TextBox>
+                <asp:TextBox ID="txtPIva" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
                 
       <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
          runat="server"
@@ -51,7 +51,7 @@
         <div class="row">
             <div class="col-md-4">
                 COD Fiscale<br />
-                <asp:TextBox ID="txtCodF" runat="server" ValidationGroup="text"></asp:TextBox>    
+                <asp:TextBox ID="txtCodF" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>    
      <asp:RequiredFieldValidator ID="RequiredFieldValidator4"
          runat="server"
             Text="Compila questo campo"
@@ -65,7 +65,7 @@
         <div class="row">
             <div class="col-md-5">
                 Indirizzo<br />
-            <asp:TextBox ID="txtIndirizzo" runat="server" Width="70%" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtIndirizzo" runat="server" Width="70%" ValidationGroup="text" CssClass="form-control"></asp:TextBox>
      <asp:RequiredFieldValidator ID="RequiredFieldValidator5"
          runat="server"
             Text="Compila questo campo"
@@ -78,7 +78,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">Cap<br />
-            <asp:TextBox ID="txtCap" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtCap" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
      <asp:RequiredFieldValidator ID="RequiredFieldValidator9"
          runat="server"
             Text="Compila questo campo"
@@ -89,7 +89,7 @@
             </div>
          <div class="row">
             <div class="col-md-3">Provincia<br />
-            <asp:TextBox ID="txtProv" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtProv" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
            <asp:RequiredFieldValidator ID="RequiredFieldValidator14"
          runat="server"
          Text="Compila questo campo"
@@ -100,7 +100,7 @@
             </div>
              <div class="col-md-3">
              Regione<br />
-            <asp:TextBox ID="txtReg" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtReg" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
            <asp:RequiredFieldValidator ID="RequiredFieldValidator7"
          runat="server"
          Text="Compila questo campo"
@@ -110,7 +110,7 @@
     </asp:RequiredFieldValidator>
              </div>
             <div class="col-md-3">Nazione<br />
-            <asp:TextBox ID="txtNaz" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtNaz" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
                 
               <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
          runat="server"
@@ -125,7 +125,7 @@
         <div class="row">
             <div class="col-md-3">
                 Telefono<br />
-            <asp:TextBox ID="txtTel" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtTel" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
                 
    <asp:RequiredFieldValidator ID="RequiredFieldValidator10"
          runat="server"
@@ -140,7 +140,7 @@
         <div class="row">
             <div class="col-md-3">
                 Numero Cellulare<br />
-            <asp:TextBox ID="txtNUmCell" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtNUmCell" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
      <asp:RequiredFieldValidator ID="RequiredFieldValidator12"
          runat="server"
          Text="Compila questo campo"
@@ -151,7 +151,7 @@
             </div>
             <div class="col-md-3">
                 Email<br />
-            <asp:TextBox ID="txtEmail" runat="server" ValidationGroup="text"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
                 
          <asp:RequiredFieldValidator ID="RequiredFieldValidator13"
          runat="server"
@@ -163,10 +163,10 @@
             </div>
         </div>
          <br />
-        <div class="col-md-6">
-        <asp:Button ID="Button1" runat="server" Text="Inserisci" OnClick="Button1_Click" CssClass="btn btn-default" />
+        <div class="col-md-6" style="margin-bottom:1%">
+        <asp:Button ID="Button1" runat="server" Text="Inserisci" OnClick="Button1_Click" CssClass="btn btn-primary" />
     &nbsp;&nbsp;
-     <asp:Button ID="btnChiudi" runat="server" OnClick="btnChiudi_Click" Text="Chiudi" CssClass="btn btn-default"/>
+     <asp:Button ID="btnChiudi" runat="server" OnClick="btnChiudi_Click" Text="Chiudi" CssClass="btn btn-primary"/>
         </div>
     </div>  
 </asp:Content>

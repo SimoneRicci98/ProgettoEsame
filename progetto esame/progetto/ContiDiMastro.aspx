@@ -10,12 +10,12 @@
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
                        <asp:TemplateField HeaderText="codice">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtCodice" runat="server" ></asp:TextBox>
+                               <asp:TextBox CssClass="form-control" Width="40%" ID="txtCodice" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Nome">
                            <ItemTemplate>
-                               <asp:TextBox ID="txtNome" runat="server"></asp:TextBox>
+                               <asp:TextBox CssClass="form-control" Width="40%" ID="txtNome" runat="server"></asp:TextBox>
                            </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>
