@@ -12,9 +12,9 @@ public partial class Fatturazione : System.Web.UI.Page
      SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
-        string numFornitori;
-        string numClienti;
-        string numFatture;
+        int numFornitori;
+        int numClienti;
+        int numFatture;
         help.connetti();
         help.assegnaComando("SELECT Versione FROM Utenti WHERE ID_Utente = " + Session["Utente"].ToString());
         rs = help.estraiDati();
@@ -22,7 +22,7 @@ public partial class Fatturazione : System.Web.UI.Page
         if (Convert.ToInt16(rs["Versione"].ToString()) == 0)
         {
             btnAssistenza.Enabled = false;
-            lblVers.Visible = false;
+            lblLimitazioni.Visible = true;
         }
         help.disconnetti();
 
@@ -37,13 +37,13 @@ public partial class Fatturazione : System.Web.UI.Page
         help.assegnaComando("SELECT COUNT(COD_Azienda) FROM Clienti WHERE COD_Azienda = '" + Session["Azienda"].ToString()+"'");
         rs = help.estraiDati();
         rs.Read();
-        numClienti = rs[0].ToString();
+        numClienti = 5- Convert.ToInt16(rs[0].ToString());
         help.disconnetti();
         help.connetti();
         help.assegnaComando("SELECT COUNT(COD_Azienda) FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString()+"'");
         rs = help.estraiDati();
         rs.Read();
-        numFornitori = rs[0].ToString();
+        numFornitori = 3-Convert.ToInt16(rs[0].ToString());
         help.disconnetti();
         help.connetti();
         help.assegnaComando("CREATE VIEW vista1 as(SELECT COUNT(DISTINCT Numero) as conta FROM Fattura WHERE COD_Azienda ='"+Session["Azienda"].ToString()+"')");
@@ -55,7 +55,7 @@ public partial class Fatturazione : System.Web.UI.Page
         rs.Read();
         if (rs["conta"].ToString() == "0")
         {
-            numFatture = rs["conta"].ToString();
+            numFatture = 10;
             help.disconnetti();
         }
         else
@@ -65,7 +65,7 @@ public partial class Fatturazione : System.Web.UI.Page
             help.assegnaComando("SELECT DISTINCT COUNT(Conta) FROM vista1");
             rs = help.estraiDati();
             rs.Read();
-            numFatture = rs[0].ToString();
+            numFatture =10-Convert.ToInt16(rs[0].ToString());
             help.disconnetti();
         }
         help.connetti();
@@ -73,7 +73,7 @@ public partial class Fatturazione : System.Web.UI.Page
         help.eseguicomando();
         help.disconnetti();
         #endregion
-        lblLimitazioni.Text = "Hai "+numClienti+" clienti, "+numFornitori+" fornitori e hai creato "+numFatture+" fatture finora.";
+        lblLimitazioni.Text = "Hai ancora a disposizione "+numClienti+" clienti, "+numFornitori+" fornitori e "+numFatture+" fatture disponibili nella versione di prova.";
     }
 
     protected void btnFatt_Click(object sender, EventArgs e)

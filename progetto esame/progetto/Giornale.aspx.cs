@@ -11,6 +11,8 @@ public partial class Giornale : System.Web.UI.Page
     dbHelper help = new dbHelper();
     SqlDataReader rs;
     SqlDataReader appoggio;
+    int TotDare = 0;
+    int TotAvere = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         help.connetti();
@@ -77,7 +79,7 @@ public partial class Giornale : System.Web.UI.Page
                     {
                         dt.Rows.Add(rs["NumDoc"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
                     }
-
+                    TotDare +=Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
                 }
                 else
                 {
@@ -91,7 +93,7 @@ public partial class Giornale : System.Web.UI.Page
                     {
                         dt.Rows.Add(rs["NumDoc"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
                     }
-
+                    TotAvere += Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
                 }
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
@@ -104,5 +106,8 @@ public partial class Giornale : System.Web.UI.Page
             }
         }
         help.disconnetti();
+
+        lblTotDare.Text ="Totale dare: " + TotDare.ToString();
+        lblTotAvere.Text ="Totale avere" + TotAvere.ToString();
     }
 }

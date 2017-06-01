@@ -22,7 +22,6 @@
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
             <asp:Button ID="btnAssistenza" runat="server" CssClass="btn btn-link" Text="Assistenza via email" OnClick="btnAssistenza_Click" Width="100%" />
             <br />
-            <asp:Label ID="lblVers" runat="server" Text="Questa funzione è disponibile solo nella versione completa" Visible="False"></asp:Label>
             </div></div>
     </div>
     <div class="col-xs-12" style="margin-top:2%">
@@ -34,7 +33,7 @@
             </div></div>
                 <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
             
-                    <asp:Label ID="lblLimitazioni" runat="server"></asp:Label>
+                    <asp:Label ID="lblLimitazioni" Visible="false" runat="server"></asp:Label>
             
             </div></div>
     </div>
