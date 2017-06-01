@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ContiDiMastro.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="ContiDiMastro" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12">
+    <div class="col-xs-12">
         
                Aggiungui in questa tabella i tuoi conti di mastro, questi verranno sommati a quelli di default<br />
         

@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="VisualizzaDati.aspx.cs" Inherits="VisualizzaDati" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12">
+    <div class="col-xs-12">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="95%">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
@@ -22,7 +22,7 @@
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
     </div>
-    <div class="col-md-3">
+    <div class="col-xs-3">
         <asp:Button ID="btnAgg" runat="server" Text="Aggiungi" OnClick="btnAgg_Click" />
     </div>
     

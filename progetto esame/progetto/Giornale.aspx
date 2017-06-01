@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Giornale.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="Giornale" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12" style="margin-left:1%">
+    <div class="col-xs-12" style="margin-left:1%">
         <div class="row">Azienda&nbsp;
             <asp:Label ID="lblAzienda" runat="server"></asp:Label>
         </div>
@@ -15,7 +15,7 @@
             <asp:Label ID="lblIndirizzo" runat="server"></asp:Label>
         </div>
     </div>
-    <div class="col-md-12" style="margin-left:1%">
+    <div class="col-xs-12" style="margin-left:1%">
 
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="90%">
             <AlternatingRowStyle BackColor="White" />

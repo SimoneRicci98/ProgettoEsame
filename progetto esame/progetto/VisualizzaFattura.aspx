@@ -26,10 +26,10 @@
         <div class="row">n° telefono <asp:Label ID="lblNumTelCliFor" runat="server"></asp:Label> </div>
     </div>
     <div class="col-xs-12">
-        <div class="col-md-6">Oggetto <asp:Label ID="lblOggetto" runat="server"></asp:Label></div>
+        <div class="col-xs-6">Oggetto <asp:Label ID="lblOggetto" runat="server"></asp:Label></div>
     </div>
     <div class="col-xs-12">
-        <div class="col-md-8">Fattura numero <asp:Label ID="lblNumFatt" runat="server"></asp:Label>&nbsp;del <asp:Label ID="lblDataFatt" runat="server"></asp:Label></div>
+        <div class="col-xs-8">Fattura numero <asp:Label ID="lblNumFatt" runat="server"></asp:Label>&nbsp;del <asp:Label ID="lblDataFatt" runat="server"></asp:Label></div>
     </div>
     <div class="col-xs-12">
         <div class="col-xs-5">

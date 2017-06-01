@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CreaFattura.aspx.cs" UnobtrusiveValidationMode="none" MasterPageFile="~/MasterPage.master" Inherits="EmettiFattura" %>
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12">
-        <div class="col-md-3">
+    <div class="col-xs-12">
+        <div class="col-xs-3">
             Selezionare cliente 
             <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="sqlEstraiClienti" DataTextField="RagioneSociale" DataValueField="RagioneSociale" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             </asp:DropDownList>
@@ -11,25 +11,25 @@
                 </SelectParameters>
             </asp:SqlDataSource>
         </div>
-        <div class="col-md-3">
+        <div class="col-xs-3">
 
             Oggetto&nbsp;&nbsp;
             <asp:TextBox ID="txtOggetto" runat="server" OnTextChanged="txtOggetto_TextChanged"></asp:TextBox>
 
         </div>
-        <div class="col-md-6" style="margin-top:1%">
+        <div class="col-xs-6" style="margin-top:1%">
             Fattura numero&nbsp;<asp:TextBox ID="txtNumero" runat="server" Width="5%" OnTextChanged="txtNumero_TextChanged"></asp:TextBox>
             &nbsp;&nbsp;del&nbsp;
             <asp:TextBox ID="txtData" runat="server" TextMode="Date" Width="20%" OnTextChanged="txtData_TextChanged"></asp:TextBox>
         &nbsp;</div>
     </div>
-    <div class="col-md-12">
+    <div class="col-xs-12">
         Tipo di pagamento&nbsp;
         <asp:TextBox ID="txtPagamento" runat="server" Width="30%"></asp:TextBox>
         <br />
         <br />
     </div>
-        <div class="col-md-12">
+        <div class="col-xs-12">
 
                <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="95%">
                    <Columns>

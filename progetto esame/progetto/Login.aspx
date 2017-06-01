@@ -1,9 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Login.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="Reg" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server" ID="content1">
-    <div class="col-md-offset-2">
-   <div class="col-md-12" style="margin-top:3%">
-    <div class="col-md-1">
+    <div class="col-xsmd-12" style="margin-top:3%">
+    <div class="col-xs-1">
         <div class="row">
            <asp:Label ID="Label1" runat="server" Text="Email"></asp:Label>
             <br />
@@ -12,7 +11,7 @@
            <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
            </div>
     </div>
-           <div class="col-md-3">
+           <div class="col-xs-3">
         <div class="row">
                     <asp:TextBox ID="TxtEmail" runat="server" CssClass="form-control"></asp:TextBox>
         </div>

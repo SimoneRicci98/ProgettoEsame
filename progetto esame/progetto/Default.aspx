@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="_Default" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server" ID="content1">
-    <div class="col-md-12" style="margin-top:2%">
-        <div class="col-md-4">
+    <div class="col-xs-12" style="margin-top:2%">
+        <div class="col-xs-4">
             
             Inserisci il nome con il quale vuoi essere riconosciuto<br />
             
@@ -21,7 +21,7 @@
             <asp:ListBox ID="lstDomande" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>
             
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
             &nbsp;<div class="row">
                 Versione di prova <br />
                 Qui potrai provare le potenzialità di questo software web ma con qualche restrizione,
@@ -37,7 +37,7 @@
                 <asp:Button ID="btnCompleta" runat="server" Text="Prosegui" OnClick="btnCompleta_Click" CssClass="btn btn-primary" />
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-xs-4">
             
             Qui rispondo alle vostre domande settimanalmente<br />
             <asp:ListBox ID="lstRisposte" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>

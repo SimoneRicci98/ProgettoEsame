@@ -1,19 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" UnobtrusiveValidationMode="none" CodeFile="PrimaNota.aspx.cs" MasterPageFile="~/MasterPage.master" Inherits="PrimaNota" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-md-12">
+    <div class="col-xs-12">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-xs-2">
                      Data operazione
                 </div>
-               <div class="col-md-3">
+               <div class="col-xs-3">
                     <asp:TextBox ID="txtDataOperazione" runat="server" TextMode="Date"></asp:TextBox> &nbsp;<asp:Label ID="lblErr1" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
                     </div>
-                <div class="col-md-4">
-                    <div class="col-md-6">
+                <div class="col-xs-4">
+                    <div class="col-xs-6">
                         <asp:RadioButton ID="radioEmessa" runat="server" GroupName="Fattura" Text="Fattura Emessa" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-xs-6">
                         <asp:RadioButton ID="radioRicevuta" runat="server" GroupName="Fattura" Text="Fattura ricevuta" />
                     </div>
                 </div>
@@ -21,14 +21,14 @@
                 <br />
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-xs-2">
                     Data Fattura 
                 </div>
-                <div class="col-md-3">
+                <div class="col-xs-3">
                     <asp:TextBox ID="txtDataFattura" runat="server" TextMode="Date"></asp:TextBox> &nbsp;<asp:Label ID="lblErr2" runat="server" CssClass="alert-danger" Text="Impossibile inserire una data futura" Visible="False"></asp:Label>
                 </div>
-               <div class="col-md-4">
-                   <div class="col-md-6">
+               <div class="col-xs-4">
+                   <div class="col-xs-6">
                     <asp:RadioButton ID="radioCliente" runat="server" GroupName="ClienteFornitore" Text="Cliente" />
                        <br />
                        <asp:DropDownList ID="DropDownList1" runat="server">
@@ -36,7 +36,7 @@
                        <br />
                    <asp:Button ID="btnAggCli" runat="server" OnClick="btnAggCli_Click" Text="Aggiugi cliente" />
                    </div>
-                   <div class="col-md-6">
+                   <div class="col-xs-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
                        <br />
                        <asp:DropDownList ID="DropDownList2" runat="server">
@@ -48,30 +48,30 @@
                 <br />
             </div>
         <div class="row" style="margin-top:2%">
-            <div class="col-md-4">
+            <div class="col-xs-4">
                 N° Documento&nbsp;&nbsp;
                 <asp:TextBox ID="txtNumDoc" runat="server"></asp:TextBox>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-4">
                 Protocollo&nbsp;&nbsp;
                 <asp:TextBox ID="txtProt" runat="server"></asp:TextBox>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-4">
                 Totale documento&nbsp;&nbsp;
                 <asp:TextBox ID="txtTot" runat="server"></asp:TextBox>
             </div>
         </div>                
-        <div class="col-md-6">
+        <div class="col-xs-6">
              Descrizione &nbsp;&nbsp; <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
          </div>
         <div class="row" style="margin-top:2%">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                Dati obbligatori
             </div>
         </div>
             </div>
         <div class="row" style="margin-top:2%">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%">
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
@@ -124,5 +124,4 @@
                 <asp:Button ID="Button1" runat="server" CssClass="btn btn-primary" OnClick="Button1_Click" Text="Stampa a video" />
             </div>
         </div>
-    </div>
 </asp:Content>
