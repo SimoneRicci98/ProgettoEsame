@@ -231,6 +231,8 @@ public partial class PrimaNota : System.Web.UI.Page
             string protocollo = txtProt.Text;
             string NumDoc = txtNumDoc.Text;
             string totDoc = txtTot.Text;
+            string dataOperazione = txtDataOperazione.Text;
+            string dataFattura = txtDataFattura.Text;
             #endregion
             #region controllo radiobutton
             if(radioCliente.Checked)
@@ -270,35 +272,57 @@ public partial class PrimaNota : System.Web.UI.Page
                     if (table != null)
                     {
                         foreach (DataRow row in table.Rows)
-                    {
+                        {
 
-                        help.connetti();
-                        help.assegnaComando("SELECT MAX (ID_Scrittura) AS massimo FROM Giornale");
-                        rs = help.estraiDati();
-                        rs.Read();
-                        int app = int.Parse(rs["massimo"].ToString()) + 1;
-                        help.disconnetti();
-                        string ContoMastro = row.ItemArray[1] as string;
-                        string Avere = row.ItemArray[2] as string;
-                        string Dare = row.ItemArray[3] as string;
-                        string Iva = row.ItemArray[4] as string;
-                        if (Dare != string.Empty)
-                        {
                             help.connetti();
-                            help.assegnaComando("INSERT INTO Giornale" +
-                                " VALUES('" + app + "','" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Dare_" + Dare + "','" + totDoc + "','" + codCliFor + "','" + descrizione + "','" + Iva + "','" + NumDoc + "','" + protocollo + "')");
-                            help.eseguicomando();
+                            help.assegnaComando("SELECT MAX (ID_Scrittura) AS massimo FROM Giornale");
+                            rs = help.estraiDati();
+                            rs.Read();
+                            int app = int.Parse(rs["massimo"].ToString()) + 1;
                             help.disconnetti();
+                            string ContoMastro = row.ItemArray[1] as string;
+                            string Avere = row.ItemArray[2] as string;
+                            string Dare = row.ItemArray[3] as string;
+                            string Iva = row.ItemArray[4] as string;
+                            if (Dare != string.Empty)
+                            {
+                                help.connetti();
+                                help.assegnaComando("INSERT INTO Giornale" +
+                                    " VALUES('" + app +
+                                    "','" + Session["Azienda"].ToString() +
+                                    "','" + ContoMastro +
+                                    "','Dare_" + Dare +
+                                    "','" + totDoc +
+                                    "','" + codCliFor +
+                                    "','" + descrizione +
+                                    "','" + Iva +
+                                    "','" + NumDoc +
+                                    "','" + protocollo +
+                                    "','" + dataOperazione +
+                                    "','" + dataFattura + "')");
+                                help.eseguicomando();
+                                help.disconnetti();
+                            }
+                            else
+                            {
+                                help.connetti();
+                                help.assegnaComando("INSERT INTO Giornale" +
+                                    " VALUES('" + app +
+                                    "','" + Session["Azienda"].ToString() +
+                                    "','" + ContoMastro +
+                                    "','Avere_" + Avere +
+                                    "','" + totDoc +
+                                    "','" + codCliFor +
+                                    "','" + descrizione +
+                                    "','" + Iva +
+                                    "','" + NumDoc +
+                                    "','" + protocollo +
+                                    "','" + dataOperazione +
+                                    "','" + dataFattura + "')");
+                                help.eseguicomando();
+                                help.disconnetti();
+                            }
                         }
-                        else
-                        {
-                            help.connetti();
-                            help.assegnaComando("INSERT INTO Giornale" +
-                                " VALUES('" + app + "','" + Session["Azienda"].ToString() + "','" + ContoMastro + "','Avere_" + Avere + "','" + totDoc + "','" + codCliFor + "','" + descrizione + "','" + Iva + "','" + NumDoc + "','" + protocollo + "')");
-                            help.eseguicomando();
-                            help.disconnetti();
-                        }
-                    }
                     }
                     pulisciPagina();
                 }

@@ -63,6 +63,7 @@
         </div>                
         <div class="col-xs-6">
              Descrizione &nbsp;&nbsp; <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
+             <br />
          </div>
         <div class="row" style="margin-top:2%">
             <div class="col-xs-12">
