@@ -13,6 +13,8 @@ public partial class Giornale : System.Web.UI.Page
     SqlDataReader appoggio;
     int TotDare = 0;
     int TotAvere = 0;
+    List<string> numDocumenti = new List<string>();
+    int n = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         help.connetti();
@@ -37,6 +39,7 @@ public partial class Giornale : System.Web.UI.Page
 
     public void tabella()
     {
+        int i = 0;
         string app = "";
         string app1 = "";
         int index = 0;
@@ -54,65 +57,70 @@ public partial class Giornale : System.Web.UI.Page
             new DataColumn("Dare"),
             new DataColumn("Avere")});
         help.connetti();
-        help.assegnaComando("SELECT NumDoc,ContoMastro,Descrizione,DareAvere,Protocollo,Cod_CliFor,DataFattura,DataRegistrazione FROM Giornale " +
-            "WHERE COD_Azienda ='" + Session["Azienda"].ToString() + "'");
-        appoggio = help.estraiDati();
-        rs = appoggio;
-        appoggio.Read();
-        int numDoc = int.Parse(appoggio["NumDoc"].ToString());
+        help.assegnaComando("SELECT COUNT(NumDoc) AS Conta FROM Giornale WHERE COD_Azienda ='" + Session["Azienda"].ToString() + "' GROUP BY NumDoc");
+        rs = help.estraiDati();
         while (rs.Read())
         {
-            
-            if (numDoc == int.Parse(rs["NumDoc"].ToString()))
+            numDocumenti.Add(rs["Conta"].ToString());
+        }
+        help.disconnetti();
+        help.connetti();
+        help.assegnaComando("SELECT NumDoc,ContoMastro,Descrizione,DareAvere,Protocollo,Cod_CliFor,DataFattura,DataRegistrazione FROM Giornale " +
+            "WHERE COD_Azienda ='" + Session["Azienda"].ToString() + "'");
+        rs = help.estraiDati();
+        while (i != numDocumenti.Count)
+        {
+            rs.Read();
+            index = rs["DareAvere"].ToString().IndexOf('_');
+            app = rs["DareAvere"].ToString().Substring(0, index);
+            if (app == "Dare")
             {
-                appoggio = rs;
-                index = rs["DareAvere"].ToString().IndexOf('_');
-                app = rs["DareAvere"].ToString().Substring(0, index);
-                if (app == "Dare")
+                index1 = rs["Cod_CliFor"].ToString().IndexOf('_');
+                app1 = rs["Cod_CliFor"].ToString().Substring(0, index1);
+                if (app1 == "Cliente")
                 {
-                    index1 = rs["Cod_CliFor"].ToString().IndexOf('_');
-                    app1 = rs["Cod_CliFor"].ToString().Substring(0, index1);
-                    if (app1 == "Cliente")
-                    {
-                        dt.Rows.Add(rs["NumDoc"],rs["DataFattura"],rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
-                    }
-                    else
-                    {
-                        dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
-                    }
-                    TotDare +=Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
                 }
                 else
                 {
-                    index1 = rs["Cod_CliFor"].ToString().IndexOf('_');
-                    app1 = rs["Cod_CliFor"].ToString().Substring(0, index1);
-                    if (app1 == "Cliente")
-                    {
-                        dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
-                    }
-                    else
-                    {
-                        dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
-                    }
-                    TotAvere += Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
                 }
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
+                TotDare += Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
+                n++;
             }
             else
             {
-                dt.Rows.Add("------------------------------", "------------------------------", "------------------------------", "------------------------------", "------------------------------", "--------------------", "------------------------------", "------------------------------");
-                rs = appoggio;
-                numDoc = int.Parse(rs["NumDoc"].ToString());
+                index1 = rs["Cod_CliFor"].ToString().IndexOf('_');
+                app1 = rs["Cod_CliFor"].ToString().Substring(0, index1);
+                if (app1 == "Cliente")
+                {
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
+                }
+                else
+                {
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
+                }
+                TotAvere += Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
+                n++;
+            }
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            if (numDocumenti[i] != null)
+            {
+                if (n == Convert.ToInt16(numDocumenti[i]))
+                {
+                    dt.Rows.Add("------------------------------", "------------------------------", "------------------------------", "------------------------------", "------------------------------", "------------------------------", "------------------------------", "--------------------", "------------------------------", "------------------------------");
+                    i++;
+                    n = 0;
+                }
             }
         }
-        help.disconnetti();
-
-        lblTotDare.Text ="Totale dare: " + TotDare.ToString();
-        lblTotAvere.Text ="Totale avere" + TotAvere.ToString();
-        if(TotAvere!=TotDare)
+        if (TotAvere != TotDare)
         {
             lblErr.Text = "Dare e avere non corrispondono!";
         }
+        lblTotAvere.Text = "Totale avere: " + TotAvere;
+        lblTotDare.Text = "Totale dare: " + TotDare;
+        help.disconnetti();
     }
 }

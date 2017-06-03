@@ -17,7 +17,7 @@
     </div>
     <div class="col-xs-12" style="margin-left:1%">
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="90%">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="NumDoc" HeaderText="Numero documento" >
@@ -41,6 +41,7 @@
                 <HeaderStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Dare" HeaderText="Dare" >
+                <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Avere" HeaderText="Avere" >

@@ -211,7 +211,6 @@ public partial class PrimaNota : System.Web.UI.Page
                     dtCurrentTable.Rows[i - 1]["Col4"] = Iva.SelectedValue;
                     rowIndex++;
                 }
-
                 ViewState["CurrentTable"] = dtCurrentTable;
             }
         }
@@ -239,7 +238,7 @@ public partial class PrimaNota : System.Web.UI.Page
             {
                 help.connetti();
                 help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+
-                    "' AND RagioneSociale = '"+DropDownList1.SelectedValue+"'");
+                    "' AND RagioneSociale = '"+DropDownList1.SelectedItem.Text+"'");
                 rs = help.estraiDati();
                 rs.Read();
                 codCliFor = "Cliente_" + rs["ID_Azienda"].ToString();
@@ -249,7 +248,7 @@ public partial class PrimaNota : System.Web.UI.Page
             {
                 help.connetti();
                 help.assegnaComando("SELECT ID_Azienda FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() +
-                    "' AND RagioneSociale = '" + DropDownList2.SelectedValue + "'");
+                    "' AND RagioneSociale = '" + DropDownList2.SelectedItem.Text + "'");
                 rs = help.estraiDati();
                 rs.Read();
                 codCliFor = "Fornitore_" + rs["ID_Azienda"].ToString();
@@ -392,7 +391,6 @@ public partial class PrimaNota : System.Web.UI.Page
             Response.Cookies.Add(myCookie);
             MessageBox.Show("Nel caso non si aprisse alcuna finestra è possibile che il vostro broswer blocchi i pop-up, è possibile attivare i pop-up per questa pagina nella casella dell'url, a destra");
         }
-        
         Session["Fornitore"] = true;
         Session["Cliente"] = false;
         ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", "var Mleft = (screen.width/2)-(760/2);var Mtop = (screen.height/2)-(700/2);window.open( 'AggiungiAnagrafica.aspx', null, 'height=1000,width=920,status=yes,toolbar=no,scrollbars=yes,menubar=no,location=no,top=\'+Mtop+\', left=\'+Mleft+\'' );", true);
