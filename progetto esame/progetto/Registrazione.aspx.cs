@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
+using System.IO;
 
 public partial class Registrazione : System.Web.UI.Page
 {
@@ -54,6 +55,10 @@ public partial class Registrazione : System.Web.UI.Page
                     help.disconnetti();
                     Session["Utente"] = app.ToString();
                     Session["Azienda"] = true;
+
+                    string pathToCreate = "~/Utenti/" +app ;
+                    Directory.CreateDirectory(Server.MapPath(pathToCreate));
+
                     Response.Redirect("AggiungiAnagrafica.aspx");
                 }
             }

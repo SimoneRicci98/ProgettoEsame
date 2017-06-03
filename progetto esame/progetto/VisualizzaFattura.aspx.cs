@@ -14,6 +14,13 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     double totFatt;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            ViewState["NomeFile"] = "";
+        }
+        //Session["Azienda"] = 4;
+        //Session["ID_Cliente"] = 1;
+        //Session["Numero"] = 5;
         help.connetti();
         help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
@@ -89,8 +96,21 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     }
 
     protected void btnStampa_Click(object sender, EventArgs e)
-    {
+    {/*
+        Response.ContentType = ContentType;
+        Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName((string)ViewState["NomeFile"]));
+        Response.WriteFile((string)ViewState["NomeFile"]);
+        Response.End();*/
+    }
+
+    protected void btnSalva_Click(object sender, EventArgs e)
+    {/*
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
-        htmlToPdf.GeneratePdfFromFile("VisualizzaFattura.aspx", null, "Fattura n"+Session["Numero"]+" per il cliente "+ragsocCliente+".pdf");
+        ViewState["NomeFile"] = "Fattura n" + Session["Numero"] + " per il cliente " + ragsocCliente + ".pdf";
+        htmlToPdf.TempFilesPath = Server.MapPath("~/App_Data/" + Session["Azienda"].ToString() + "/");
+        htmlToPdf.GeneratePdfFromFile(Request.Url.AbsoluteUri, null, (string)ViewState["NomeFile"]);
+        DirectoryCopy(Server.MapPath("App_Data/") + (string)ViewState["NomeFile"], Server.MapPath("App_Data/") +Session["Azienda"]);
+        Response.Redirect(Request.Url.AbsoluteUri);
+        */
     }
 }
