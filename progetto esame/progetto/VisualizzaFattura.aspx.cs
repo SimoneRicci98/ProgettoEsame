@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
-
+using NReco.PdfGenerator;
 public partial class VisualizzaFattura : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
@@ -44,6 +38,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         lblPartIvaCliFor.Text = rs["PartitaIVA"].ToString();
         lblRagSocCliFor.Text = rs["RagioneSociale"].ToString();
         ragsocCliente = rs["RagioneSociale"].ToString();
+        lblRagSoc.Text = ragsocCliente;
         lblNumTelCliFor.Text = rs["TelAzienda"].ToString();
         #endregion
         help.disconnetti();
@@ -95,20 +90,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
 
     protected void btnStampa_Click(object sender, EventArgs e)
     {
-        Response.ContentType="Application/pdf";
-        Response.AddHeader("content-disposition","attachment; filename = fattura n"+Session["Numero"].ToString()+" per "+ragsocCliente+".pdf");
-        Response.Cache.SetCacheability(HttpCacheability.NoCache);
-        StringWriter sw = new StringWriter();
-        HtmlTextWriter htw = new HtmlTextWriter(sw);
-        this.Page.RenderControl(htw);
-        StringReader sr = new StringReader(sw.ToString());
-        Document pdfDoc = new Document(PageSize.A3, 10f,10f,10f,10f);
-        HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-        PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-        pdfDoc.Open();
-        htmlparser.Parse(sr);
-        pdfDoc.Close();
-        Response.Write(pdfDoc);
-        Response.End();
+        var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+        htmlToPdf.GeneratePdfFromFile("VisualizzaFattura.aspx", null, "Fattura n"+Session["Numero"]+" per il cliente "+ragsocCliente+".pdf");
     }
 }
