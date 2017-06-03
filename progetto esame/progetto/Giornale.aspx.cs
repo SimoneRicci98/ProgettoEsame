@@ -10,7 +10,6 @@ public partial class Giornale : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
     SqlDataReader rs;
-    SqlDataReader appoggio;
     int TotDare = 0;
     int TotAvere = 0;
     List<string> numDocumenti = new List<string>();

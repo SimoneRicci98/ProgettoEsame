@@ -10,8 +10,10 @@ public partial class Fatturazione : System.Web.UI.Page
 {
      dbHelper help = new dbHelper();
      SqlDataReader rs;
+    string limitazioni;
+    int v;
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {    
         int numFornitori;
         int numClienti;
         int numFatture;
@@ -19,10 +21,10 @@ public partial class Fatturazione : System.Web.UI.Page
         help.assegnaComando("SELECT Versione FROM Utenti WHERE ID_Utente = " + Session["Utente"].ToString());
         rs = help.estraiDati();
         rs.Read();
-        if (Convert.ToInt16(rs["Versione"].ToString()) == 0)
+        v = Convert.ToInt16(rs["Versione"].ToString());
+        if (v == 0)
         {
             btnAssistenza.Enabled = false;
-            lblLimitazioni.Visible = true;
         }
         help.disconnetti();
 
@@ -73,7 +75,8 @@ public partial class Fatturazione : System.Web.UI.Page
         help.eseguicomando();
         help.disconnetti();
         #endregion
-        lblLimitazioni.Text = "Hai ancora a disposizione "+numClienti+" clienti, "+numFornitori+" fornitori e "+numFatture+" fatture disponibili nella versione di prova.";
+        limitazioni = "Hai ancora a disposizione "+numClienti+" clienti, "+numFornitori+" fornitori e "+numFatture+" fatture disponibili nella versione di prova.";
+
     }
 
     protected void btnFatt_Click(object sender, EventArgs e)
@@ -116,5 +119,23 @@ public partial class Fatturazione : System.Web.UI.Page
     {
         Session["Operazione"] = "For";
         Response.Redirect("VisualizzaDati.aspx");
+    }
+
+    public string htmlStr()
+    { string html;
+        if (v == 0)
+        {
+           html  = "<div class=\"col-xs-4\">" +
+                  "<div class=\"col-xs-12\" style=\"border:solid 1px blue; align-items:center\">" +
+                  limitazioni +
+                  "</div>" +
+                  "</div>";
+        }
+        else
+        {
+            html = "";
+        }
+
+        return html;
     }
 }

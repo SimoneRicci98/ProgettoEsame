@@ -96,8 +96,8 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     }
 
     protected void btnStampa_Click(object sender, EventArgs e)
-    {/*
-        Response.ContentType = ContentType;
+    {
+        /*Response.ContentType = ContentType;
         Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName((string)ViewState["NomeFile"]));
         Response.WriteFile((string)ViewState["NomeFile"]);
         Response.End();*/
@@ -108,9 +108,11 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
         ViewState["NomeFile"] = "Fattura n" + Session["Numero"] + " per il cliente " + ragsocCliente + ".pdf";
         htmlToPdf.TempFilesPath = Server.MapPath("~/App_Data/" + Session["Azienda"].ToString() + "/");
+        btnSalva.Visible = false;
+        btnStampa.Visible = false;
         htmlToPdf.GeneratePdfFromFile(Request.Url.AbsoluteUri, null, (string)ViewState["NomeFile"]);
-        DirectoryCopy(Server.MapPath("App_Data/") + (string)ViewState["NomeFile"], Server.MapPath("App_Data/") +Session["Azienda"]);
-        Response.Redirect(Request.Url.AbsoluteUri);
-        */
+        btnSalva.Visible = true;
+        btnStampa.Visible = true;
+        Response.Redirect(Request.Url.AbsoluteUri);*/
     }
 }
