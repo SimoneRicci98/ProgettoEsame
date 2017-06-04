@@ -44,6 +44,12 @@ supporto immediato tramite mail.
        <asp:ContentPlaceHolder id="footerGiornale" runat="server">
        </asp:ContentPlaceHolder>
     </div>
+        <div class="modal-footer" style="bottom:0; position:absolute;width:100%">
+            <div class="col-xs-3">Sito ideato da: Ricci Simone</div>
+            <div class="col-xs-3">(privacy)</div>
+            <div class="col-xs-3">qualcosa</div>
+            <div class="col-xs-3">qualcosa</div>
+        </div>
     </form>
 </body>
 </html>
