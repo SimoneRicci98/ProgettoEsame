@@ -3,7 +3,11 @@ using System.Web;
 using System.Web.UI;
 using System.Data.SqlClient;
 using System.IO;
-using NReco.PdfGenerator;
+using System.Net;
+using System.Text;
+using Winnovative;
+
+
 public partial class VisualizzaFattura : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
@@ -59,7 +63,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         lblDataFatt.Text = rs["Data"].ToString();
         lblTipoPagamento.Text = rs["TipoPagamento"].ToString();
         help.disconnetti();
-        
+        ViewState["NomeFile"] = "Fattura n" + Session["Numero"].ToString() + " per il cliente "+ragsocCliente+".pdf";
 
     }
 
@@ -97,27 +101,79 @@ public partial class VisualizzaFattura : System.Web.UI.Page
 
     protected void btnStampa_Click(object sender, EventArgs e)
     {
-        Response.ContentType = ContentType;
-        Response.AppendHeader("Content-Disposition", "attachment; filename=" + Server.MapPath(@"~\App_Data\\Utenti\" + Session["Azienda"].ToString() + "\\" + (string)ViewState["NomeFile"]));
-        Response.WriteFile((string)ViewState["NomeFile"]);
+        // Create a HTML to PDF converter object with default settings
+        HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
+        // Set license key received after purchase to use the converter in licensed mode
+        // Leave it not set to use the converter in demo mode
+        htmlToPdfConverter.NavigationTimeout = 10;
+
+        // Set an adddional delay in seconds to wait for JavaScript or AJAX calls after page load completed
+        htmlToPdfConverter.ConversionDelay = 5;
+
+        // The buffer to receive the generated PDF document
+        byte[] outPdfBuffer = null;
+
+        string url = Request.Url.AbsoluteUri;
+
+        // Convert the HTML page given by an URL to a PDF document in a memory buffer
+        outPdfBuffer = htmlToPdfConverter.ConvertUrl(url);
+
+
+        // Send the PDF as response to browser
+
+        // Set response content type
+        Response.AddHeader("Content-Type", "application/pdf");
+
+        // Instruct the browser to open the PDF file as an attachment or inline
+        Response.AddHeader("Content-Disposition", String.Format("{0}; filename=" + (string)ViewState["NomeFile"]+"; size={1}",
+             "attachment", outPdfBuffer.Length.ToString()));
+
+        // Write the PDF document buffer to HTTP response
+        Response.BinaryWrite(outPdfBuffer);
+        // End the HTTP response and stop the current page processing
         Response.End();
     }
 
     protected void btnSalva_Click(object sender, EventArgs e)
     {
-        string pathFileSource;
-        string pathFileDestination;
-        var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
-        ViewState["NomeFile"] = "Fattura n" + Session["Numero"] + " per il cliente " + ragsocCliente + ".pdf";
-        btnSalva.Visible = false;
-        btnStampa.Visible = false;
-        htmlToPdf.GeneratePdfFromFile(Request.Url.AbsoluteUri, null, (string)ViewState["NomeFile"]);
-        btnSalva.Visible = true;
-        btnStampa.Visible = true;
-        pathFileSource = Server.MapPath(@"~\App_Data\" + (string)ViewState["NomeFile"]);
-        pathFileDestination = Server.MapPath(@"~\App_Data\\Utenti\" +Session["Azienda"].ToString()+"\\"+ (string)ViewState["NomeFile"]);
-        File.Move(pathFileSource, pathFileDestination);
-        File.SetAttributes(pathFileDestination, FileAttributes.Normal);
-        Response.Redirect(Request.Url.AbsoluteUri);
     }
+
+    protected void convertToPdfButton_Click(object sender, EventArgs e)
+    {
+        // Create a HTML to PDF converter object with default settings
+        HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
+
+        // Set license key received after purchase to use the converter in licensed mode
+        // Leave it not set to use the converter in demo mode
+        htmlToPdfConverter.LicenseKey = "fvDh8eDx4fHg4P/h8eLg/+Dj/+jo6Og=";
+
+        htmlToPdfConverter.NavigationTimeout = 10;
+
+        // Set an adddional delay in seconds to wait for JavaScript or AJAX calls after page load completed
+        htmlToPdfConverter.ConversionDelay = 5;
+
+        // The buffer to receive the generated PDF document
+        byte[] outPdfBuffer = null;
+
+        string url = Request.Url.AbsoluteUri;
+
+        // Convert the HTML page given by an URL to a PDF document in a memory buffer
+        outPdfBuffer = htmlToPdfConverter.ConvertUrl(url);
+
+
+        // Send the PDF as response to browser
+
+        // Set response content type
+        Response.AddHeader("Content-Type", "application/pdf");
+
+        // Instruct the browser to open the PDF file as an attachment or inline
+        Response.AddHeader("Content-Disposition", String.Format("{0}; filename=Getting_Started.pdf; size={1}",
+             "attachment", outPdfBuffer.Length.ToString()));
+
+        // Write the PDF document buffer to HTTP response
+        Response.BinaryWrite(outPdfBuffer);
+        // End the HTTP response and stop the current page processing
+        Response.End();
+    }
+
 }

@@ -122,4 +122,9 @@ public partial class Giornale : System.Web.UI.Page
         lblTotDare.Text = "Totale dare: " + TotDare;
         help.disconnetti();
     }
+
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

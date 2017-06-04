@@ -7,8 +7,6 @@
 <meta  name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
     <title>nome programma</title>
   <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
-    <asp:ContentPlaceHolder id="head" runat="server">
-    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -39,11 +37,12 @@ supporto immediato tramite mail.
         <br />
         </div>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-12" style="margin-bottom:3%">
           <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
           </asp:ContentPlaceHolder>
         </div>
-
+       <asp:ContentPlaceHolder id="footerGiornale" runat="server">
+       </asp:ContentPlaceHolder>
     </div>
     </form>
 </body>

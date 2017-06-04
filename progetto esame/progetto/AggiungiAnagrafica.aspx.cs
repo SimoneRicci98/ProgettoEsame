@@ -13,6 +13,12 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
     { 
         try
         {
+            if (Session["Azienda"] != null)
+            {
+                lblAz.Text = " della tua azienda";
+                Session["Operazione"] = "mia";
+                btnChiudi.Visible = false;
+            }
             if (Session["Cliente"] != null && Session["Fornitore"] != null)
             {
                 if ((bool)Session["Cliente"])
@@ -29,12 +35,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                     btnChiudi.Visible = true;
                 }
             }
-            if (Session["Azienda"] != null)
-            {
-                lblAz.Text = " della tua azienda";
-                Session["Operazione"] = "mia";
-                btnChiudi.Visible = false;
-            }
+
         }
         catch
         {
