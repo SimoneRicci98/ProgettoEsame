@@ -18,9 +18,9 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         {
             ViewState["NomeFile"] = "";
         }
-        //Session["Azienda"] = 4;
-        //Session["ID_Cliente"] = 1;
-        //Session["Numero"] = 5;
+        Session["Azienda"] = 4;
+        Session["ID_Cliente"] = 1;
+        Session["Numero"] = 5;
         help.connetti();
         help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
@@ -97,22 +97,27 @@ public partial class VisualizzaFattura : System.Web.UI.Page
 
     protected void btnStampa_Click(object sender, EventArgs e)
     {
-        /*Response.ContentType = ContentType;
-        Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName((string)ViewState["NomeFile"]));
+        Response.ContentType = ContentType;
+        Response.AppendHeader("Content-Disposition", "attachment; filename=" + Server.MapPath(@"~\App_Data\\Utenti\" + Session["Azienda"].ToString() + "\\" + (string)ViewState["NomeFile"]));
         Response.WriteFile((string)ViewState["NomeFile"]);
-        Response.End();*/
+        Response.End();
     }
 
     protected void btnSalva_Click(object sender, EventArgs e)
-    {/*
+    {
+        string pathFileSource;
+        string pathFileDestination;
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
         ViewState["NomeFile"] = "Fattura n" + Session["Numero"] + " per il cliente " + ragsocCliente + ".pdf";
-        htmlToPdf.TempFilesPath = Server.MapPath("~/App_Data/" + Session["Azienda"].ToString() + "/");
         btnSalva.Visible = false;
         btnStampa.Visible = false;
         htmlToPdf.GeneratePdfFromFile(Request.Url.AbsoluteUri, null, (string)ViewState["NomeFile"]);
         btnSalva.Visible = true;
         btnStampa.Visible = true;
-        Response.Redirect(Request.Url.AbsoluteUri);*/
+        pathFileSource = Server.MapPath(@"~\App_Data\" + (string)ViewState["NomeFile"]);
+        pathFileDestination = Server.MapPath(@"~\App_Data\\Utenti\" +Session["Azienda"].ToString()+"\\"+ (string)ViewState["NomeFile"]);
+        File.Move(pathFileSource, pathFileDestination);
+        File.SetAttributes(pathFileDestination, FileAttributes.Normal);
+        Response.Redirect(Request.Url.AbsoluteUri);
     }
 }
