@@ -22,9 +22,6 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         {
             ViewState["NomeFile"] = "";
         }
-        Session["Azienda"] = 4;
-        Session["ID_Cliente"] = 1;
-        Session["Numero"] = 5;
         help.connetti();
         help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
@@ -137,43 +134,4 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     protected void btnSalva_Click(object sender, EventArgs e)
     {
     }
-
-    protected void convertToPdfButton_Click(object sender, EventArgs e)
-    {
-        // Create a HTML to PDF converter object with default settings
-        HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
-
-        // Set license key received after purchase to use the converter in licensed mode
-        // Leave it not set to use the converter in demo mode
-        htmlToPdfConverter.LicenseKey = "fvDh8eDx4fHg4P/h8eLg/+Dj/+jo6Og=";
-
-        htmlToPdfConverter.NavigationTimeout = 10;
-
-        // Set an adddional delay in seconds to wait for JavaScript or AJAX calls after page load completed
-        htmlToPdfConverter.ConversionDelay = 5;
-
-        // The buffer to receive the generated PDF document
-        byte[] outPdfBuffer = null;
-
-        string url = Request.Url.AbsoluteUri;
-
-        // Convert the HTML page given by an URL to a PDF document in a memory buffer
-        outPdfBuffer = htmlToPdfConverter.ConvertUrl(url);
-
-
-        // Send the PDF as response to browser
-
-        // Set response content type
-        Response.AddHeader("Content-Type", "application/pdf");
-
-        // Instruct the browser to open the PDF file as an attachment or inline
-        Response.AddHeader("Content-Disposition", String.Format("{0}; filename=Getting_Started.pdf; size={1}",
-             "attachment", outPdfBuffer.Length.ToString()));
-
-        // Write the PDF document buffer to HTTP response
-        Response.BinaryWrite(outPdfBuffer);
-        // End the HTTP response and stop the current page processing
-        Response.End();
-    }
-
 }
