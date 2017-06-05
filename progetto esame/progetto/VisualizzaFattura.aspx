@@ -42,13 +42,13 @@
     </div>
         </div>
     <div class="col-xs-12">
-        <div class="col-xs-2" style="border: solid 1px black">cod articolo</div>
-        <div class="col-xs-4" style="border: solid 1px black">descrizione</div>
-        <div class="col-xs-1" style="border: solid 1px black">quantità</div>
-        <div class="col-xs-2" style="border: solid 1px black">prezzo unitario</div>
-        <div class="col-xs-1" style="border: solid 1px black">sconto</div>
-        <div class="col-xs-1" style="border: solid 1px black">importo</div>
-        <div class="col-xs-1" style="border: solid 1px black">iva</div>
+        <div class="col-xs-2" style="border: solid 1px black">Codice articolo</div>
+        <div class="col-xs-4" style="border: solid 1px black">Descrizione</div>
+        <div class="col-xs-1" style="border: solid 1px black">Quantità</div>
+        <div class="col-xs-2" style="border: solid 1px black">Prezzo unitario</div>
+        <div class="col-xs-1" style="border: solid 1px black">Sconto</div>
+        <div class="col-xs-1" style="border: solid 1px black">Iva</div>
+        <div class="col-xs-1" style="border: solid 1px black">Importo</div>
     </div>
         <div class="col-xs-12">
             <%=caricatabella_imponibili()%>
