@@ -23,7 +23,7 @@
         </asp:GridView>
     </div>
     <div class="col-xs-3">
-        <asp:Button ID="btnAgg" runat="server" Text="Aggiungi" OnClick="btnAgg_Click" />
+        <asp:Button ID="btnAgg" runat="server" CssClass="btn btn-primary" Text="Aggiungi" OnClick="btnAgg_Click" />
     </div>
     
 </asp:Content>

@@ -59,6 +59,7 @@
             <div class="col-xs-4">
                 Totale documento&nbsp;&nbsp;
                 <asp:TextBox ID="txtTot" runat="server"></asp:TextBox>
+                <br />
             </div>
         </div>                
         <div class="col-xs-6">
