@@ -98,6 +98,6 @@ public partial class _Default : System.Web.UI.Page
     protected void btnCompleta_Click(object sender, EventArgs e)
     {
         Session["Versione"] = 1;
-        Response.Redirect("Registrazione.aspx");
+        Response.Redirect("Pagamento.aspx");
     }
 }
