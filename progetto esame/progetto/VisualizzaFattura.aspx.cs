@@ -16,14 +16,16 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     double imponibile;
     double imponibile_iva;
     double totFatt;
+    string azienda;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             ViewState["NomeFile"] = "";
+            azienda = Session["Azienda"].ToString();
         }
         help.connetti();
-        help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + Session["Azienda"].ToString() + "'");
+        help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + azienda + "'");
         rs = help.estraiDati();
         rs.Read();
         #region assengo valori alle label della mia azienda
