@@ -23,65 +23,65 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         {
             ViewState["NomeFile"] = "";
             azienda = Session["Azienda"].ToString();
+
+            help.connetti();
+            help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + azienda + "'");
+            rs = help.estraiDati();
+            rs.Read();
+            #region assengo valori alle label della mia azienda
+            lblCodFisc.Text = rs["CodFiscale"].ToString();
+            lblEmail.Text = rs["Email"].ToString();
+            lblIndirizzoMio.Text = rs["Indirizzo"].ToString();
+            lblPartIva.Text = rs["PartitaIVA"].ToString();
+            lblRagSoc.Text = rs["RagioneSociale"].ToString();
+            lblNumTel.Text = rs["TelAzienda"].ToString();
+            #endregion
+            help.disconnetti();
+
+            help.connetti();
+            help.assegnaComando("SELECT CodFiscale,Indirizzo,RagioneSociale,TelAzienda,PartitaIVA FROM Clienti WHERE ID_Azienda = '" + Session["ID_Cliente"].ToString() + "'");
+            rs = help.estraiDati();
+            rs.Read();
+            #region assegno valori alle label del cliente
+            lblCodFiscCliFor.Text = rs["CodFiscale"].ToString();
+            lblIndirizzoCliFor.Text = rs["Indirizzo"].ToString();
+            lblPartIvaCliFor.Text = rs["PartitaIVA"].ToString();
+            lblRagSocCliFor.Text = rs["RagioneSociale"].ToString();
+            ragsocCliente = rs["RagioneSociale"].ToString();
+            lblRagSoc.Text = ragsocCliente;
+            lblNumTelCliFor.Text = rs["TelAzienda"].ToString();
+            #endregion
+            help.disconnetti();
+
+            help.connetti();
+            help.assegnaComando("SELECT Numero,Oggetto,Data,TipoPagamento FROM Fattura WHERE Numero = '" + Session["Numero"].ToString() + "' AND COD_Cliente = '" + Session["ID_Cliente"].ToString() + "'");
+            rs = help.estraiDati();
+            rs.Read();
+            lblNumFatt.Text = rs["Numero"].ToString();
+            lblOggetto.Text = rs["Oggetto"].ToString();
+            lblDataFatt.Text = rs["Data"].ToString();
+            lblTipoPagamento.Text = rs["TipoPagamento"].ToString();
+            help.disconnetti();
+            ViewState["NomeFile"] = "Fattura n" + Session["Numero"].ToString() + " per " + ragsocCliente + ".pdf";
         }
-        help.connetti();
-        help.assegnaComando("SELECT CodFiscale,Email,Indirizzo,PartitaIVA,RagioneSociale,TelAzienda FROM Aziende WHERE ID_Azienda = '" + azienda + "'");
-        rs = help.estraiDati();
-        rs.Read();
-        #region assengo valori alle label della mia azienda
-        lblCodFisc.Text = rs["CodFiscale"].ToString();
-        lblEmail.Text = rs["Email"].ToString();
-        lblIndirizzoMio.Text = rs["Indirizzo"].ToString();
-        lblPartIva.Text = rs["PartitaIVA"].ToString();
-        lblRagSoc.Text = rs["RagioneSociale"].ToString();
-        lblNumTel.Text = rs["TelAzienda"].ToString();
-        #endregion
-        help.disconnetti();
-
-        help.connetti();
-        help.assegnaComando("SELECT CodFiscale,Indirizzo,RagioneSociale,TelAzienda,PartitaIVA FROM Clienti WHERE ID_Azienda = '" + Session["ID_Cliente"].ToString() + "'");
-        rs = help.estraiDati();
-        rs.Read();
-        #region assegno valori alle label del cliente
-        lblCodFiscCliFor.Text = rs["CodFiscale"].ToString();
-        lblIndirizzoCliFor.Text = rs["Indirizzo"].ToString();
-        lblPartIvaCliFor.Text = rs["PartitaIVA"].ToString();
-        lblRagSocCliFor.Text = rs["RagioneSociale"].ToString();
-        ragsocCliente = rs["RagioneSociale"].ToString();
-        lblRagSoc.Text = ragsocCliente;
-        lblNumTelCliFor.Text = rs["TelAzienda"].ToString();
-        #endregion
-        help.disconnetti();
-
-        help.connetti();
-        help.assegnaComando("SELECT Numero,Oggetto,Data,TipoPagamento FROM Fattura WHERE Numero = '" + Session["Numero"].ToString() + "' AND COD_Cliente = '" + Session["ID_Cliente"].ToString() + "'");
-        rs = help.estraiDati();
-        rs.Read();
-        lblNumFatt.Text = rs["Numero"].ToString();
-        lblOggetto.Text = rs["Oggetto"].ToString();
-        lblDataFatt.Text = rs["Data"].ToString();
-        lblTipoPagamento.Text = rs["TipoPagamento"].ToString();
-        help.disconnetti();
-        ViewState["NomeFile"] = "Fattura n" + Session["Numero"].ToString() + " per il cliente "+ragsocCliente+".pdf";
-
     }
 
     public string caricatabella_imponibili()
     {
         string tabella = "";
         help.connetti();
-        help.assegnaComando("SELECT CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva FROM Fattura WHERE Numero = '" + Session["Numero"].ToString()+ "'");
+        help.assegnaComando("SELECT CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva FROM Fattura WHERE Numero = '" + Session["Numero"].ToString()+ "' AND COD_Azienda="+azienda);
         rs = help.estraiDati();
         while (rs.Read())
         {
-            tabella += "<div class=\"col-xs-12\">" +
-            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["CodArticolo"].ToString() + "</div>" +
-            "<div class=\"col-xs-5\" style=\"border: solid 1px black\">" + rs["Descrizione"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Quantità"].ToString() + "</div>" +
-            "<div class=\"col-xs-2\" style=\"border: solid 1px black\">" + rs["PrezzoUnitario"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Sconto"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Iva"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\" style=\"border: solid 1px black\">" + rs["Importo"].ToString() + "</div>" +
+            tabella += "<div class=\"col-xs-12\" style=\"border-left:solid 1px black;border-right:solid 1px black;border-bottom:solid 1px black\">" +
+            "<div class=\"col-xs-2\">" + rs["CodArticolo"].ToString() + "</div>" +
+            "<div class=\"col-xs-4\">" + rs["Descrizione"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + rs["Quantità"].ToString() + "</div>" +
+            "<div class=\"col-xs-2\">" + rs["PrezzoUnitario"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + rs["Sconto"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + rs["Iva"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + rs["Importo"].ToString() + "</div>" +
             "</div>";
             imponibile += Convert.ToDouble(rs["Iva"].ToString());
             imponibile_iva += ((Convert.ToDouble(rs["PrezzoUnitario"].ToString()) * Convert.ToDouble(rs["Quantità"].ToString())) / 100) * Convert.ToDouble(rs["Importo"].ToString()); 
@@ -98,16 +98,11 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     {
     }
 
-    protected void btnStampa_Click(object sender, EventArgs e)
+    public void stampa()
     {
-        // Create a HTML to PDF converter object with default settings
+            
+// Create a HTML to PDF converter object with default settings
         HtmlToPdfConverter htmlToPdfConverter = new HtmlToPdfConverter();
-        // Set license key received after purchase to use the converter in licensed mode
-        // Leave it not set to use the converter in demo mode
-        htmlToPdfConverter.NavigationTimeout = 10;
-
-        // Set an adddional delay in seconds to wait for JavaScript or AJAX calls after page load completed
-        htmlToPdfConverter.ConversionDelay = 5;
 
         // The buffer to receive the generated PDF document
         byte[] outPdfBuffer = null;
@@ -124,13 +119,17 @@ public partial class VisualizzaFattura : System.Web.UI.Page
         Response.AddHeader("Content-Type", "application/pdf");
 
         // Instruct the browser to open the PDF file as an attachment or inline
-        Response.AddHeader("Content-Disposition", String.Format("{0}; filename=" + (string)ViewState["NomeFile"]+"; size={1}",
+        Response.AddHeader("Content-Disposition", String.Format("{0}; filename=" + (string)ViewState["NomeFile"] + "; size={1}",
              "attachment", outPdfBuffer.Length.ToString()));
 
         // Write the PDF document buffer to HTTP response
         Response.BinaryWrite(outPdfBuffer);
         // End the HTTP response and stop the current page processing
         Response.End();
+    }
+    protected void btnStampa_Click(object sender, EventArgs e)
+    {
+        stampa();
     }
 
     protected void btnSalva_Click(object sender, EventArgs e)

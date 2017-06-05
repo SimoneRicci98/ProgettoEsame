@@ -23,14 +23,14 @@
         </div>
         <div class="col-xs-4">
             &nbsp;<div class="row">
-                Versione di prova <br />
+                <h3><b>Versione di prova</b></h3> <br />
                 Qui potrai provare le potenzialità di questo software web ma con qualche restrizione,
-                come il limite di 10 fatture, avere al massimo 5 clienti e 3 fornitori e supporto solo tramite domande pubblche<br />
+                come il limite di 10 fatture, avere al massimo 5 clienti e 3 fornitori e supporto solo tramite domande pubbliche<br />
                 <asp:Button ID="btnProva" runat="server" Text="Prosegui" OnClick="btnProva_Click" CssClass="btn btn-primary" />
                 <br />
             </div>
             <div class="row" style="margin-top:1%">
-                Versione completa <br />
+               <h3><b>Versione completa</b></h3> <br />
                 Qui potrai utilizzare questo software web con tutte le sue caratterestiche,
                 nessuna restrizione e supporto immediato tramite mail
                 <br />
