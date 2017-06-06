@@ -24,6 +24,7 @@ public partial class Fatturazione : System.Web.UI.Page
         v = Convert.ToInt16(rs["Versione"].ToString());
         if (v == 0)
         {
+            Session["Versione"] = 0;
             btnAssistenza.Enabled = false;
         }
         help.disconnetti();
@@ -75,7 +76,14 @@ public partial class Fatturazione : System.Web.UI.Page
         help.eseguicomando();
         help.disconnetti();
         #endregion
-        limitazioni = "Hai ancora a disposizione "+numClienti+" clienti, "+numFornitori+" fornitori e "+numFatture+" fatture disponibili nella versione di prova.";
+        if (numClienti == 0 && numFornitori == 0 && numFatture == 0)
+        {
+            limitazioni = "<asp:Button ID = \"btnPrimaNota\" runat = \"server\" CssClass = \"btn btn-link\" Text = \"Hai raggiunto i limiti della versione di prova, acquista la versione completa per continuare a usare il sito\" Width = \"100%\" OnClick = \"btnAcquista_Click\" />";
+        }
+        else
+        {
+            limitazioni = "Hai ancora a disposizione " + numClienti + " clienti, " + numFornitori + " fornitori e " + numFatture + " fatture disponibili nella versione di prova.";
+        }
 
     }
 
@@ -119,6 +127,10 @@ public partial class Fatturazione : System.Web.UI.Page
     {
         Session["Operazione"] = "For";
         Response.Redirect("VisualizzaDati.aspx");
+    }
+    protected void btnAcquista_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Pagamento.aspx");
     }
 
     public string htmlStr()

@@ -6,7 +6,7 @@
             <asp:Button ID="btnFatt" runat="server" CssClass="btn btn-link" Text="Crea fattura" OnClick="btnFatt_Click" Width="100%" />
             </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnPrimaNota" runat="server" CssClass="btn btn-link" Height="36px" Text="Prima nota" Width="100%" OnClick="btnPrimaNota_Click" />
+            <asp:Button ID="btnPrimaNota" runat="server" CssClass="btn btn-link" Text="Prima nota" Width="100%" OnClick="btnPrimaNota_Click" />
             </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
             <asp:Button ID="btnGiornale" runat="server" CssClass="btn btn-link" Text="Visualizza giornale" OnClick="btnGiornale_Click" Width="100%" />
