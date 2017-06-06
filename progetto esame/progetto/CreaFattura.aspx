@@ -21,7 +21,8 @@
             Fattura numero&nbsp;<asp:TextBox ID="txtNumero" runat="server" Width="5%" OnTextChanged="txtNumero_TextChanged"></asp:TextBox>
             &nbsp;&nbsp;del&nbsp;
             <asp:TextBox ID="txtData" runat="server" TextMode="Date" Width="20%" OnTextChanged="txtData_TextChanged"></asp:TextBox>
-        &nbsp;</div>
+        &nbsp;<asp:Label ID="lblErrNum" runat="server" ForeColor="Red"></asp:Label>
+        </div>
     </div>
     <div class="col-xs-12">
         Tipo di pagamento&nbsp;

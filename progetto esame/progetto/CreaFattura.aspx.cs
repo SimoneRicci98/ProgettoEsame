@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 
 public partial class EmettiFattura : System.Web.UI.Page
 {
+    dbHelper help = new dbHelper();
+    SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -77,8 +79,8 @@ public partial class EmettiFattura : System.Web.UI.Page
                     dtCurrentTable.Rows[i - 1]["Col3"] = Quantità.Text;
                     dtCurrentTable.Rows[i - 1]["Col4"] = PrezzoUnitario.Text;
                     dtCurrentTable.Rows[i - 1]["Col5"] = Sconto.Text;
-                    dtCurrentTable.Rows[i - 1]["Col6"] = Importo.Text;
-                    dtCurrentTable.Rows[i - 1]["Col7"] = Iva.SelectedValue;
+                    dtCurrentTable.Rows[i - 1]["Col7"] = Importo.Text;
+                    dtCurrentTable.Rows[i - 1]["Col6"] = Iva.SelectedValue;
 
                     rowIndex++;
                 }
@@ -120,8 +122,8 @@ public partial class EmettiFattura : System.Web.UI.Page
                     Quantità.Text = dt.Rows[i]["Col3"].ToString();
                     PrezzoUnitario.Text = dt.Rows[i]["Col4"].ToString();
                     Sconto.Text = dt.Rows[i]["Col5"].ToString();
-                    Importo.Text = dt.Rows[i]["Col6"].ToString();
-                    Iva.SelectedValue = dt.Rows[i]["Col7"].ToString();
+                    Importo.Text = dt.Rows[i]["Col7"].ToString();
+                    Iva.SelectedValue = dt.Rows[i]["Col6"].ToString();
                     rowIndex++;
                 }
             }
@@ -183,8 +185,8 @@ public partial class EmettiFattura : System.Web.UI.Page
                     dtCurrentTable.Rows[i - 1]["Col3"] = Quantità.Text;
                     dtCurrentTable.Rows[i - 1]["Col4"] = PrezzoUnitario.Text;
                     dtCurrentTable.Rows[i - 1]["Col5"] = Sconto.Text;
-                    dtCurrentTable.Rows[i - 1]["Col6"] = Importo.Text;
-                    dtCurrentTable.Rows[i - 1]["Col7"] = Iva.SelectedValue;
+                    dtCurrentTable.Rows[i - 1]["Col7"] = Importo.Text;
+                    dtCurrentTable.Rows[i - 1]["Col6"] = Iva.SelectedValue;
 
                     rowIndex++;
                 }
@@ -201,8 +203,6 @@ public partial class EmettiFattura : System.Web.UI.Page
     {
         try
         {
-            dbHelper help = new dbHelper();
-            SqlDataReader rs;
             SetRowData();
             DataTable table = ViewState["CurrentTable"] as DataTable;
 
@@ -285,7 +285,19 @@ public partial class EmettiFattura : System.Web.UI.Page
 
     protected void txtNumero_TextChanged(object sender, EventArgs e)
     {
-
+        string NomeCliente = DropDownList1.SelectedItem.Text;
+        help.connetti();
+        help.assegnaComando("SELECT NumFatt FROM Fattura WHERE COD_Cliente='" + NomeCliente + "' AND COD_Azienda='"+Session["Azienda"].ToString()+"'");
+        rs = help.estraiDati();
+        while(rs.Read())
+        {
+            if(rs["NumFatt"].ToString() == txtNumero.Text)
+            {
+                lblErrNum.Text = "Numero fattura già esistente per questo cliente";
+            }
+        }
+        txtNumero.Focus();
+        help.disconnetti();
     }
 
     protected void txtOggetto_TextChanged(object sender, EventArgs e)
