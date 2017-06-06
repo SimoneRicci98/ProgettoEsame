@@ -30,4 +30,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Session.RemoveAll();
         Response.Redirect("Default.aspx");
     }
+    public string icona()
+    {
+        if (Session["Utente"] != null)
+            return "";
+        else
+            return "<span class=\"glyphicon glyphicon-log-in\"></span>";
+
+    }
 }

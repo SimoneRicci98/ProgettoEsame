@@ -31,7 +31,7 @@ public partial class Assistenza : System.Web.UI.Page
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
-            client.Timeout = 10000;
+            client.Timeout = 1000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.Credentials = new NetworkCredential("assistenzaprogettoesame@gmail.com", "Assistenza");
 
@@ -39,7 +39,7 @@ public partial class Assistenza : System.Web.UI.Page
 
             email.To.Add("assistenzaprogettoesame@gmail.com");
             email.From = new MailAddress(mail);
-            email.Subject = txtOggetto.Text;
+            email.Subject = drpOggetto.SelectedItem.Text;
             email.Body = "Email ricevuta da: "+mail+" "+txtMsg.Text;
             client.Send(email);
             

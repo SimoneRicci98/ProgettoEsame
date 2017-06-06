@@ -14,7 +14,7 @@
         <div class="col-xs-12" style="margin-bottom:2%;background-color:rgba(156, 196, 216, 0.32);border-bottom:solid 3px #286090;color:#286090">
         <div class="col-xs-offset-1 col-xs-4" ><h1><a style="color:#286090!important" href ="Default.aspx"> Progetto esame</a></h1></div>
         <div class="col-xs-offset-2 col-xs-4" style="text-align:center; margin-top:2%">
-        <a href="Login.aspx" style="color:#286090!important"><asp:Label ID="lblLogin" runat="server" Visible="False" Text="Effettua il login!"></asp:Label></a>
+        <a href="Login.aspx" style="color:#286090!important"><%=icona()%>&nbsp<asp:Label ID="lblLogin" runat="server" Visible="False" Text="Effettua il login!"></asp:Label></a>
         <a href="Seleziona.aspx" style="color:#286090!important"><asp:Label ID="lblBenv" runat="server" Text="Clicca qui per decidere l'operazione da eseguire" Visible="False"></asp:Label></a>
             &nbsp;&nbsp;
             <asp:Button ID="btnLogout" ForeColor="#286090" runat="server" Text="Logout" CssClass="btn-link" OnClick="btnLogout_Click" />

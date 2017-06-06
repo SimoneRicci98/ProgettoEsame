@@ -211,15 +211,31 @@ public partial class EmettiFattura : System.Web.UI.Page
                 foreach (DataRow row in table.Rows)
                 {
                     string NomeCliente = DropDownList1.SelectedItem.Text;
-                    bool trovato=true;
+                    bool trovato=false;
                     Session["Numero"] = txtNumero.Text;
 
                     help.connetti();
-                    help.assegnaComando("SELECT NumFatt FROM Fattura WHERE COD_Cliente='" + NomeCliente + "' AND COD_Azienda='" + Session["Azienda"].ToString() + "'");
+                    help.assegnaComando("CREATE VIEW vista AS (SELECT RagioneSociale,ID_Azienda FROM Clienti WHERE COD_Azienda ='" + Session["Azienda"].ToString()+"')");
+                    help.eseguicomando();
+                    help.disconnetti();
+                    help.connetti();
+                    help.assegnaComando("SELECT ID_Azienda FROM vista WHERE RagioneSociale='"+NomeCliente+"'");
+                    rs = help.estraiDati();
+                    rs.Read();
+                    string app = rs["ID_Azienda"].ToString();
+                    help.disconnetti();
+                    help.connetti();
+                    help.assegnaComando("DROP VIEW vista");
+                    help.eseguicomando();
+                    help.disconnetti();
+
+
+                    help.connetti();
+                    help.assegnaComando("SELECT Numero FROM Fattura WHERE COD_Cliente='" + app + "' AND COD_Azienda='" + Session["Azienda"].ToString() + "'");
                     rs = help.estraiDati();
                     while (rs.Read())
                     {
-                        if (rs["NumFatt"].ToString() == txtNumero.Text)
+                        if (rs["Numero"].ToString() == txtNumero.Text)
                         {
                             lblErrNum.Text = "Numero fattura già esistente per questo cliente";
                             trovato = true;
@@ -303,19 +319,6 @@ public partial class EmettiFattura : System.Web.UI.Page
 
     protected void txtNumero_TextChanged(object sender, EventArgs e)
     {
-        string NomeCliente = DropDownList1.SelectedItem.Text;
-        help.connetti();
-        help.assegnaComando("SELECT NumFatt FROM Fattura WHERE COD_Cliente='" + NomeCliente + "' AND COD_Azienda='"+Session["Azienda"].ToString()+"'");
-        rs = help.estraiDati();
-        while(rs.Read())
-        {
-            if(rs["NumFatt"].ToString() == txtNumero.Text)
-            {
-                lblErrNum.Text = "Numero fattura già esistente per questo cliente";
-            }
-        }
-        txtNumero.Focus();
-        help.disconnetti();
     }
 
     protected void txtOggetto_TextChanged(object sender, EventArgs e)

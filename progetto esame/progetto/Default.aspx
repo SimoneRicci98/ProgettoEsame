@@ -21,8 +21,8 @@
             <asp:ListBox ID="lstDomande" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>
             
         </div>
-        <div class="col-xs-4">
-            &nbsp;<div class="row">
+        <div class="col-xs-4"><h4>Non hai ancora un account? Crealo subito scegliendo una delle seguenti opzioni!</h4> 
+            <div class="row">
                 <h3><b>Versione di prova</b></h3> <br />
                 Qui potrai provare le potenzialità di questo software web ma con qualche restrizione,
                 come il limite di 10 fatture, avere al massimo 5 clienti e 3 fornitori e supporto solo tramite domande pubbliche<br />
