@@ -33,7 +33,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     public string icona()
     {
         if (Session["Utente"] != null)
-            return "";
+            return "<span class=\"glyphicon glyphicon-check\"></span>";
         else
             return "<span class=\"glyphicon glyphicon-log-in\"></span>";
 

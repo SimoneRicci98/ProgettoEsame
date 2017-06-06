@@ -3,34 +3,34 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-xs-12">
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnFatt" runat="server" CssClass="btn btn-link" Text="Crea fattura" OnClick="btnFatt_Click" Width="100%" />
+            <asp:LinkButton ID="btnFatt" runat="server" CssClass="btn btn-link" OnClick="btnFatt_Click" Width="100%"><span class="glyphicon glyphicon-plus"></span>Crea fattura</asp:LinkButton>
             </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnPrimaNota" runat="server" CssClass="btn btn-link" Text="Prima nota" Width="100%" OnClick="btnPrimaNota_Click" />
+        <asp:LinkButton ID="btnPrimaNota" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnPrimaNota_Click"><span class="glyphicon glyphicon-list"></span>Prima nota</asp:LinkButton>
             </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnGiornale" runat="server" CssClass="btn btn-link" Text="Visualizza giornale" OnClick="btnGiornale_Click" Width="100%" />
+            <asp:LinkButton ID="btnGiornale" runat="server" CssClass="btn btn-link" OnClick="btnGiornale_Click" Width="100%"><span class="glyphicon glyphicon-file"></span>Visualizza giornale</asp:LinkButton>
             </div></div>
         </div>
     <div class="col-xs-12" style="margin-top:2%">
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnContiMastro" runat="server" CssClass="btn btn-link" Text="Aggiungi conto di mastro" OnClick="btnContiMastro_Click" Width="100%" />
+        <asp:LinkButton ID="btnContiMastro" runat="server" CssClass="btn btn-link" OnClick="btnContiMastro_Click" Width="100%"><span class="glyphicon glyphicon-plus"></span>Aggiungi conto di mastro</asp:LinkButton>
+        </div></div>
+        <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
+        <asp:LinkButton ID="btnAreaPers" runat="server" CssClass="btn btn-link" OnClick="btnAreaPers_Click" Width="100%"><span class="glyphicon glyphicon-user"></span>Area personale</asp:LinkButton>
             </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnAreaPers" runat="server" CssClass="btn btn-link" Text="Area personale" OnClick="btnAreaPers_Click" Width="100%" />
-            </div></div>
-        <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnAssistenza" runat="server" CssClass="btn btn-link" Text="Assistenza via email" OnClick="btnAssistenza_Click" Width="100%" />
+            <asp:LinkButton ID="btnAssistenza" runat="server" CssClass="btn btn-link" OnClick="btnAssistenza_Click" Width="100%"><span class="glyphicon glyphicon-pencil"></span>Assistenza via email</asp:LinkButton>
             <br />
             </div></div>
     </div>
     <div class="col-xs-12" style="margin-top:2%">
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnCli" runat="server" CssClass="btn btn-link" Text="Visualizza i tuoi clienti" Width="100%" OnClick="btnCli_Click" />
+        <asp:LinkButton ID="btnCli" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnCli_Click"><span class="glyphicon glyphicon-zoom-in"></span>Visualizza i tuoi clienti</asp:LinkButton>    
             </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:Button ID="btnFor" runat="server" CssClass="btn btn-link" Text="Visualizza i tuoi fornitori" Width="100%" OnClick="btnFor_Click" />
-            </div></div>
+                <asp:LinkButton ID="btnFor" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnFor_Click"><span class="glyphicon glyphicon-zoom-in"></span>Visualizza i tuoi fornitori</asp:LinkButton>    
+        </div></div>
         <%=htmlStr()%>
     </div>
 </asp:Content>
