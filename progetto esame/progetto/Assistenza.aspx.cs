@@ -15,9 +15,9 @@ public partial class Assistenza : System.Web.UI.Page
     SqlDataReader rs;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
     }
-
+    
     protected void btnInvia_Click(object sender, EventArgs e)
     {
         help.connetti();
@@ -49,6 +49,11 @@ public partial class Assistenza : System.Web.UI.Page
             MessageBox.Show("C'è stato un errore nell'invio della mail");
         }
 
+
+    }
+
+    protected void txtOggetto_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

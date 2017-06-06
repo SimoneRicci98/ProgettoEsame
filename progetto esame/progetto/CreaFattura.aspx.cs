@@ -211,46 +211,64 @@ public partial class EmettiFattura : System.Web.UI.Page
                 foreach (DataRow row in table.Rows)
                 {
                     string NomeCliente = DropDownList1.SelectedItem.Text;
-
+                    bool trovato=true;
                     Session["Numero"] = txtNumero.Text;
-                    string oggetto = txtOggetto.Text;
-                    string data = txtData.Text;
-                    string tipoPagamento = txtPagamento.Text;
-
-                    string CodiceArticolo = row.ItemArray[1] as string;
-                    string Descrizione = row.ItemArray[2] as string;
-                    string Quantità = row.ItemArray[3] as string;
-                    string PrezzoUnitario = row.ItemArray[4] as string;
-                    string Sconto = row.ItemArray[5] as string;
-                    string Iva = row.ItemArray[6] as string;
-                    string Importo = row.ItemArray[7] as string;
-                    
 
                     help.connetti();
-                    help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '"+NomeCliente+"'");
+                    help.assegnaComando("SELECT NumFatt FROM Fattura WHERE COD_Cliente='" + NomeCliente + "' AND COD_Azienda='" + Session["Azienda"].ToString() + "'");
                     rs = help.estraiDati();
-                    rs.Read();
-                    Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
+                    while (rs.Read())
+                    {
+                        if (rs["NumFatt"].ToString() == txtNumero.Text)
+                        {
+                            lblErrNum.Text = "Numero fattura già esistente per questo cliente";
+                            trovato = true;
+                        }
+                    }
+                    txtNumero.Focus();
                     help.disconnetti();
 
-                    help.connetti();
-                    help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Data,COD_Cliente,COD_Azienda) " +
-                        "VALUES('" + Session["Numero"].ToString() + 
-                        "','" + CodiceArticolo + 
-                        "','" + Descrizione + 
-                        "','" + Quantità + 
-                        "','" + PrezzoUnitario + 
-                        "','" + Sconto + 
-                        "','" + Importo + 
-                        "','" + Iva + 
-                        "','" + oggetto +
-                        "','" + tipoPagamento + 
-                        "','" + data + 
-                        "','" + Session["ID_Cliente"].ToString() +
-                        "','" + Session["Azienda"].ToString() + "')");
-                    help.eseguicomando();
-                    help.disconnetti();
-                    btnVisual.Enabled = true;
+                    if(!trovato)
+                    {
+                        string oggetto = txtOggetto.Text;
+                        string data = txtData.Text;
+                        string tipoPagamento = txtPagamento.Text;
+
+                        string CodiceArticolo = row.ItemArray[1] as string;
+                        string Descrizione = row.ItemArray[2] as string;
+                        string Quantità = row.ItemArray[3] as string;
+                        string PrezzoUnitario = row.ItemArray[4] as string;
+                        string Sconto = row.ItemArray[5] as string;
+                        string Iva = row.ItemArray[6] as string;
+                        string Importo = row.ItemArray[7] as string;
+
+
+                        help.connetti();
+                        help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '" + NomeCliente + "'");
+                        rs = help.estraiDati();
+                        rs.Read();
+                        Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
+                        help.disconnetti();
+
+                        help.connetti();
+                        help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Data,COD_Cliente,COD_Azienda) " +
+                            "VALUES('" + Session["Numero"].ToString() +
+                            "','" + CodiceArticolo +
+                            "','" + Descrizione +
+                            "','" + Quantità +
+                            "','" + PrezzoUnitario +
+                            "','" + Sconto +
+                            "','" + Importo +
+                            "','" + Iva +
+                            "','" + oggetto +
+                            "','" + tipoPagamento +
+                            "','" + data +
+                            "','" + Session["ID_Cliente"].ToString() +
+                            "','" + Session["Azienda"].ToString() + "')");
+                        help.eseguicomando();
+                        help.disconnetti();
+                        btnVisual.Enabled = true;
+                    }
                 }
             }
         }
