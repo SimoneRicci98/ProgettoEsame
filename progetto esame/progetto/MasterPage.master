@@ -7,6 +7,7 @@
 <meta  name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
     <title>nome programma</title>
   <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="https://use.fontawesome.com/e33ab33f7a.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -17,7 +18,7 @@
         <a href="Login.aspx" style="color:#286090!important"><%=icona()%>&nbsp<asp:Label ID="lblLogin" runat="server" Visible="False" Text="Effettua il login!"></asp:Label></a>
         <a href="Seleziona.aspx" style="color:#286090!important"><asp:Label ID="lblBenv" runat="server" Text="Clicca qui per decidere l'operazione da eseguire" Visible="False"></asp:Label></a>
             &nbsp;&nbsp;
-            <asp:Button ID="btnLogout" ForeColor="#286090" runat="server" Text="Logout" CssClass="btn-link" OnClick="btnLogout_Click" />
+            <asp:LinkButton ID="btnLogout" ForeColor="#286090" runat="server" CssClass="btn-link" OnClick="btnLogout_Click"><span class="glyphicon glyphicon-log-out"></span>&nbsp Logout</asp:LinkButton>
             </div>
         <div class="col-xs-12" style="font-size:15px; text-align:center;padding:15px;margin-bottom:2%">
            “Progetto Esame” è un software di contabilità online che permette di creare fatture, di registrarle in prima
@@ -40,9 +41,7 @@ supporto immediato tramite mail.
           <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
           </asp:ContentPlaceHolder>
         </div>
-       <asp:ContentPlaceHolder id="footerGiornale" runat="server">
-       </asp:ContentPlaceHolder>
-        <div class="modal-footer" style="margin-bottom:1px;width:100%">
+        <div class="col-xs-12" style="bottom:0;position:relative;width:100%;margin-bottom:20px;text-align:center">
             <div class="col-xs-4">Sito ideato da: Ricci Simone</div>
             <div class="col-xs-4">(privacy)</div>
             <div class="col-xs-4">Progetto esame 2017</div>

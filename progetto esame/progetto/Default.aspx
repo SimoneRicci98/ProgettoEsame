@@ -11,15 +11,12 @@
             <br />
             Inserisci qui la domanda<br />
             <asp:TextBox ID="txtDomanda" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="MultiLine" Width="90%" CssClass="form-control" Rows="2" ></asp:TextBox>
-            
             <asp:Label ID="lblErr1" runat="server" ForeColor="#CC0000"></asp:Label>
-            
             <br />
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"  Text="Invia" CssClass="btn btn-primary" />
             <br />
             <br />
             <asp:ListBox ID="lstDomande" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>
-            
         </div>
         <div class="col-xs-4"><h4>Non hai ancora un account? Crealo subito scegliendo una delle seguenti opzioni!</h4> 
             <div class="row">
@@ -38,11 +35,8 @@
             </div>
         </div>
         <div class="col-xs-4">
-            
             Qui rispondo alle vostre domande settimanalmente<br />
             <asp:ListBox ID="lstRisposte" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>
-            
             </div>
     </div>
-
 </asp:Content>

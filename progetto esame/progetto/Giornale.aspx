@@ -59,15 +59,12 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-    </div>
-
-</asp:Content>
-<asp:Content ContentPlaceHolderID="footerGiornale" runat="server">
-    <div class="col-xs-5" style="text-align:right;position:absolute;bottom:0;right:0">
+        <div class="col-xs-5" style="text-align:right;position:page;bottom:0;right:0">
             <asp:Label ID="lblTotDare" runat="server" Text=""></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblTotAvere" runat="server" Text=""></asp:Label>
             <br />
             <asp:Label ID="lblErr" runat="server" ForeColor="Red"></asp:Label>
         </div>
+    </div>
 </asp:Content>
