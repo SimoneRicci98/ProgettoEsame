@@ -34,7 +34,7 @@
                        <asp:DropDownList ID="DropDownList1" runat="server">
                        </asp:DropDownList>
                        <br />
-                   <asp:Button ID="btnAggCli" runat="server" OnClick="btnAggCli_Click" Text="Aggiugi cliente" />
+                   <asp:Button ID="btnAggCli" runat="server" CssClass="btn btn-primary" OnClick="btnAggCli_Click" Text="Aggiugi cliente" />
                    </div>
                    <div class="col-xs-6">
                     <asp:RadioButton ID="radioFornitore" runat="server" GroupName="ClienteFornitore" Text="Fornitore" />
@@ -42,7 +42,7 @@
                        <asp:DropDownList ID="DropDownList2" runat="server">
                        </asp:DropDownList>
                        <br />
-                   <asp:Button ID="btnAggFor" runat="server" Text="Aggiungi fornitore" OnClick="btnAggFor_Click" />
+                   <asp:Button ID="btnAggFor" runat="server" CssClass="btn btn-primary" Text="Aggiungi fornitore" OnClick="btnAggFor_Click" />
                    </div>
                 </div>
                 <br />
@@ -50,25 +50,26 @@
         <div class="row" style="margin-top:2%">
             <div class="col-xs-4">
                 N° Documento&nbsp;&nbsp;
-                <asp:TextBox ID="txtNumDoc" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtNumDoc" runat="server" ></asp:TextBox><br />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" CssClass="alert-danger" runat="server" ControlToValidate="txtNumDoc" ErrorMessage="Campo obbligatorio"></asp:RequiredFieldValidator>
             </div>
             <div class="col-xs-4">
                 Protocollo&nbsp;&nbsp;
-                <asp:TextBox ID="txtProt" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtProt" runat="server"></asp:TextBox><br />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" CssClass="alert-danger" runat="server" ControlToValidate="txtProt" ErrorMessage="Campo obbligatorio"></asp:RequiredFieldValidator>
             </div>
             <div class="col-xs-4">
                 Totale documento&nbsp;&nbsp;
-                <asp:TextBox ID="txtTot" runat="server"></asp:TextBox>
-                <br />
-            </div>
+                <asp:TextBox ID="txtTot" runat="server"></asp:TextBox><br />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" CssClass="alert-danger" runat="server" ControlToValidate="txtTot" ErrorMessage="Campo obbligatorio"></asp:RequiredFieldValidator>
+            </div> <br />
         </div>                
         <div class="col-xs-6">
              Descrizione &nbsp;&nbsp; <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
-             <br />
-         </div>
-        <div class="row" style="margin-top:2%">
+         </div><br /><br />
+         <div class="row" style="margin-top:2%;text-align:center">
             <div class="col-xs-12">
-               Dati obbligatori
+               <h4>Tutti i dati sono obbligatori</h4>
             </div>
         </div>
             </div>

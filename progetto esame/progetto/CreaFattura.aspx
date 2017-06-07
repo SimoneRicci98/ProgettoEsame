@@ -37,32 +37,32 @@
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
                           <asp:TemplateField HeaderText="Codice articolo">
                            <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtCodArt" runat="server" CssClass="form-control"></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtCodArt" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Descrizione">
                            <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtDesc" runat="server" CssClass="form-control" ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtDesc" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Quantità">
                            <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtQta" runat="server" CssClass="form-control" ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtQta" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Prezzo unitario">
                            <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtPrezzo" runat="server" CssClass="form-control"  ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtPrezzo" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Sconto">
                            <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtSconto" runat="server" CssClass="form-control" ></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtSconto" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Iva">
                            <ItemTemplate>
-                               <asp:DropDownList ID="drpIva" runat="server" CssClass="form-control" >
+                               <asp:DropDownList ID="drpIva" runat="server" >
                                    <asp:ListItem Value="0">0</asp:ListItem>
                                    <asp:ListItem Value="4">4</asp:ListItem>
                                    <asp:ListItem Value="10">10</asp:ListItem>
@@ -72,7 +72,7 @@
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Importo">
                            <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtImporto" runat="server" CssClass="form-control"></asp:TextBox>
+                               <asp:TextBox Width="90%" ID="txtImporto" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>

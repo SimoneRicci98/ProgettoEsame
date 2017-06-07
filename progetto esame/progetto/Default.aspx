@@ -35,6 +35,9 @@
             </div>
         </div>
         <div class="col-xs-4">
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Immagini/pcDocumenti.jpg" Height="200px" Width="80%" />
+            <br />
+            <br />
             Qui rispondo alle vostre domande settimanalmente<br />
             <asp:ListBox ID="lstRisposte" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>
             </div>
