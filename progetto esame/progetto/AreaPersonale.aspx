@@ -3,12 +3,16 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-xs-12" style="font-size:16px">
         <div class="row">
-            <div class="col-xs-3" >
+        
+            <div class="col-xs-9" >
                 Ragione Sociale :
                 <br />
                 <asp:Label ID="lblRagSoc" runat="server" CssClass="label label-primary"></asp:Label>
                 <br />
-            </div> 
+            </div>
+            <div class="col-xs-3">
+            <asp:Image ID="Image1" runat="server" ImageAlign="Bottom" ImageUrl="~/Immagini/Documentale.png" Width="100px" Height="100px"/>
+        </div>
         </div><br />
         <div class="row">
             <div class="col-xs-3">

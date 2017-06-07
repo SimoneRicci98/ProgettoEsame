@@ -59,7 +59,7 @@
             <SortedDescendingCellStyle BackColor="#E9EBEF" />
             <SortedDescendingHeaderStyle BackColor="#4870BE" />
         </asp:GridView>
-        <div class="col-xs-5" style="text-align:right;position:page;bottom:0;right:0">
+        <div class="col-xs-5" style="text-align:right;position:relative;bottom:0;right:0">
             <asp:Label ID="lblTotDare" runat="server" Text=""></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblTotAvere" runat="server" Text=""></asp:Label>
