@@ -26,13 +26,13 @@
     </div>
     <div class="col-xs-12" style="margin-top:2%">
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-        <asp:LinkButton ID="btnCli" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnCli_Click"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Visualizza i tuoi clienti</asp:LinkButton>    
+                <asp:LinkButton ID="btnCli" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnCli_Click"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Visualizza i tuoi clienti</asp:LinkButton>    
             </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
                 <asp:LinkButton ID="btnFor" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnFor_Click"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Visualizza i tuoi fornitori</asp:LinkButton>    
         </div></div>
         <div class="col-xs-4"><div class="col-xs-12" style="border:solid 1px blue; align-items:center">
-            <asp:LinkButton ID="btnProd" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnProd_Click"><span class="glyphicon glyphicon-plus"></span>&nbsp Aggiungi prodotti</asp:LinkButton>
+            <asp:LinkButton ID="btnProd" runat="server" CssClass="btn btn-link" Width="100%" OnClick="btnProd_Click"><span class="glyphicon glyphicon-zoom-in"></span>&nbsp Visualizza i tuoi prodotti</asp:LinkButton>
         </div></div>
     </div>
     <div class="col-xs-12" style="margin-top:2%">

@@ -80,8 +80,8 @@ public partial class VisualizzaFattura : System.Web.UI.Page
             "<div class=\"col-xs-1\">" + rs["Quantità"].ToString() + "</div>" +
             "<div class=\"col-xs-2\">" + rs["PrezzoUnitario"].ToString() + "</div>" +
             "<div class=\"col-xs-1\">" + rs["Sconto"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\">" + rs["Importo"].ToString() + "</div>" +
             "<div class=\"col-xs-1\">" + rs["Iva"].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + rs["Importo"].ToString() + "</div>" +
             "</div>";
             imponibile += Convert.ToDouble(rs["Iva"].ToString());
             imponibile_iva += ((Convert.ToDouble(rs["PrezzoUnitario"].ToString()) * Convert.ToDouble(rs["Quantità"].ToString())) / 100) * Convert.ToDouble(rs["Importo"].ToString()); 

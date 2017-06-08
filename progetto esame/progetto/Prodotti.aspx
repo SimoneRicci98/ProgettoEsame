@@ -1,49 +1,29 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="Prodotti.aspx.cs" Inherits="Prodotti" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    .<asp:GridView ID="grvProdotti" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%" >
-                   <Columns>
-                       <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
-                          <asp:TemplateField HeaderText="Codice">
-                           <ItemTemplate>
-                               <asp:TextBox Width="40%" ID="txtCodice" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Descrizione">
-                           <ItemTemplate>
-                               <asp:TextBox Width="40%" ID="txtDesc" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Prezzo">
-                           <ItemTemplate>
-                               <asp:TextBox Width="40%" ID="txtPrezzo" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Quantità (al momento)">
-                           <ItemTemplate>
-                               <asp:TextBox  Width="40%" ID="txtQta" runat="server"></asp:TextBox>
-                           </ItemTemplate>
-                           <FooterStyle HorizontalAlign="Right" />
-                           <FooterTemplate>
-                               <asp:Button ID="ButtonAdd" CssClass="btn btn-primary" runat="server" OnClick="ButtonAdd_Click" Text="Aggiungi una riga" />
-                           </FooterTemplate>
-                       </asp:TemplateField>
-                       <asp:CommandField ShowDeleteButton="True" />
-                   </Columns>
-                   <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                   <RowStyle BackColor="#EFF3FB" />
-                   <EditRowStyle BackColor="#2461BF" />
-                   <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                   <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                   <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                   <AlternatingRowStyle BackColor="White" />
-               </asp:GridView>
-    <br />
-        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva dati" />
-    <br />
-    <div class="col-xs-4">
-        "Rifornimenti"
-        Seleziona qui il prodotto <asp:DropDownList ID="drpProdotti" runat="server" CssClass="form-control"></asp:DropDownList>
+    <div class="col-xs-12">
+        Visualizza i tuoi prodotti
+        <asp:GridView ID="grdVisual" runat="server" AutoGenerateColumns="False" Width="95%" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <AlternatingRowStyle BackColor="White" />
+            <Columns>
+                <asp:BoundField DataField="Cod" HeaderText="Codice" />
+                <asp:BoundField DataField="Desc" HeaderText="Descrizione" />
+                <asp:BoundField DataField="Prez" HeaderText="Prezzo" />
+                <asp:BoundField DataField="Qta" HeaderText="Quantità" />
+            </Columns>
+            <EditRowStyle BackColor="#2461BF" />
+            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EFF3FB" />
+            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#F5F7FB" />
+            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+            <SortedDescendingCellStyle BackColor="#E9EBEF" />
+            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+        </asp:GridView>
+    </div><br /><br />
+    <div class="col-xs-3">
+        <asp:Button ID="btnGestisci" runat="server" Text="Gestisci e aggiungi prodotti" CssClass="btn btn-primary" OnClick="btnGestisci_Click" />
     </div>
-        
     </asp:Content>
