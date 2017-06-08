@@ -150,4 +150,9 @@ public partial class Fatturazione : System.Web.UI.Page
 
         return html;
     }
+
+    protected void btnProd_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("Prodotti.aspx");
+    }
 }

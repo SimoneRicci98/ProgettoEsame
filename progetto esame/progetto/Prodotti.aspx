@@ -1,12 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="Prodotti.aspx.cs" Inherits="Prodotti" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="grvProdotti" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%" >
+    .<asp:GridView ID="grvProdotti" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="97%" >
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
                           <asp:TemplateField HeaderText="Codice">
                            <ItemTemplate>
                                <asp:TextBox Width="40%" ID="txtCodice" runat="server" ></asp:TextBox>
+                           </ItemTemplate>
+                       </asp:TemplateField>
+                       <asp:TemplateField HeaderText="Descrizione">
+                           <ItemTemplate>
+                               <asp:TextBox Width="40%" ID="txtDesc" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Prezzo">
@@ -33,4 +38,12 @@
                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                    <AlternatingRowStyle BackColor="White" />
                </asp:GridView>
-</asp:Content>
+    <br />
+        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva dati" />
+    <br />
+    <div class="col-xs-4">
+        "Rifornimenti"
+        Seleziona qui il prodotto <asp:DropDownList ID="drpProdotti" runat="server" CssClass="form-control"></asp:DropDownList>
+    </div>
+        
+    </asp:Content>

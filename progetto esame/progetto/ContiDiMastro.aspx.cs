@@ -87,8 +87,8 @@ public partial class ContiDiMastro : System.Web.UI.Page
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 ;
-                    TextBox Codice = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtCodice");
-                    TextBox Nome = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtNome");
+                    TextBox Codice = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("txtCodice");
+                    TextBox Nome = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtNome");
 
 
                     grvPrimaNota.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
