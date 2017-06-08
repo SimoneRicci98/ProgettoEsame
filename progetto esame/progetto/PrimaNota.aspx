@@ -82,7 +82,6 @@
                            <ItemTemplate>
                                <asp:DropDownList ID="drpConto" runat="server">
                                </asp:DropDownList>
-                               <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="drpIva" ErrorMessage="*" InitialValue="Select"></asp:RequiredFieldValidator>
                            </ItemTemplate>
                         </asp:TemplateField>
                        <asp:TemplateField HeaderText="Dare">
@@ -103,7 +102,6 @@
                                    <asp:ListItem Value="10">10</asp:ListItem>
                                    <asp:ListItem Value="22">22</asp:ListItem>
                                </asp:DropDownList>
-                               <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="drpIva" ErrorMessage="*"  InitialValue="Select"></asp:RequiredFieldValidator>
                            </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>

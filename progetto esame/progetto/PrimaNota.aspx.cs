@@ -124,7 +124,6 @@ public partial class PrimaNota : System.Web.UI.Page
     }
     private void SetPreviousData()
     {
-       
         int rowIndex = 0;
         if (ViewState["CurrentTable"] != null)
         {

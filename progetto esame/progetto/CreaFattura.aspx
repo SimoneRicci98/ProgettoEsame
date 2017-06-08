@@ -31,28 +31,18 @@
         <br />
     </div>
         <div class="col-xs-12">
-
-               <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="95%">
+               <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="70%">
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
-                          <asp:TemplateField HeaderText="Codice articolo">
+                         <asp:TemplateField HeaderText="Prodotto">
                            <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtCodArt" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Descrizione">
-                           <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtDesc" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
+                               <asp:DropDownList ID="drpProd" runat="server" >
+                               </asp:DropDownList>
+                            </ItemTemplate>
+                             </asp:TemplateField>
                        <asp:TemplateField HeaderText="Quantità">
                            <ItemTemplate>
                                <asp:TextBox Width="90%" ID="txtQta" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Prezzo unitario">
-                           <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtPrezzo" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
                        <asp:TemplateField HeaderText="Sconto">
@@ -69,11 +59,6 @@
                                    <asp:ListItem Value="22">22</asp:ListItem>
                                </asp:DropDownList>
                             </ItemTemplate>
-                       </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Importo">
-                           <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtImporto" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
                            <FooterStyle HorizontalAlign="Right" />
                            <FooterTemplate>
                                <asp:Button CssClass="btn btn-primary" ID="ButtonAdd" runat="server" OnClick="ButtonAdd_Click" Text="Aggiungi nuova riga" />
@@ -90,7 +75,8 @@
                    <AlternatingRowStyle BackColor="White" />
                </asp:GridView>
                 <br />
-        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva" />
+               Funzioni momentaneamente non disponibili<br />
+        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva" Enabled="False" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnVisual" runat="server" CssClass="btn btn-primary" Text="Visualizza" Enabled="False" OnClick="btnVisual_Click" />
     </div>
