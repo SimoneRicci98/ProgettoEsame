@@ -245,20 +245,33 @@ public partial class EmettiFattura : System.Web.UI.Page
                         string data = txtData.Text;
                         string tipoPagamento = txtPagamento.Text;
 
-                        string CodiceArticolo = row.ItemArray[1] as string;
-                        string Descrizione = row.ItemArray[2] as string;
-                        string Quantità = row.ItemArray[3] as string;
-                        string PrezzoUnitario = row.ItemArray[4] as string;
-                        string Sconto = row.ItemArray[5] as string;
-                        string Iva = row.ItemArray[6] as string;
-                        string Importo = row.ItemArray[7] as string;
-
-
+                        string Descrizione = row.ItemArray[1] as string;
+                        string Quantità = row.ItemArray[2] as string;
+                        string Sconto = row.ItemArray[3] as string;
+                        string Iva = row.ItemArray[4] as string;
+   
                         help.connetti();
                         help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '" + NomeCliente + "'");
                         rs = help.estraiDati();
                         rs.Read();
                         Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
+                        help.disconnetti();
+
+                        help.connetti();
+                        help.assegnaComando("SELECT Qta FROM Prodotti WHERE COD_Azienda='" + Session["Azienda"].ToString() + "' AND Descrizione = '" + Descrizione + "'");
+                        rs=help.estraiDati();
+                        rs.Read();
+                        if(int.Parse(rs["Qta"].ToString())!=0)
+                        {
+                            help.disconnetti();
+                        #region creazione fattura
+                        help.connetti();
+                        help.assegnaComando("SELECT ID_Prodotto,Prezzo FROM Prodotti WHERE COD_Azienda='" + Session["Azienda"].ToString()+"' AND Descrizione = '"+Descrizione+"'");
+                        rs = help.estraiDati();
+                        rs.Read();
+                        string CodiceArticolo = rs["ID_Prodotto"].ToString();
+                        string PrezzoUnitario = rs["Prezzo"].ToString();
+                        int Importo = int.Parse(PrezzoUnitario) * int.Parse(Quantità);
                         help.disconnetti();
 
                         help.connetti();
@@ -279,6 +292,13 @@ public partial class EmettiFattura : System.Web.UI.Page
                         help.eseguicomando();
                         help.disconnetti();
                         btnVisual.Enabled = true;
+                        #endregion
+                        }
+                        else
+                        {
+                            help.disconnetti();
+                            MessageBox.Show("Impossibile emettere la fattura, uno o più prodotti sono terminati");
+                        }
                     }
                 }
             }
@@ -301,10 +321,19 @@ public partial class EmettiFattura : System.Web.UI.Page
 
     protected void btnVisual_Click(object sender, EventArgs e)
     {
-        if (Session["Numero"] != null)
-            Response.Redirect("VisualizzaFattura.aspx");
+        if (txtVisualNum.Text == string.Empty)
+        {
+            if (Session["Numero"] != null)
+                Response.Redirect("VisualizzaFattura.aspx");
+            else
+                MessageBox.Show("Inserire prima i dati dell fattura");
+        }
         else
-            MessageBox.Show("Inserire prima i dati dell fattura");
+        {
+            Session["Numero"] = txtVisualNum.Text;
+            Response.Redirect("VisualizzaFattura.aspx");
+        }
+
     }
 
     protected void txtData_TextChanged(object sender, EventArgs e)

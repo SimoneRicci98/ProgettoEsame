@@ -75,9 +75,12 @@
                    <AlternatingRowStyle BackColor="White" />
                </asp:GridView>
                 <br />
-               Funzioni momentaneamente non disponibili<br />
-        <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva" Enabled="False" />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnVisual" runat="server" CssClass="btn btn-primary" Text="Visualizza" Enabled="False" OnClick="btnVisual_Click" />
+
+                <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva" />
+
+               <asp:Button ID="btnVisual" runat="server" CssClass="btn btn-primary" Text="Visualizza" OnClick="btnVisual_Click" />
+                Inserisci qui il numero della fattura da visualizza,
+                se lasciato vuoto verrà visualizzata la fattura creata
+               <asp:TextBox ID="txtVisualNum" runat="server" ></asp:TextBox>
     </div>
 </asp:Content>
