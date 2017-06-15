@@ -13,8 +13,9 @@
     <form id="form1" runat="server">
     <div class="row">
         <div class="col-xs-12" style="margin-bottom:2%;background-color:rgba(156, 196, 216, 0.32);border-bottom:solid 3px #286090;color:#286090">
-        <div class="col-xs-offset-1 col-xs-4" ><h1><a style="color:#286090!important" href ="Default.aspx"> Progetto esame</a></h1></div>
-        <div class="col-xs-offset-2 col-xs-4" style="text-align:center; margin-top:2%">
+        <div class="col-xs-offset-1 col-xs-3" ><h1><a style="color:#286090!important" href ="Default.aspx"> Progetto esame</a></h1></div>
+            <div class="col-xs-4" style="margin-top:1%"><asp:Image ID="Image1" runat="server" ImageUrl="~/Immagini/immagineprogetto.png" Width="85%" Height="70px" /></div>
+        <div class="col-xs-4" style="text-align:center; margin-top:2%">
         <a href="Login.aspx" style="color:#286090!important"><%=icona()%>&nbsp<asp:Label ID="lblLogin" runat="server" Visible="False" Text="Effettua il login!"></asp:Label></a>
         <a href="Seleziona.aspx" style="color:#286090!important"><%=icona1()%>&nbsp<asp:Label ID="lblBenv" runat="server" Text="Clicca qui per decidere l'operazione da eseguire" Visible="False"></asp:Label></a>
             &nbsp;&nbsp;
