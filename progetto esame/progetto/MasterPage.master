@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
     <div class="row">
         <div class="col-xs-12" style="margin-bottom:2%;background-color:rgba(156, 196, 216, 0.32);border-bottom:solid 3px #286090;color:#286090">
-        <div class="col-xs-offset-1 col-xs-3" style="text-align:right;margin-top:1%" ><h1><a style="color:#286090!important" href ="Default.aspx">Blue butterfly</a></h1></div>
+        <div class="col-xs-offset-1 col-xs-3" style="text-align:right;margin-top:1%" ><h1><a style="color:#286090!important" href ="Default.aspx">Blue Butterfly</a></h1></div>
             <div class="col-xs-4" style="margin-top:1%"><asp:Image ID="Image1" runat="server" ImageUrl="~/Immagini/logo.jpg" Width="106px" Height="80px" /></div>
         <div class="col-xs-4" style="text-align:center; margin-top:2%">
         <a href="Login.aspx" style="color:#286090!important"><%=icona()%>&nbsp<asp:Label ID="lblLogin" runat="server" Visible="False" Text="Effettua il login!"></asp:Label></a>
