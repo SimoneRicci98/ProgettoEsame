@@ -23,7 +23,7 @@
             <asp:LinkButton ID="btnLogout" ForeColor="#286090" runat="server" CssClass="btn-link" OnClick="btnLogout_Click"><span class="glyphicon glyphicon-log-out"></span>&nbsp Logout</asp:LinkButton>
             </div>
         <div class="col-xs-12" style="font-size:15px; text-align:center;padding:15px;margin-bottom:2%">
-           “Progetto Esame” è un software di contabilità online che permette di creare fatture, di registrarle in prima
+           “Blue Butterfly” è un software di contabilità online che permette di creare fatture, di registrarle in prima
 nota e visualizzare il giornale. Il programma offre inoltre la possibilità di salvare l’anagrafica clienti/fornitori
 e di avere una costante assistenza per quanto riguarda i dubbi sul funzionamento del programma o
 eventuali consigli di miglioramento. È composto da una versione prova e una completa, la prima presenta
