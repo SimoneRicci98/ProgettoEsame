@@ -16,7 +16,8 @@
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click"  Text="Invia" CssClass="btn btn-primary" />
             <br />
             <br />
-            <asp:ListBox ID="lstDomande" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>
+            <asp:TextBox ID="txtDomande" runat="server" CssClass="form-control" ReadOnly="True" Rows="10" TextMode="MultiLine" Width="80%"></asp:TextBox>
+            <br />
         </div>
         <div class="col-xs-4"><h4>Non hai ancora un account? Crealo subito scegliendo una delle seguenti opzioni!</h4> 
             <div class="row">
@@ -39,7 +40,8 @@
             <br />
             <br />
             Qui rispondo alle vostre domande settimanalmente<br />
-            <asp:ListBox ID="lstRisposte" runat="server" Rows="10" Width="80%" CssClass="list-group-item"></asp:ListBox>
+            <asp:TextBox ID="txtRisposte" runat="server" CssClass="form-control" ReadOnly="True" Rows="10" TextMode="MultiLine" Width="80%"></asp:TextBox>
+            <br />
             </div>
     </div>
 </asp:Content>

@@ -20,31 +20,44 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="100%" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:BoundField DataField="NumDoc" HeaderText="Numero documento" >
-                <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="DataF" HeaderText="Data fattura" />
-                <asp:BoundField DataField="DataR" HeaderText="Data registrazione" />
-                <asp:BoundField DataField="Cliente" HeaderText="Cliente" >
-                <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Fornitore" HeaderText="Fornitore" >
-                <HeaderStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="ContoMastro" HeaderText="Conto di mastro" >
-                <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Proto" HeaderText="Protocollo" >
-                <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Desc" HeaderText="Descrizione" >
-                <HeaderStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="Dare" HeaderText="Dare" >
+                <asp:BoundField DataField="NumDoc" HtmlEncode="False" HeaderText="Numero documento" >
                 <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Avere" HeaderText="Avere" >
+                <asp:BoundField DataField="DataF" HtmlEncode="False" HeaderText="Data fattura" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="DataR" HtmlEncode="False" HeaderText="Data registrazione" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Cliente" HtmlEncode="False" HeaderText="Cliente" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Fornitore" HtmlEncode="False" HeaderText="Fornitore" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="ContoMastro" HtmlEncode="False" HeaderText="Conto di mastro" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Proto" HtmlEncode="False" HeaderText="Protocollo" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Desc" HtmlEncode="False" HeaderText="Descrizione" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Dare" HtmlEncode="False" HeaderText="Dare" >
+                <HeaderStyle HorizontalAlign="Center" />
+                <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="Avere" HtmlEncode="False" HeaderText="Avere" >
+                <HeaderStyle HorizontalAlign="Center" />
                 <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
             </Columns>

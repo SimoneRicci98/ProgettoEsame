@@ -18,9 +18,9 @@ public partial class _Default : System.Web.UI.Page
         rs = help.estraiDati();
         while(rs.Read() || cont==10)
         {
+            txtDomande.Text += "Domanda da: " + rs["Utente"].ToString()+"\r\n";
+            txtDomande.Text += rs["Domanda"].ToString() + "\r\n";
             cont++;
-            lstDomande.Items.Add("Domanda da: " + rs["Utente"].ToString());
-            lstDomande.Items.Add(rs["Domanda"].ToString());
         }
         help.disconnetti();
         cont = 0;
@@ -32,9 +32,9 @@ public partial class _Default : System.Web.UI.Page
             if(rs["Risposta"].ToString() != "blank")
             {
                 cont++;
-                lstRisposte.Items.Add("Rispondo a: " + rs["Utente"].ToString());
-                lstRisposte.Items.Add("Che ha chiesto: " + rs["Domanda"].ToString());
-                lstRisposte.Items.Add(rs["Risposta"].ToString());
+                txtRisposte.Text += "Rispondo a: " + rs["Utente"].ToString() + "\r\n";
+                txtRisposte.Text += "Che ha chiesto: " + rs["Domanda"].ToString() + "\r\n";
+                txtRisposte.Text += rs["Risposta"].ToString() + "\r\n";
             }
             
         }
@@ -66,7 +66,7 @@ public partial class _Default : System.Web.UI.Page
             help.disconnetti();
             txtDomanda.Text = "";
             lblErr1.Text = "";
-            lstDomande.Items.Clear();
+            txtDomande.Text="";
             Response.Redirect("Default.aspx");
         }
         else
@@ -99,5 +99,11 @@ public partial class _Default : System.Web.UI.Page
     {
         Session["Versione"] = 1;
         Response.Redirect("Pagamento.aspx");
+    }
+
+    protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+
     }
 }

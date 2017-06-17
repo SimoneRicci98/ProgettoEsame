@@ -50,14 +50,11 @@ public partial class Registrazione : System.Web.UI.Page
                     help.disconnetti();
 
                     help.connetti();
-                    help.assegnaComando("INSERT INTO Utenti VALUES(" + app + ",'" + nome + "','" + cognome + "','" + email + "','" + psw + "','" + Session["Versione"].ToString() + "')");
+                    help.assegnaComando("INSERT INTO Utenti VALUES(" + app + ",'" + nome + "','" + cognome + "','" + email + "','" + System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(psw, "md5") + "','" + Session["Versione"].ToString() + "')");
                     help.eseguicomando();
                     help.disconnetti();
                     Session["Utente"] = app.ToString();
                     Session["Azienda"] = true;
-
-                    string pathToCreate = "~/Utenti/" +app ;
-                    Directory.CreateDirectory(Server.MapPath(pathToCreate));
 
                     Response.Redirect("AggiungiAnagrafica.aspx");
                 }

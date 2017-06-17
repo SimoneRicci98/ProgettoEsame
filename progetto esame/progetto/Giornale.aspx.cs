@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+
 public partial class Giornale : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
@@ -15,7 +17,7 @@ public partial class Giornale : System.Web.UI.Page
     List<string> numDocumenti = new List<string>();
     int n = 0;
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {       
         help.connetti();
         help.assegnaComando("SELECT RagioneSociale,PartitaIva,CodFiscale,Indirizzo FROM Aziende WHERE ID_Azienda = " + Session["Azienda"].ToString());
         rs = help.estraiDati();
@@ -108,9 +110,11 @@ public partial class Giornale : System.Web.UI.Page
             {
                 if (n == Convert.ToInt16(numDocumenti[i]))
                 {
-                    dt.Rows.Add("/", "/", "/", "/", "/", "/","/", "/", "/", "/");
+                    string html = "<i class=\"fa fa-minus\"></i>";
+                    dt.Rows.Add(html, html, html, html, html, html, html, html, html, html);
                     i++;
                     n = 0;
+                    
                 }
             }
         }

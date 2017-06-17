@@ -1,6 +1,1 @@
-http://stackoverflow.com/questions/10063770/how-to-add-a-new-row-to-datagridview-programmatically 
-usare questi comandiper aggiungere righe
-
-provare a creare una lista/vettore di record di oggetti, due dropdown, una textbox, una label e un'altra dropdown
-a ogni evento click del bottone si salveranno i nuovi dati e si ricaricherà interamente, oppure, ancora meglio,
-aggiungere semplicemente una nuova riga vuota
+System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile("Qualcosa", "md5")
