@@ -4,8 +4,8 @@
 
 <html>
 <head runat="server">
-<meta  name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
-    <title>Blue butterfly</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
+    <title>Blue Butterfly</title>
   <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="https://use.fontawesome.com/e33ab33f7a.js"></script>
     <link rel="icon" href="/favicon.ico" type="image" />
