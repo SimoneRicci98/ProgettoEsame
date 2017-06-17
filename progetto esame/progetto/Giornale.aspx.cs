@@ -108,7 +108,7 @@ public partial class Giornale : System.Web.UI.Page
             {
                 if (n == Convert.ToInt16(numDocumenti[i]))
                 {
-                    dt.Rows.Add("", "", "", "", "", "","", "", "", "");
+                    dt.Rows.Add("/", "/", "/", "/", "/", "/","/", "/", "/", "/");
                     i++;
                     n = 0;
                 }

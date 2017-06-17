@@ -2,6 +2,11 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-xs-12">
+                 <div class="row" style="text-align:center;margin-bottom:1%">
+            <div class="col-xs-12">
+               <h4>Tutti i dati sono obbligatori</h4>
+            </div>
+             </div>
             <div class="row">
                 <div class="col-xs-2">
                      Data operazione
@@ -67,11 +72,6 @@
         <div class="col-xs-6">
              Descrizione &nbsp;&nbsp; <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
          </div><br /><br />
-         <div class="row" style="margin-top:2%;text-align:center">
-            <div class="col-xs-12">
-               <h4>Tutti i dati sono obbligatori</h4>
-            </div>
-        </div>
             </div>
         <div class="row" style="margin-top:2%">
             <div class="col-xs-12">
