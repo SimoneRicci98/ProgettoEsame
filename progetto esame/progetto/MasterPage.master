@@ -5,16 +5,17 @@
 <html>
 <head runat="server">
 <meta  name="viewport" content="width=device-width, initial-scale=1" http-equiv="Content-Type" charset="utf-8"/>
-    <title>nome programma</title>
+    <title>Blue butterfly</title>
   <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="https://use.fontawesome.com/e33ab33f7a.js"></script>
+    <link rel="icon" href="/favicon.ico" type="image" />
 </head>
 <body>
     <form id="form1" runat="server">
     <div class="row">
         <div class="col-xs-12" style="margin-bottom:2%;background-color:rgba(156, 196, 216, 0.32);border-bottom:solid 3px #286090;color:#286090">
-        <div class="col-xs-offset-1 col-xs-3" ><h1><a style="color:#286090!important" href ="Default.aspx"> Progetto esame</a></h1></div>
-            <div class="col-xs-4" style="margin-top:1%"><asp:Image ID="Image1" runat="server" ImageUrl="~/Immagini/immagineprogetto.png" Width="85%" Height="70px" /></div>
+        <div class="col-xs-offset-1 col-xs-3" style="text-align:right;margin-top:1%" ><h1><a style="color:#286090!important" href ="Default.aspx">Blue butterfly</a></h1></div>
+            <div class="col-xs-4" style="margin-top:1%"><asp:Image ID="Image1" runat="server" ImageUrl="~/Immagini/logo.jpg" Width="106px" Height="80px" /></div>
         <div class="col-xs-4" style="text-align:center; margin-top:2%">
         <a href="Login.aspx" style="color:#286090!important"><%=icona()%>&nbsp<asp:Label ID="lblLogin" runat="server" Visible="False" Text="Effettua il login!"></asp:Label></a>
         <a href="Seleziona.aspx" style="color:#286090!important"><%=icona1()%>&nbsp<asp:Label ID="lblBenv" runat="server" Text="Clicca qui per decidere l'operazione da eseguire" Visible="False"></asp:Label></a>
@@ -38,7 +39,7 @@ supporto immediato tramite mail.
         </div>
         <div class="col-xs-12" style="bottom:0;position:relative;width:100%;margin-bottom:20px;text-align:center">
             <div class="col-xs-4">Sito ideato da: Ricci Simone</div>
-            <div class="col-xs-4">(privacy)</div>
+            <div class="col-xs-4"><a href="//www.iubenda.com/privacy-policy/8154437" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></div>
             <div class="col-xs-4">Progetto esame 2017</div>
         </div>
         </div>
