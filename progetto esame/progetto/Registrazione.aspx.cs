@@ -26,7 +26,7 @@ public partial class Registrazione : System.Web.UI.Page
             string cognome = txtCognome.Text;
             string email = txtEmail.Text;
             string psw = txtPass.Text;
-            if (nome.Trim() == "" || cognome.Trim() == "" || email.Trim() == "" || psw.Trim() == "")
+            if (nome.Trim() != string.Empty || cognome.Trim() != string.Empty || email.Trim() != string.Empty || psw.Trim() != string.Empty)
             {
                 help.connetti();
                 help.assegnaComando("SELECT Email FROM Utenti");

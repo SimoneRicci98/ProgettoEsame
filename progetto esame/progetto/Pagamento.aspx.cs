@@ -17,7 +17,7 @@ public partial class Pagamento : System.Web.UI.Page
     protected void btnContinua_Click(object sender, EventArgs e)
     {
         bool continua = true;
-        if(txtCodice.Text==string.Empty|| txtCodice.Text.Length!=16)
+        if (txtCodice.Text == string.Empty || txtCodice.Text.Length != 16)
         {
             lblErrCod.Text = "Inserire un codice valido";
             continua = false;
@@ -27,19 +27,22 @@ public partial class Pagamento : System.Web.UI.Page
             lblErrData.Text = "Inserire una data valida";
             continua = false;
         }
-        if (txtCVV.Text == string.Empty || txtCVV.Text.Length!=3)
+        if (txtCVV.Text == string.Empty || txtCVV.Text.Length != 3)
         {
             lblErrCVV.Text = "Inserire un CVV valido";
             continua = false;
         }
-        if(continua)
+        if (continua)
         {
-            if (Session["Versione"]!=null && (int)Session["Versione"] != 0)
+            if (Session["Utente"] != null)
             {
-                help.connetti();
-                help.assegnaComando("UPDATE Utenti SET Versione = 1 WHERE ID_Utente = " + Session["Utente"].ToString());
-                help.eseguicomando();
-                help.disconnetti();
+                if (Session["Versione"] != null && (int)Session["Versione"] != 0)
+                {
+                    help.connetti();
+                    help.assegnaComando("UPDATE Utenti SET Versione = 1 WHERE ID_Utente = " + Session["Utente"].ToString());
+                    help.eseguicomando();
+                    help.disconnetti();
+                }
             }
             Response.Redirect("Grazie.aspx");
         }
