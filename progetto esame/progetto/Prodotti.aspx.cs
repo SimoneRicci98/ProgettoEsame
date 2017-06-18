@@ -31,7 +31,7 @@ public partial class Prodotti : System.Web.UI.Page
             new DataColumn("Qta")});
         while (rs.Read())
         {
-            dt.Rows.Add(rs["ID_Prodotto"], rs["Descrizione"], rs["Prezzo"], rs["Qta"]);
+            dt.Rows.Add(rs["ID_Prodotto"], rs["Descrizione"], rs["Prezzo"]+" €", rs["Qta"]);
         }
         grdVisual.DataSource = dt;
         grdVisual.DataBind();

@@ -36,7 +36,7 @@
             <div class="col-xs-4">
                 P.IVA<br />
            <span class="glyphicon glyphicon-credit-card"></span>&nbsp<asp:TextBox ID="txtPIva" runat="server" ValidationGroup="text" CssClass="form-control" Width="40%"></asp:TextBox>
-                <asp:Label ID="lblErr0" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="lblErr0" runat="server"></asp:Label>
       <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
          runat="server"
             Text="Compila questo campo"

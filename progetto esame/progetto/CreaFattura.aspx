@@ -18,9 +18,9 @@
 
         </div>
         <div class="col-xs-6" style="margin-top:1%">
-            Fattura numero&nbsp;<asp:TextBox ID="txtNumero" runat="server" Width="5%" OnTextChanged="txtNumero_TextChanged"></asp:TextBox>
+            Fattura numero&nbsp;<asp:TextBox ID="txtNumero" runat="server" Width="5%" OnTextChanged="txtNumero_TextChanged" TextMode="Number"></asp:TextBox>
             &nbsp;&nbsp;del&nbsp;
-            <asp:TextBox ID="txtData" runat="server" TextMode="Date" Width="20%" OnTextChanged="txtData_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="txtData" runat="server" TextMode="Date" Width="27%" OnTextChanged="txtData_TextChanged"></asp:TextBox>
         &nbsp;<asp:Label ID="lblErrNum" runat="server" ForeColor="Red"></asp:Label>
         </div>
     </div>
@@ -82,8 +82,9 @@
 
                <asp:Button ID="btnVisual" runat="server" CssClass="btn btn-primary" Text="Visualizza" OnClick="btnVisual_Click" />
                 <br />
+               <br />
                Se si vuole visualizzare una fattura già creata, inserire nella casella di seguito il suo numero
-               <asp:TextBox ID="txtVisualNum" runat="server" ></asp:TextBox>
+               <asp:TextBox ID="txtVisualNum" runat="server" Width="26px" ></asp:TextBox>
                <br />
 
                <asp:Button ID="btnVisual0" runat="server" CssClass="btn btn-primary" Text="Visualizza fattura creata" OnClick="btnVisual0_Click" />
