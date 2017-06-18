@@ -11,6 +11,7 @@ public partial class EmettiFattura : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
     SqlDataReader rs;
+    int cont = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -224,20 +225,28 @@ public partial class EmettiFattura : System.Web.UI.Page
                     help.eseguicomando();
                     help.disconnetti();
 
-
-                    help.connetti();
-                    help.assegnaComando("SELECT Numero FROM Fattura WHERE COD_Cliente='" + app + "' AND COD_Azienda='" + Session["Azienda"].ToString() + "'");
-                    rs = help.estraiDati();
-                    while (rs.Read())
+                    if (cont == 0)
                     {
-                        if (rs["Numero"].ToString() == txtNumero.Text)
+                        help.connetti();
+                        help.assegnaComando("SELECT Numero FROM Fattura WHERE COD_Cliente='" + app + "' AND COD_Azienda='" + Session["Azienda"].ToString() + "'");
+                        rs = help.estraiDati();
+
+                        while (rs.Read())
                         {
-                            lblErrNum.Text = "Numero fattura già esistente per questo cliente";
-                            trovato = true;
+                            if (rs["Numero"].ToString() == txtNumero.Text)
+                            {
+                                lblErrNum.Text = "Numero fattura già esistente per questo cliente";
+                                trovato = true;
+                            }
                         }
+                        if(!trovato)
+                        {
+                            cont = 1;
+                        }
+                        txtNumero.Focus();
+                        help.disconnetti();
                     }
-                    txtNumero.Focus();
-                    help.disconnetti();
+
 
                     if(!trovato)
                     {
@@ -345,6 +354,13 @@ public partial class EmettiFattura : System.Web.UI.Page
 
     protected void btnVisual0_Click(object sender, EventArgs e)
     {
+        string NomeCliente = DropDownList1.SelectedItem.Text;
+        help.connetti();
+        help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '" + NomeCliente + "'");
+        rs = help.estraiDati();
+        rs.Read();
+        Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
+        help.disconnetti();
         Session["Numero"] = txtVisualNum.Text;
         Response.Redirect("VisualizzaFattura.aspx");
     }

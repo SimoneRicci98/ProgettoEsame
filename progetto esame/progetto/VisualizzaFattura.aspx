@@ -12,21 +12,21 @@
     <form id="form1" runat="server">
         <div class="col-xs-12">
      <div class="col-xs-4" style="border: solid 1px black;margin-top:2%">
-        <div class="row">nome/azienda <asp:Label ID="lblRagSoc" runat="server"></asp:Label></div>
-        <div class="row">indirizzo <asp:Label ID="lblIndirizzoMio" runat="server"></asp:Label> </div>
-        <div class="row">Codice fiscale <asp:Label ID="lblCodFisc" runat="server"></asp:Label> </div>
-        <div class="row">partita iva <asp:Label ID="lblPartIva" runat="server"></asp:Label> </div>
-        <div class="row">n° telefono <asp:Label ID="lblNumTel" runat="server"></asp:Label> </div>
-        <div class="row">email <asp:Label ID="lblEmail" runat="server"></asp:Label> </div>
+        <div class="row">Nome/Azienda: <asp:Label ID="lblRagSoc" runat="server"></asp:Label></div>
+        <div class="row">Indirizzo: <asp:Label ID="lblIndirizzoMio" runat="server"></asp:Label> </div>
+        <div class="row">Codice fiscale: <asp:Label ID="lblCodFisc" runat="server"></asp:Label> </div>
+        <div class="row">Partita iva: <asp:Label ID="lblPartIva" runat="server"></asp:Label> </div>
+        <div class="row">N° telefono: <asp:Label ID="lblNumTel" runat="server"></asp:Label> </div>
+        <div class="row">Email: <asp:Label ID="lblEmail" runat="server"></asp:Label> </div>
     </div>
         </div>
 
     <div class="col-xs-offset-7 col-xs-4" style="border: solid 1px black;margin-bottom:2%">
-        <div class="row">spettabile <asp:Label ID="lblRagSocCliFor" runat="server"></asp:Label> </div>
-        <div class="row">indirizzo <asp:Label ID="lblIndirizzoCliFor" runat="server"></asp:Label> </div>
-        <div class="row">Codice fiscale <asp:Label ID="lblCodFiscCliFor" runat="server"></asp:Label> </div>
-        <div class="row">partita iva <asp:Label ID="lblPartIvaCliFor" runat="server"></asp:Label> </div>
-        <div class="row">n° telefono <asp:Label ID="lblNumTelCliFor" runat="server"></asp:Label> </div>
+        <div class="row">Spettabile: <asp:Label ID="lblRagSocCliFor" runat="server"></asp:Label> </div>
+        <div class="row">Indirizzo: <asp:Label ID="lblIndirizzoCliFor" runat="server"></asp:Label> </div>
+        <div class="row">Codice fiscale: <asp:Label ID="lblCodFiscCliFor" runat="server"></asp:Label> </div>
+        <div class="row">Partita iva: <asp:Label ID="lblPartIvaCliFor" runat="server"></asp:Label> </div>
+        <div class="row">N° telefono: <asp:Label ID="lblNumTelCliFor" runat="server"></asp:Label> </div>
     </div><br />
         <div class="col-xs-12">
     <div class="col-xs-12" style="border: solid 1px black">
@@ -59,11 +59,6 @@
         <b>Imponibile <asp:Label ID="lblImponibile" Font-Size="15px" runat="server"></asp:Label></b><br />
         <b>Imposta iva <asp:Label ID="lblImpostaIva" Font-Size="15px" runat="server"></asp:Label></b><br />
         <b>Totale fattura <asp:Label ID="lblTotFatt" Font-Size="15px" runat="server"></asp:Label></b></div>
-        </div>
-        <div class="col-xs-12">
-            <asp:Button ID="btnStampa" runat="server" Text="Scarica in pdf" CssClass="btn btn-primary" OnClick="btnStampa_Click" />
-        &nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnSalva" runat="server" Text="Salva" CssClass="btn btn-primary" OnClick="btnSalva_Click" />
         </div>
     </form>
 </body>

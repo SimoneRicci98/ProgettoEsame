@@ -48,7 +48,6 @@ public partial class VisualizzaFattura : System.Web.UI.Page
             lblPartIvaCliFor.Text = rs["PartitaIVA"].ToString();
             lblRagSocCliFor.Text = rs["RagioneSociale"].ToString();
             ragsocCliente = rs["RagioneSociale"].ToString();
-            lblRagSoc.Text = ragsocCliente;
             lblNumTelCliFor.Text = rs["TelAzienda"].ToString();
             #endregion
             help.disconnetti();
@@ -83,8 +82,8 @@ public partial class VisualizzaFattura : System.Web.UI.Page
             "<div class=\"col-xs-1\">" + rs["Iva"].ToString() + "</div>" +
             "<div class=\"col-xs-1\">" + rs["Importo"].ToString() + "</div>" +
             "</div>";
-            imponibile += Convert.ToDouble(rs["Iva"].ToString());
-            imponibile_iva += ((Convert.ToDouble(rs["PrezzoUnitario"].ToString()) * Convert.ToDouble(rs["Quantità"].ToString())) / 100) * Convert.ToDouble(rs["Importo"].ToString()); 
+            imponibile_iva += Convert.ToDouble(rs["Iva"].ToString());
+            imponibile += Convert.ToDouble(rs["Importo"].ToString());
         }
         totFatt = (imponibile + imponibile_iva);
         help.disconnetti();
@@ -97,7 +96,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
     public override void VerifyRenderingInServerForm(Control control)
     {
     }
-
+    /*
     public void stampa()
     {
             
@@ -134,5 +133,5 @@ public partial class VisualizzaFattura : System.Web.UI.Page
 
     protected void btnSalva_Click(object sender, EventArgs e)
     {
-    }
+    }*/
 }
