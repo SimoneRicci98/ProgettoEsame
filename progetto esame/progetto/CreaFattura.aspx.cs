@@ -321,18 +321,11 @@ public partial class EmettiFattura : System.Web.UI.Page
 
     protected void btnVisual_Click(object sender, EventArgs e)
     {
-        if (txtVisualNum.Text == string.Empty)
-        {
             if (Session["Numero"] != null)
                 Response.Redirect("VisualizzaFattura.aspx");
             else
-                MessageBox.Show("Inserire prima i dati dell fattura");
-        }
-        else
-        {
-            Session["Numero"] = txtVisualNum.Text;
-            Response.Redirect("VisualizzaFattura.aspx");
-        }
+                MessageBox.Show("Salvare prima la fattura!");
+        
 
     }
 
@@ -348,5 +341,11 @@ public partial class EmettiFattura : System.Web.UI.Page
     protected void txtOggetto_TextChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnVisual0_Click(object sender, EventArgs e)
+    {
+        Session["Numero"] = txtVisualNum.Text;
+        Response.Redirect("VisualizzaFattura.aspx");
     }
 }

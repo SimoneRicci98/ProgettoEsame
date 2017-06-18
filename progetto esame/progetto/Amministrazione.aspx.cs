@@ -10,20 +10,18 @@ public partial class Amministrazione : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
     SqlDataReader rs;
+    string domanda;
     protected void Page_Load(object sender, EventArgs e)
     {
-        lstDomande.Items.Clear();
+        drpDomande.Items.Clear();
         if(Session["Admin"]!=null)
         {
-            int cont = 0;
             help.connetti();
-            help.assegnaComando("SELECT Utente,Domanda FROM DomandeRisposte ORDER BY Data DESC");
+            help.assegnaComando("SELECT Domanda FROM DomandeRisposte WHERE Risposta = 'blank' ORDER BY Data DESC");
             rs = help.estraiDati();
-            while (rs.Read() || cont == 10)
+            while (rs.Read())
             {
-                cont++;
-                lstDomande.Items.Add("Domanda da: " + rs["Utente"].ToString());
-                lstDomande.Items.Add(rs["Domanda"].ToString());
+                drpDomande.Items.Add(rs["Domanda"].ToString());
             }
             help.disconnetti();
         }
@@ -42,7 +40,18 @@ public partial class Amministrazione : System.Web.UI.Page
 
     protected void btnRisp_Click(object sender, EventArgs e)
     {
-
+        try
+        {
+            help.connetti();
+            help.assegnaComando("UPDATE DomandeRisposte SET Risposta = '"+TextBox1.Text+"' WHERE Risposta='blank' AND Domanda='"+domanda+"'");
+            help.eseguicomando();
+            help.disconnetti();
+            lblSuccess.Text = "Operazione completata";
+        }
+        catch
+        {
+            MessageBox.Show("Errore nell'inserimento della risposta");
+        }
     }
 
     protected void btnSeleziona_Click(object sender, EventArgs e)
@@ -50,9 +59,9 @@ public partial class Amministrazione : System.Web.UI.Page
         try
         {
             string utente;
-            string domanda = lstDomande.SelectedIndex.ToString();
+            domanda = drpDomande.SelectedValue;
             help.connetti();
-            help.assegnaComando("SELECT Utente FROM Domande-Risposte WHERE Domanda ='"+domanda+"'");
+            help.assegnaComando("SELECT Utente FROM DomandeRisposte WHERE Domanda ='"+domanda+"'");
             rs = help.estraiDati();
             rs.Read();
             utente = rs["Utente"].ToString();
@@ -63,6 +72,37 @@ public partial class Amministrazione : System.Web.UI.Page
         catch
         {
             lblbErr.Text = "Assicurati di aver selezionato una domanda";
+        }
+    }
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            help.connetti();
+            help.assegnaComando(txtQuery.Text);
+            string app = txtQuery.Text.Substring(0, txtQuery.Text.IndexOf(" "));
+            switch (app.ToUpper())
+            {
+                case "SELECT":
+                    rs = help.estraiDati();
+                    grdQuery.DataSource = rs;
+                    grdQuery.DataBind();
+                    break;
+                default:
+                    help.eseguicomando();
+                    break;
+            }
+            help.disconnetti();
+        }
+        catch(Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
         }
     }
 }

@@ -75,9 +75,24 @@
                 <asp:Label ID="lblEmail" runat="server" CssClass="label label-primary"></asp:Label>
             </div>
             <div class="col-xs-6">
-                Password :
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
-&nbsp;<asp:Button ID="btnChiudi0" runat="server" OnClick="btnChiudi_Click" Text="Visualizza/nascondi password" CssClass="btn btn-primary" />
+                <div class="col-xs-4">
+                    Vecchia password :
+                    <asp:TextBox ID="txtVecchiaPassword" runat="server" TextMode="Password" CssClass="form-control" ></asp:TextBox>
+                </div>
+                <div class="col-xs-4">
+                    Nuova password
+                    <asp:TextBox ID="txtNuovaPassword" runat="server" TextMode="Password" CssClass="form-control" ></asp:TextBox>
+                </div>
+                <div class="col-xs-4">
+                    Conferma password
+                    <asp:TextBox ID="txtConferma" runat="server" TextMode="Password" CssClass="form-control" ></asp:TextBox>
+                </div><br />
+                <div class="col-xs-7" style="margin-top:2%">
+                <asp:Button ID="btnModifica" runat="server" OnClick="btnChiudi_Click" Text="Modifica password" CssClass="btn btn-primary" />
+                    &nbsp&nbsp
+                    <asp:Label ID="lblOperazione" runat="server"></asp:Label>
+                </div>
+                
             </div>
         </div>
     </div>

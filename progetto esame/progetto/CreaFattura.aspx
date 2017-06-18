@@ -78,9 +78,14 @@
 
                 <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary" OnClick="btnSave_Click" Text="Salva" />
 
+               &nbsp;&nbsp;
+
                <asp:Button ID="btnVisual" runat="server" CssClass="btn btn-primary" Text="Visualizza" OnClick="btnVisual_Click" />
-                Inserisci qui il numero della fattura da visualizza,
-                se lasciato vuoto verrà visualizzata la fattura creata
+                <br />
+               Se si vuole visualizzare una fattura già creata, inserire nella casella di seguito il suo numero
                <asp:TextBox ID="txtVisualNum" runat="server" ></asp:TextBox>
+               <br />
+
+               <asp:Button ID="btnVisual0" runat="server" CssClass="btn btn-primary" Text="Visualizza fattura creata" OnClick="btnVisual0_Click" />
     </div>
 </asp:Content>

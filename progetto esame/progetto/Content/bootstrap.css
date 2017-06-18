@@ -1651,6 +1651,9 @@ pre code {
 }
 .col-xs-3 {
   width: 25%;
+    top: 2px;
+    left: -4px;
+    margin-left: 0px;
 }
 .col-xs-2 {
   width: 16.66666667%;
