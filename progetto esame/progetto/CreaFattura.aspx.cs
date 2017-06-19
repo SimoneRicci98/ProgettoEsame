@@ -12,6 +12,7 @@ public partial class EmettiFattura : System.Web.UI.Page
     dbHelper help = new dbHelper();
     SqlDataReader rs;
     int cont = 0;
+    int app1 = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -240,7 +241,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                         txtNumero.Focus();
                         help.disconnetti();
                     }
-
+                    
                     if(!trovato)
                     {
                         string oggetto = txtOggetto.Text;
@@ -275,16 +276,20 @@ public partial class EmettiFattura : System.Web.UI.Page
                             int Importo = int.Parse(PrezzoUnitario) * int.Parse(Quantità);
                             help.disconnetti();
 
-                            help.connetti();
-                            help.assegnaComando("INSERT INTO Fattura(Numero,Oggetto,TipoPagamento,Data,COD_Cliente,COD_Azienda) " +
-                                "VALUES('" + Session["Numero"].ToString() +
-                                "','" + oggetto +
-                                "','" + tipoPagamento +
-                                "','" + data +
-                                "','" + Session["ID_Cliente"].ToString() +
-                                "','" + Session["Azienda"].ToString() + "')");
-                            help.eseguicomando();
-                            help.disconnetti();
+                            if (app1 == 0)
+                            {
+                                help.connetti();
+                                help.assegnaComando("INSERT INTO Fattura(Numero,Oggetto,TipoPagamento,Data,COD_Cliente,COD_Azienda) " +
+                                    "VALUES('" + Session["Numero"].ToString() +
+                                    "','" + oggetto +
+                                    "','" + tipoPagamento +
+                                    "','" + data +
+                                    "','" + Session["ID_Cliente"].ToString() +
+                                    "','" + Session["Azienda"].ToString() + "')");
+                                help.eseguicomando();
+                                help.disconnetti();
+                                app1++;
+                            }
 
                             help.connetti();
                             help.assegnaComando("INSERT INTO Vendita "+
@@ -305,6 +310,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                     }
                 }
             }
+            app1 = 0;
         }
         catch (Exception ex)
         {
