@@ -6,7 +6,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Winnovative;
-
+using System.Collections.Generic;
 
 public partial class VisualizzaFattura : System.Web.UI.Page
 {
@@ -67,31 +67,53 @@ public partial class VisualizzaFattura : System.Web.UI.Page
 
     public string caricatabella_imponibili()
     {
+        List<int> qta = new List<int>();
+        List<int> cod = new List<int>();
+        List<int> iva = new List<int>();
+        List<string> desc = new List<string>();
+        List<int> prezzo = new List<int>();
         help.connetti();
-        help.assegnaComando("CREATE VIEW Vista AS("+
-            "SELECT ");
+        help.assegnaComando("SELECT COD_Prod,QtaProd,Iva FROM Vendita WHERE NumFatt="+Session["Numero"].ToString());
+        rs = help.estraiDati();
+        while(rs.Read())
+        {
+            qta.Add(int.Parse(rs["QtaProd"].ToString()));
+            cod.Add(int.Parse(rs["COD_Prod"].ToString()));
+            iva.Add(int.Parse(rs["Iva"].ToString()));
+        }
+        help.disconnetti();
 
+        int i = 0;
+        foreach(int app in cod)
+        {
+            help.connetti();
+            help.assegnaComando("SELECT Descrizione,Prezzo FROM Prodotti WHERE COD_Azienda='" + Session["Azienda"] + "' AND ID_Prodotto = "+cod[i].ToString());
+            rs = help.estraiDati();
+            rs.Read();
+            desc.Add(rs["Descrizione"].ToString());
+            prezzo.Add(int.Parse(rs["Prezzo"].ToString()));
+            help.disconnetti();
+            i++;
+        }
+        
 
         string tabella = "";
-        help.connetti();
-        help.assegnaComando("SELECT CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva FROM Fattura WHERE Numero = '" + Session["Numero"].ToString()+ "' AND COD_Azienda="+azienda);
-        rs = help.estraiDati();
-        while (rs.Read())
+        i = 0;
+        foreach (int app in cod)
         {
             tabella += "<div class=\"col-xs-12\" style=\"border-left:solid 1px black;border-right:solid 1px black;border-bottom:solid 1px black\">" +
-            "<div class=\"col-xs-2\">" + rs["CodArticolo"].ToString() + "</div>" +
-            "<div class=\"col-xs-4\">" + rs["Descrizione"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\">" + rs["Quantità"].ToString() + "</div>" +
-            "<div class=\"col-xs-2\">" + rs["PrezzoUnitario"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\">" + rs["Sconto"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\">" + rs["Iva"].ToString() + "</div>" +
-            "<div class=\"col-xs-1\">" + rs["Importo"].ToString() + "</div>" +
+            "<div class=\"col-xs-2\">" + cod[i].ToString() + "</div>" +
+            "<div class=\"col-xs-4\">" + desc[i].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + qta[i].ToString() + "</div>" +
+            "<div class=\"col-xs-3\">" + prezzo[i].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + iva[i].ToString() + "</div>" +
+            "<div class=\"col-xs-1\">" + prezzo[i]*qta[i] + "</div>" +
             "</div>";
-            imponibile_iva += Convert.ToDouble(rs["Iva"].ToString());
-            imponibile += Convert.ToDouble(rs["Importo"].ToString());
+            imponibile_iva += Convert.ToDouble(iva[i]);
+            imponibile += Convert.ToDouble(prezzo[i] * qta[i]);
+            i++;
         }
         totFatt = (imponibile + imponibile_iva);
-        help.disconnetti();
         lblImponibile.Text = imponibile.ToString();
         lblImpostaIva.Text = imponibile_iva.ToString();
         lblTotFatt.Text = totFatt.ToString();
