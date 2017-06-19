@@ -105,18 +105,18 @@ public partial class VisualizzaFattura : System.Web.UI.Page
             "<div class=\"col-xs-2\">" + cod[i].ToString() + "</div>" +
             "<div class=\"col-xs-4\">" + desc[i].ToString() + "</div>" +
             "<div class=\"col-xs-1\">" + qta[i].ToString() + "</div>" +
-            "<div class=\"col-xs-3\">" + prezzo[i].ToString() + "</div>" +
-            "<div class=\"col-xs-1\">" + iva[i].ToString() + "</div>" +
-            "<div class=\"col-xs-1\">" + prezzo[i]*qta[i] + "</div>" +
+            "<div class=\"col-xs-2\">" + prezzo[i].ToString() + " €" + "</div>" +
+            "<div class=\"col-xs-2\">" + iva[i].ToString() + " %" + "</div>" +
+            "<div class=\"col-xs-1\">" + prezzo[i]*qta[i] + " €" + "</div>" +
             "</div>";
             imponibile_iva += Convert.ToDouble(iva[i]);
             imponibile += Convert.ToDouble(prezzo[i] * qta[i]);
             i++;
         }
         totFatt = (imponibile + imponibile_iva);
-        lblImponibile.Text = imponibile.ToString();
-        lblImpostaIva.Text = imponibile_iva.ToString();
-        lblTotFatt.Text = totFatt.ToString();
+        lblImponibile.Text = imponibile.ToString() + " €";
+        lblImpostaIva.Text = imponibile_iva.ToString() + " €";
+        lblTotFatt.Text = totFatt.ToString() + " €";
         return tabella;
     }
 
