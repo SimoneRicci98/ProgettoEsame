@@ -71,15 +71,13 @@ public partial class EmettiFattura : System.Web.UI.Page
                 {
                     DropDownList Prodotto = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpProd");
                     TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtQta");
-                    TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtSconto");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
                     dtCurrentTable.Rows[i - 1]["Col1"] = Prodotto.SelectedValue;
                     dtCurrentTable.Rows[i - 1]["Col2"] = Quantità.Text;
-                    dtCurrentTable.Rows[i - 1]["Col3"] = Sconto.Text;
-                    dtCurrentTable.Rows[i - 1]["Col4"] = Iva.SelectedValue;
+                    dtCurrentTable.Rows[i - 1]["Col3"] = Iva.SelectedValue;
 
                     rowIndex++;
                 }
@@ -108,8 +106,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                 {
                     DropDownList Prodotto = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpProd");
                     TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtQta");
-                    TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtSconto");
-                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
+                    DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("drpIva");
 
                     help.connetti();
                     help.assegnaComando("SELECT Descrizione FROM Prodotti WHERE COD_Azienda='" + Session["Azienda"].ToString()+"'");
@@ -123,8 +120,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                     grvPrimaNota.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
                     Prodotto.SelectedValue = dt.Rows[i]["Col1"].ToString();
                     Quantità.Text = dt.Rows[i]["Col2"].ToString();
-                    Sconto.Text = dt.Rows[i]["Col3"].ToString();
-                    Iva.SelectedValue = dt.Rows[i]["Col4"].ToString();
+                    Iva.SelectedValue = dt.Rows[i]["Col3"].ToString();
 
                     rowIndex++;
                 }
@@ -174,15 +170,13 @@ public partial class EmettiFattura : System.Web.UI.Page
                 {
                     DropDownList Prodotto = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[1].FindControl("drpProd");
                     TextBox Quantità = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[2].FindControl("txtQta");
-                    TextBox Sconto = (TextBox)grvPrimaNota.Rows[rowIndex].Cells[3].FindControl("txtSconto");
                     DropDownList Iva = (DropDownList)grvPrimaNota.Rows[rowIndex].Cells[4].FindControl("drpIva");
                     drCurrentRow = dtCurrentTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
                     dtCurrentTable.Rows[i - 1]["Col1"] = Prodotto.SelectedValue;
                     dtCurrentTable.Rows[i - 1]["Col2"] = Quantità.Text;
-                    dtCurrentTable.Rows[i - 1]["Col3"] = Sconto.Text;
-                    dtCurrentTable.Rows[i - 1]["Col4"] = Iva.SelectedValue;
+                    dtCurrentTable.Rows[i - 1]["Col3"] = Iva.SelectedValue;
 
                     rowIndex++;
                 }
@@ -247,7 +241,6 @@ public partial class EmettiFattura : System.Web.UI.Page
                         help.disconnetti();
                     }
 
-
                     if(!trovato)
                     {
                         string oggetto = txtOggetto.Text;
@@ -256,8 +249,7 @@ public partial class EmettiFattura : System.Web.UI.Page
 
                         string Descrizione = row.ItemArray[1] as string;
                         string Quantità = row.ItemArray[2] as string;
-                        string Sconto = row.ItemArray[3] as string;
-                        string Iva = row.ItemArray[4] as string;
+                        string Iva = row.ItemArray[3] as string;
    
                         help.connetti();
                         help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '" + NomeCliente + "'");
@@ -270,38 +262,40 @@ public partial class EmettiFattura : System.Web.UI.Page
                         help.assegnaComando("SELECT Qta FROM Prodotti WHERE COD_Azienda='" + Session["Azienda"].ToString() + "' AND Descrizione = '" + Descrizione + "'");
                         rs=help.estraiDati();
                         rs.Read();
-                        if(int.Parse(rs["Qta"].ToString())!=0)
+                        if (int.Parse(rs["Qta"].ToString()) != 0)
                         {
                             help.disconnetti();
-                        #region creazione fattura
-                        help.connetti();
-                        help.assegnaComando("SELECT ID_Prodotto,Prezzo FROM Prodotti WHERE COD_Azienda='" + Session["Azienda"].ToString()+"' AND Descrizione = '"+Descrizione+"'");
-                        rs = help.estraiDati();
-                        rs.Read();
-                        string CodiceArticolo = rs["ID_Prodotto"].ToString();
-                        string PrezzoUnitario = rs["Prezzo"].ToString();
-                        int Importo = int.Parse(PrezzoUnitario) * int.Parse(Quantità);
-                        help.disconnetti();
+                            #region creazione fattura
+                            help.connetti();
+                            help.assegnaComando("SELECT ID_Prodotto,Prezzo FROM Prodotti WHERE COD_Azienda='" + Session["Azienda"].ToString() + "' AND Descrizione = '" + Descrizione + "'");
+                            rs = help.estraiDati();
+                            rs.Read();
+                            string CodiceArticolo = rs["ID_Prodotto"].ToString();
+                            string PrezzoUnitario = rs["Prezzo"].ToString();
+                            int Importo = int.Parse(PrezzoUnitario) * int.Parse(Quantità);
+                            help.disconnetti();
 
-                        help.connetti();
-                        help.assegnaComando("INSERT INTO Fattura(Numero,CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva,Oggetto,TipoPagamento,Data,COD_Cliente,COD_Azienda) " +
-                            "VALUES('" + Session["Numero"].ToString() +
-                            "','" + CodiceArticolo +
-                            "','" + Descrizione +
-                            "','" + Quantità +
-                            "','" + PrezzoUnitario +
-                            "','" + Sconto +
-                            "','" + Importo +
-                            "','" + Iva +
-                            "','" + oggetto +
-                            "','" + tipoPagamento +
-                            "','" + data +
-                            "','" + Session["ID_Cliente"].ToString() +
-                            "','" + Session["Azienda"].ToString() + "')");
-                        help.eseguicomando();
-                        help.disconnetti();
-                        btnVisual.Enabled = true;
-                        #endregion
+                            help.connetti();
+                            help.assegnaComando("INSERT INTO Fattura(Numero,Oggetto,TipoPagamento,Data,COD_Cliente,COD_Azienda) " +
+                                "VALUES('" + Session["Numero"].ToString() +
+                                "','" + oggetto +
+                                "','" + tipoPagamento +
+                                "','" + data +
+                                "','" + Session["ID_Cliente"].ToString() +
+                                "','" + Session["Azienda"].ToString() + "')");
+                            help.eseguicomando();
+                            help.disconnetti();
+
+                            help.connetti();
+                            help.assegnaComando("INSERT INTO Vendita "+
+                                "VALUES("+Session["Numero"].ToString()+
+                                ","+CodiceArticolo+
+                                ","+Quantità+
+                                ","+Iva+")");
+                            help.eseguicomando();
+                            help.disconnetti();
+                            btnVisual.Enabled = true;
+                            #endregion
                         }
                         else
                         {

@@ -67,6 +67,11 @@ public partial class VisualizzaFattura : System.Web.UI.Page
 
     public string caricatabella_imponibili()
     {
+        help.connetti();
+        help.assegnaComando("CREATE VIEW Vista AS("+
+            "SELECT ");
+
+
         string tabella = "";
         help.connetti();
         help.assegnaComando("SELECT CodArticolo,Descrizione,Quantità,PrezzoUnitario,Sconto,Importo,Iva FROM Fattura WHERE Numero = '" + Session["Numero"].ToString()+ "' AND COD_Azienda="+azienda);

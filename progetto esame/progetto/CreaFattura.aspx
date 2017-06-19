@@ -45,11 +45,6 @@
                                <asp:TextBox Width="90%" ID="txtQta" runat="server" ></asp:TextBox>
                            </ItemTemplate>
                        </asp:TemplateField>
-                       <asp:TemplateField HeaderText="Sconto">
-                           <ItemTemplate>
-                               <asp:TextBox Width="90%" ID="txtSconto" runat="server" ></asp:TextBox>
-                           </ItemTemplate>
-                       </asp:TemplateField>
                        <asp:TemplateField HeaderText="Iva">
                            <ItemTemplate>
                                <asp:DropDownList ID="drpIva" runat="server" >
