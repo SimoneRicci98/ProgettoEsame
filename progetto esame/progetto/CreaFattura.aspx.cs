@@ -206,7 +206,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                     Session["Numero"] = txtNumero.Text;
 
                     help.connetti();
-                    help.assegnaComando("CREATE VIEW vista AS (SELECT RagioneSociale,ID_Azienda FROM Clienti WHERE COD_Azienda ='" + Session["Azienda"].ToString()+"')");
+                    help.assegnaComando("CREATE VIEW vista AS (SELECT RagioneSociale,ID_Azienda FROM Aziende WHERE CliFor =" + Session["Azienda"].ToString()+" AND Tipo=1)");
                     help.eseguicomando();
                     help.disconnetti();
                     help.connetti();
@@ -253,7 +253,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                         string Iva = row.ItemArray[3] as string;
    
                         help.connetti();
-                        help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '" + NomeCliente + "'");
+                        help.assegnaComando("SELECT ID_Azienda FROM Aziende WHERE RagioneSociale = '" + NomeCliente + "' AND CliFor="+Session["Azienda"].ToString()+" AND Tipo=1");
                         rs = help.estraiDati();
                         rs.Read();
                         Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
@@ -356,12 +356,17 @@ public partial class EmettiFattura : System.Web.UI.Page
     {
         string NomeCliente = DropDownList1.SelectedItem.Text;
         help.connetti();
-        help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE RagioneSociale = '" + NomeCliente + "'");
+        help.assegnaComando("SELECT ID_Azienda FROM Aziende WHERE RagioneSociale = '" + NomeCliente + "' AND CliFor=" + Session["Azienda"].ToString() + " AND Tipo=1");
         rs = help.estraiDati();
         rs.Read();
         Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
         help.disconnetti();
         Session["Numero"] = txtVisualNum.Text;
         Response.Redirect("VisualizzaFattura.aspx");
+    }
+
+    protected void sqlEstraiClienti_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+    {
+
     }
 }

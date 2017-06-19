@@ -5,9 +5,10 @@
             Selezionare cliente 
             <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="sqlEstraiClienti" DataTextField="RagioneSociale" DataValueField="RagioneSociale" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             </asp:DropDownList>
-            <asp:SqlDataSource ID="sqlEstraiClienti" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Clienti] WHERE ([COD_Azienda] = @COD_Azienda)">
+            <asp:SqlDataSource ID="sqlEstraiClienti" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [RagioneSociale] FROM [Aziende] WHERE (([CliFor] = @CliFor) AND ([Tipo] = @Tipo))" OnSelecting="sqlEstraiClienti_Selecting">
                 <SelectParameters>
-                    <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
+                    <asp:SessionParameter Name="CliFor" SessionField="Azienda" Type="Int32" />
+                    <asp:Parameter DefaultValue="1" Name="Tipo" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
         </div>

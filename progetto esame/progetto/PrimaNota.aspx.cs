@@ -18,7 +18,7 @@ public partial class PrimaNota : System.Web.UI.Page
         DropDownList2.Items.Clear();
         #region carico clienti
         help.connetti();
-        help.assegnaComando("SELECT RagioneSociale FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+"'");
+        help.assegnaComando("SELECT RagioneSociale FROM Aziende WHERE CliFor = '"+Session["Azienda"].ToString()+"' AND Tipo = 1");
         rs = help.estraiDati();
         while(rs.Read())
         {
@@ -28,7 +28,7 @@ public partial class PrimaNota : System.Web.UI.Page
         #endregion
         #region carico fornitori
         help.connetti();
-        help.assegnaComando("SELECT RagioneSociale FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() + "'");
+        help.assegnaComando("SELECT RagioneSociale FROM Aziende WHERE Clifor = '" + Session["Azienda"].ToString() + "' AND Tipo = 2");
         rs = help.estraiDati();
         while (rs.Read())
         {
@@ -236,8 +236,8 @@ public partial class PrimaNota : System.Web.UI.Page
             if(radioCliente.Checked)
             {
                 help.connetti();
-                help.assegnaComando("SELECT ID_Azienda FROM Clienti WHERE COD_Azienda = '"+Session["Azienda"].ToString()+
-                    "' AND RagioneSociale = '"+DropDownList1.SelectedItem.Text+"'");
+                help.assegnaComando("SELECT ID_Azienda FROM Aziende WHERE CliFor = '"+Session["Azienda"].ToString()+
+                    "' AND RagioneSociale = '"+DropDownList1.SelectedItem.Text+"' AND Tipo = 1");
                 rs = help.estraiDati();
                 rs.Read();
                 codCliFor = "Cliente_" + rs["ID_Azienda"].ToString();
@@ -246,8 +246,8 @@ public partial class PrimaNota : System.Web.UI.Page
             if (radioFornitore.Checked)
             {
                 help.connetti();
-                help.assegnaComando("SELECT ID_Azienda FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString() +
-                    "' AND RagioneSociale = '" + DropDownList2.SelectedItem.Text + "'");
+                help.assegnaComando("SELECT ID_Azienda FROM Aziende WHERE CliFor = '" + Session["Azienda"].ToString() +
+                    "' AND RagioneSociale = '" + DropDownList2.SelectedItem.Text + "' AND Tipo = 2");
                 rs = help.estraiDati();
                 rs.Read();
                 codCliFor = "Fornitore_" + rs["ID_Azienda"].ToString();
@@ -398,5 +398,10 @@ public partial class PrimaNota : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         Response.Redirect("Giornale.aspx");
+    }
+
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }

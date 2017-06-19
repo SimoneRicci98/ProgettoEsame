@@ -16,7 +16,7 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
             if (Session["Azienda"] != null)
             {
                 lblAz.Text = " della tua azienda";
-                Session["Operazione"] = "mia";
+                Session["Operazione"] = "0";
                 btnChiudi.Visible = false;
             }
             if (Session["Cliente"] != null && Session["Fornitore"] != null)
@@ -24,14 +24,14 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 if ((bool)Session["Cliente"])
                 {
                     lblAz.Text = " del cliente";
-                    Session["Operazione"] = "cli";
+                    Session["Operazione"] = "1";
                     btnChiudi.Visible = true;
                 }
                 else
                 if ((bool)Session["Fornitore"])
                 {
                     lblAz.Text = " del fornitore";
-                    Session["Operazione"] = "for";
+                    Session["Operazione"] = "2";
                     btnChiudi.Visible = true;
                 }
             }
@@ -103,31 +103,30 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
                 string operazione = Session["Operazione"].ToString();
                 switch (operazione)
                 {
-                    case "mia":
+                    case "0":
                         #region inserimento dati propria azienda 
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
-                            "VALUES('" + Session["Utente"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                        help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email,Tipo,CLiFor) " +
+                            "VALUES('" + Session["Utente"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "',"+operazione+",0)");
                         help.eseguicomando();
                         help.disconnetti();
                         Response.Redirect("Seleziona.aspx");
                         #endregion
-
                         break;
-                    case "cli":
-                        #region insetimento dati nella tabella clienti
+                    case "1":
+                        #region insetimento dati clienti
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Clienti(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
-                            "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                        help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email,Tipo,CliFor) " +
+                            "VALUES('" + 0 + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "',"+operazione+","+Session["Azienda"].ToString()+")");
                         help.eseguicomando();
                         help.disconnetti();
                         #endregion
                     break;
-                    case "for":
-                        #region inserimento dati nella tabella fornitori
+                    case "2":
+                        #region inserimento dati fornitori
                         help.connetti();
-                        help.assegnaComando("INSERT INTO Fornitori(COD_Azienda,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email) " +
-                            "VALUES('" + Session["Azienda"].ToString() + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "')");
+                        help.assegnaComando("INSERT INTO Aziende(COD_Proprietario,RagioneSociale,Numero,Indirizzo,PartitaIVA,CodFiscale,NomeCog,Provincia,Cap,Regione,Nazione,TelAzienda,Email,Tipo,Clifor) " +
+                            "VALUES('" + 0 + "','" + RagioneSociale + "','" + NumCell + "','" + Indirizzo + "','" + PIva + "','" + CodFisc + "','" + NomeCognome + "','" + Provincia + "','" + Cap + "','" + Regione + "','" + Nazione + "','" + Tel + "','" + Email + "'," + operazione + "," + Session["Azienda"].ToString() + ")");
                         help.eseguicomando();
                         help.disconnetti();
                     #endregion
@@ -137,9 +136,9 @@ public partial class AggiungiAnagrafica : System.Web.UI.Page
 
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                Response.Write("Errore");
+                Response.Write(ex.ToString());
             }
         }
  

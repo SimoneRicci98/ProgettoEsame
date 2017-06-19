@@ -15,23 +15,23 @@ public partial class VisualizzaDati : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         myCookie = Request.Cookies["PopUp"];
-        if (Session["Operazione"].ToString()=="Cli")
+        if (Session["Operazione"].ToString()=="1")
         {
             Session["Fornitore"] = false;
             Session["Cliente"] = true;
-            tabella("Clienti");
+            tabella();
         }
         else
         {
             Session["Fornitore"] = true;
             Session["Cliente"] = false;
-            tabella("Fornitori");
+            tabella();
         }
     }
-    public void tabella(string app)
+    public void tabella()
     {
         help.connetti();
-        help.assegnaComando("SELECT RagioneSociale,Indirizzo,Email,TelAzienda FROM "+app+" WHERE COD_Azienda = '" + Session["Azienda"].ToString() + "'");
+        help.assegnaComando("SELECT RagioneSociale,Indirizzo,Email,TelAzienda FROM Aziende WHERE Tipo ="+ Session["Operazione"].ToString()+" AND CliFor = '" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
         DataTable dt = new DataTable();
         dt.Columns.AddRange(new DataColumn[4]

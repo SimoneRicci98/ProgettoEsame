@@ -119,13 +119,13 @@ public partial class Fatturazione : System.Web.UI.Page
 
     protected void btnCli_Click(object sender, EventArgs e)
     {
-        Session["Operazione"] = "Cli";
+        Session["Operazione"] = "1";
         Response.Redirect("VisualizzaDati.aspx");
     }
 
     protected void btnFor_Click(object sender, EventArgs e)
     {
-        Session["Operazione"] = "For";
+        Session["Operazione"] = "2";
         Response.Redirect("VisualizzaDati.aspx");
     }
     protected void btnAcquista_Click(object sender, EventArgs e)

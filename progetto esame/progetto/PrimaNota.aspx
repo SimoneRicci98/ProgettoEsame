@@ -36,7 +36,7 @@
                    <div class="col-xs-6">
                     <asp:RadioButton ID="radioCliente" runat="server" GroupName="ClienteFornitore" Text="Cliente" />
                        <br /><br />
-                       <asp:DropDownList ID="DropDownList1" runat="server">
+                       <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                        </asp:DropDownList>
                        <br /><br />
                    <asp:Button ID="btnAggCli" runat="server" CssClass="btn btn-primary" OnClick="btnAggCli_Click" Text="Aggiugi cliente" />
