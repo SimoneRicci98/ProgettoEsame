@@ -122,7 +122,7 @@ public partial class EmettiFattura : System.Web.UI.Page
     {
         AddNewRow();
     }
-    protected void grvStudentDetails_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void grvFattura_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SetRowData();
         if (ViewState["CurrentTable"] != null)
