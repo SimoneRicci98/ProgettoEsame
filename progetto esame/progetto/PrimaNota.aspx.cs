@@ -13,6 +13,7 @@ public partial class PrimaNota : System.Web.UI.Page
     SqlDataReader rs;
     HttpCookie myCookie;
     int cont = 0;
+    int app = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         DropDownList1.Items.Clear();
@@ -272,16 +273,15 @@ public partial class PrimaNota : System.Web.UI.Page
                     {
                         foreach (DataRow row in table.Rows)
                         {
-
-                            help.connetti();
-                            help.assegnaComando("SELECT MAX (ID_Scrittura) AS massimo FROM Giornale");
-                            rs = help.estraiDati();
-                            rs.Read();
-                            int app = int.Parse(rs["massimo"].ToString()) + 1;
-                            help.disconnetti();
-
                             if (cont == 0)
                             {
+                                help.connetti();
+                                help.assegnaComando("SELECT MAX (ID_Scrittura) AS massimo FROM Giornale");
+                                rs = help.estraiDati();
+                                rs.Read();
+                                app = int.Parse(rs["massimo"].ToString()) + 1;
+                                help.disconnetti();
+
                                 help.connetti();
                                 help.assegnaComando("INSERT INTO Giornale" +
                                     " VALUES('" + app +
@@ -295,6 +295,7 @@ public partial class PrimaNota : System.Web.UI.Page
                                     "','" + dataFattura + "')");
                                 help.eseguicomando();
                                 help.disconnetti();
+                                cont = 1;
                             }
 
 
@@ -304,26 +305,29 @@ public partial class PrimaNota : System.Web.UI.Page
                             string Iva = row.ItemArray[4] as string;
                             if (Dare != string.Empty)
                             {
-
+                                help.connetti();
+                                help.assegnaComando("INSERT INTO Scrittura" +
+                                    " VALUES('" + ContoMastro +
+                                    "'," + app +
+                                    ",'Dare_" + Dare +
+                                    "'," + Iva + ")");
+                                help.eseguicomando();
+                                help.disconnetti();
                             }
                             else
                             {
                                 help.connetti();
-                                help.assegnaComando("INSERT INTO Giornale" +
-                                    " VALUES('" + app +
-                                    "','" + Session["Azienda"].ToString() +
-                                    "','" + totDoc +
-                                    "','" + codCliFor +
-                                    "','" + descrizione +
-                                    "','" + NumDoc +
-                                    "','" + protocollo +
-                                    "','" + dataOperazione +
-                                    "','" + dataFattura + "')");
+                                help.assegnaComando("INSERT INTO Scrittura" +
+                                    " VALUES('" + ContoMastro +
+                                    "'," + app +
+                                    ",'Avere_" + Avere +
+                                    "'," + Iva + ")");
                                 help.eseguicomando();
                                 help.disconnetti();
                             }
                         }
                     }
+                    cont = 0;
                     pulisciPagina();
                 }
                 else
@@ -340,11 +344,7 @@ public partial class PrimaNota : System.Web.UI.Page
 
             }            
         }
-        catch(FormatException)
-        {
-            MessageBox.Show("Inserire le date in modo corretto");
-        }
-        catch (Exception ex)
+        catch (DivideByZeroException ex)
         {
             MessageBox.Show(ex.Message);
         }

@@ -31,9 +31,9 @@ public partial class Giornale : System.Web.UI.Page
         {
             tabella();
         }
-        catch
+        catch(Exception ex)
         {
-            MessageBox.Show("C'è stato un errore");
+            Response.Write(ex.ToString());
         }
     }
 
@@ -58,7 +58,7 @@ public partial class Giornale : System.Web.UI.Page
             new DataColumn("Dare"),
             new DataColumn("Avere")});
         help.connetti();
-        help.assegnaComando("SELECT COUNT(NumDoc) AS Conta FROM Giornale WHERE COD_Azienda ='" + Session["Azienda"].ToString() + "' GROUP BY NumDoc");
+        help.assegnaComando("SELECT COUNT(COD_Scrittura) AS Conta FROM Scrittura, Giornale WHERE COD_Scrittura = ID_Scrittura AND COD_Azienda = '"+Session["Azienda"].ToString()+"' GROUP BY NumDoc");
         rs = help.estraiDati();
         while (rs.Read())
         {
@@ -66,8 +66,8 @@ public partial class Giornale : System.Web.UI.Page
         }
         help.disconnetti();
         help.connetti();
-        help.assegnaComando("SELECT NumDoc,ContoMastro,Descrizione,DareAvere,Protocollo,Cod_CliFor,DataFattura,DataRegistrazione FROM Giornale " +
-            "WHERE COD_Azienda ='" + Session["Azienda"].ToString() + "'");
+        help.assegnaComando("SELECT NumDoc,Conto,Descrizione,DareAvere,Protocollo,Cod_CliFor,DataFattura,DataRegistrazione FROM Giornale,Scrittura " +
+            "WHERE COD_Scrittura = ID_Scrittura AND COD_Azienda ='" + Session["Azienda"].ToString() + "'");
         rs = help.estraiDati();
         while (i != numDocumenti.Count)
         {
@@ -80,11 +80,11 @@ public partial class Giornale : System.Web.UI.Page
                 app1 = rs["Cod_CliFor"].ToString().Substring(0, index1);
                 if (app1 == "Cliente")
                 {
-                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["Conto"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
                 }
                 else
                 {
-                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["Conto"], rs["Protocollo"], rs["Descrizione"], rs["DareAvere"].ToString().Substring(index + 1), "");
                 }
                 TotDare += Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
                 n++;
@@ -95,11 +95,11 @@ public partial class Giornale : System.Web.UI.Page
                 app1 = rs["Cod_CliFor"].ToString().Substring(0, index1);
                 if (app1 == "Cliente")
                 {
-                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], rs["Cod_CliFor"].ToString().Substring(index1 + 1), "", rs["Conto"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
                 }
                 else
                 {
-                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["ContoMastro"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
+                    dt.Rows.Add(rs["NumDoc"], rs["DataFattura"], rs["DataRegistrazione"], "", rs["Cod_CliFor"].ToString().Substring(index1 + 1), rs["Conto"], rs["Protocollo"], rs["Descrizione"], "", rs["DareAvere"].ToString().Substring(index + 1));
                 }
                 TotAvere += Convert.ToInt16(rs["DareAvere"].ToString().Substring(index + 1));
                 n++;

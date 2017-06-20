@@ -37,13 +37,13 @@ public partial class Fatturazione : System.Web.UI.Page
         help.disconnetti();
         #region conto clienti, fornitori e fatture create
         help.connetti();
-        help.assegnaComando("SELECT COUNT(COD_Azienda) FROM Clienti WHERE COD_Azienda = '" + Session["Azienda"].ToString()+"'");
+        help.assegnaComando("SELECT COUNT(ID_Azienda) FROM Aziende WHERE CliFor = '" + Session["Azienda"].ToString()+"' AND Tipo=1");
         rs = help.estraiDati();
         rs.Read();
         numClienti = 5- Convert.ToInt16(rs[0].ToString());
         help.disconnetti();
         help.connetti();
-        help.assegnaComando("SELECT COUNT(COD_Azienda) FROM Fornitori WHERE COD_Azienda = '" + Session["Azienda"].ToString()+"'");
+        help.assegnaComando("SELECT COUNT(ID_Azienda) FROM Aziende WHERE CliFor = '" + Session["Azienda"].ToString()+"' AND TIpo=2");
         rs = help.estraiDati();
         rs.Read();
         numFornitori = 3-Convert.ToInt16(rs[0].ToString());
