@@ -32,7 +32,7 @@
         <br />
     </div>
         <div class="col-xs-12">
-               <asp:GridView ID="grvPrimaNota" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="70%">
+               <asp:GridView ID="grvFattura" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="grvStudentDetails_RowDeleting" ShowFooter="True" Style="text-align: left" Width="70%">
                    <Columns>
                        <asp:BoundField DataField="RowNumber" HeaderText="Nr." />
                          <asp:TemplateField HeaderText="Prodotto">
