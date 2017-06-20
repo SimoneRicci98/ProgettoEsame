@@ -12,6 +12,7 @@ public partial class PrimaNota : System.Web.UI.Page
     dbHelper help = new dbHelper();
     SqlDataReader rs;
     HttpCookie myCookie;
+    int cont = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         DropDownList1.Items.Clear();
@@ -278,22 +279,16 @@ public partial class PrimaNota : System.Web.UI.Page
                             rs.Read();
                             int app = int.Parse(rs["massimo"].ToString()) + 1;
                             help.disconnetti();
-                            string ContoMastro = row.ItemArray[1] as string;
-                            string Avere = row.ItemArray[2] as string;
-                            string Dare = row.ItemArray[3] as string;
-                            string Iva = row.ItemArray[4] as string;
-                            if (Dare != string.Empty)
+
+                            if (cont == 0)
                             {
                                 help.connetti();
                                 help.assegnaComando("INSERT INTO Giornale" +
                                     " VALUES('" + app +
                                     "','" + Session["Azienda"].ToString() +
-                                    "','" + ContoMastro +
-                                    "','Dare_" + Dare +
                                     "','" + totDoc +
                                     "','" + codCliFor +
                                     "','" + descrizione +
-                                    "','" + Iva +
                                     "','" + NumDoc +
                                     "','" + protocollo +
                                     "','" + dataOperazione +
@@ -301,18 +296,25 @@ public partial class PrimaNota : System.Web.UI.Page
                                 help.eseguicomando();
                                 help.disconnetti();
                             }
+
+
+                            string ContoMastro = row.ItemArray[1] as string;
+                            string Avere = row.ItemArray[2] as string;
+                            string Dare = row.ItemArray[3] as string;
+                            string Iva = row.ItemArray[4] as string;
+                            if (Dare != string.Empty)
+                            {
+
+                            }
                             else
                             {
                                 help.connetti();
                                 help.assegnaComando("INSERT INTO Giornale" +
                                     " VALUES('" + app +
                                     "','" + Session["Azienda"].ToString() +
-                                    "','" + ContoMastro +
-                                    "','Avere_" + Avere +
                                     "','" + totDoc +
                                     "','" + codCliFor +
                                     "','" + descrizione +
-                                    "','" + Iva +
                                     "','" + NumDoc +
                                     "','" + protocollo +
                                     "','" + dataOperazione +
