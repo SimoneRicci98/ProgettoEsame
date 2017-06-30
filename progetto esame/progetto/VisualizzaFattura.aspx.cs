@@ -39,7 +39,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
             help.disconnetti();
 
             help.connetti();
-            help.assegnaComando("SELECT CodFiscale,Indirizzo,RagioneSociale,TelAzienda,PartitaIVA FROM Clienti WHERE ID_Azienda = '" + Session["ID_Cliente"].ToString() + "'");
+            help.assegnaComando("SELECT CodFiscale,Indirizzo,RagioneSociale,TelAzienda,PartitaIVA FROM Aziende WHERE CliFor = " + azienda + " AND Tipo=1");
             rs = help.estraiDati();
             rs.Read();
             #region assegno valori alle label del cliente
@@ -53,7 +53,7 @@ public partial class VisualizzaFattura : System.Web.UI.Page
             help.disconnetti();
 
             help.connetti();
-            help.assegnaComando("SELECT Numero,Oggetto,Data,TipoPagamento FROM Fattura WHERE Numero = '" + Session["Numero"].ToString() + "' AND COD_Cliente = '" + Session["ID_Cliente"].ToString() + "'");
+            help.assegnaComando("SELECT Numero,Oggetto,Data,TipoPagamento FROM Fattura WHERE Numero = '" + Session["Numero"].ToString() + "' AND COD_Azienda= '" + azienda + "'");
             rs = help.estraiDati();
             rs.Read();
             lblNumFatt.Text = rs["Numero"].ToString();

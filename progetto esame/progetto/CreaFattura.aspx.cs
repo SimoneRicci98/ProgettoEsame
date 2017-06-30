@@ -355,7 +355,6 @@ public partial class EmettiFattura : System.Web.UI.Page
         help.assegnaComando("SELECT ID_Azienda FROM Aziende WHERE RagioneSociale = '" + NomeCliente + "' AND CliFor=" + Session["Azienda"].ToString() + " AND Tipo=1");
         rs = help.estraiDati();
         rs.Read();
-        Session["ID_Cliente"] = rs["ID_Azienda"].ToString();
         help.disconnetti();
         Session["Numero"] = txtVisualNum.Text;
         Response.Redirect("VisualizzaFattura.aspx");
