@@ -13,6 +13,7 @@ public partial class EmettiFattura : System.Web.UI.Page
     SqlDataReader rs;
     int cont = 0;
     int app1 = 0;
+    bool finito = false;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -257,7 +258,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                             " AND Descrizione = '" + Descrizione + "'");
                         rs=help.estraiDati();
                         rs.Read();
-                        if (int.Parse(rs["Qta"].ToString()) != 0)
+                        if (int.Parse(rs["Qta"].ToString()) != 0 && !finito)
                         {
                             help.disconnetti();
                             #region creazione fattura
@@ -307,13 +308,21 @@ public partial class EmettiFattura : System.Web.UI.Page
                         else
                         {
                             help.disconnetti();
-                            MessageBox.Show("Impossibile emettere la fattura, uno o più prodotti sono terminati");
+                            finito = true;
                         }
                     }
                 }
             }
             app1 = 0;
-            Response.Redirect(Request.Url.AbsoluteUri);
+            if(finito)
+            {
+                MessageBox.Show("Impossibile emettere la fattura, uno o più prodotti sono terminati");
+            }
+            else
+            {
+                Response.Redirect("CreaFattura.aspx");
+            }
+            
         }
         catch (Exception ex)
         {
