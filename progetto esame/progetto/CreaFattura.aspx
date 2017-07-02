@@ -80,7 +80,13 @@
                 <br />
                <br />
                Se si vuole visualizzare una fattura già creata, inserire nella casella di seguito il suo numero
-               <asp:TextBox ID="txtVisualNum" runat="server" Width="26px" ></asp:TextBox>
+               <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource1" DataTextField="Numero" DataValueField="Numero">
+               </asp:DropDownList>
+               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ContabilitàDBConnectionString %>" SelectCommand="SELECT [Numero] FROM [Fattura] WHERE ([COD_Azienda] = @COD_Azienda)">
+                   <SelectParameters>
+                       <asp:SessionParameter Name="COD_Azienda" SessionField="Azienda" Type="String" />
+                   </SelectParameters>
+               </asp:SqlDataSource>
                <br />
 
                <asp:Button ID="btnVisual0" runat="server" CssClass="btn btn-primary" Text="Visualizza fattura creata" OnClick="btnVisual0_Click" />

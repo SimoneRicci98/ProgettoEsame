@@ -262,11 +262,12 @@ public partial class EmettiFattura : System.Web.UI.Page
                             help.disconnetti();
                             #region creazione fattura
                             help.connetti();
-                            help.assegnaComando("SELECT ID_Prodotto,Prezzo FROM Prodotti"+
+                            help.assegnaComando("SELECT ID,ID_Prodotto,Prezzo FROM Prodotti"+
                                 " WHERE COD_Azienda='" + Session["Azienda"].ToString() + "'"+
                                 " AND Descrizione = '" + Descrizione + "'");
                             rs = help.estraiDati();
                             rs.Read();
+                            int id = int.Parse(rs["ID"].ToString());
                             string CodiceArticolo = rs["ID_Prodotto"].ToString();
                             string PrezzoUnitario = rs["Prezzo"].ToString();
                             int Importo = int.Parse(PrezzoUnitario) * int.Parse(Quantità);
@@ -295,6 +296,11 @@ public partial class EmettiFattura : System.Web.UI.Page
                                 ","+Iva+")");
                             help.eseguicomando();
                             help.disconnetti();
+
+                            help.connetti();
+                            help.assegnaComando("UPDATE Prodotti SET Qta = (SELECT Qta FROM Prodotti WHERE ID="+id+")-"+Quantità+ " WHERE ID=" + id);
+                            help.eseguicomando();
+                            help.disconnetti();
                             btnVisual.Enabled = true;
                             #endregion
                         }
@@ -307,6 +313,7 @@ public partial class EmettiFattura : System.Web.UI.Page
                 }
             }
             app1 = 0;
+            Response.Redirect(Request.Url.AbsoluteUri);
         }
         catch (Exception ex)
         {
@@ -356,7 +363,7 @@ public partial class EmettiFattura : System.Web.UI.Page
         rs = help.estraiDati();
         rs.Read();
         help.disconnetti();
-        Session["Numero"] = txtVisualNum.Text;
+        Session["Numero"] = DropDownList2.SelectedValue;
         Response.Redirect("VisualizzaFattura.aspx");
     }
 
