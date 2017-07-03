@@ -43,8 +43,8 @@ public partial class Assistenza : System.Web.UI.Page
             email.Body = "Email ricevuta da: "+mail+"\r\n "+txtMsg.Text;
             client.Send(email);
             MessageBox.Show("Invio email riusciuto! Risponderemo al più presto!");
-            Response.Redirect("Assistenza.aspx");
-            
+            Response.AddHeader("REFRESH", "3;URL=Assistenza.aspx");
+
         }
         catch
         {
