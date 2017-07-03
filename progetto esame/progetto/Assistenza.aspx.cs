@@ -31,7 +31,7 @@ public partial class Assistenza : System.Web.UI.Page
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
-            client.Timeout = 1000;
+            client.Timeout = 10000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.Credentials = new NetworkCredential("assistenzaprogettoesame@gmail.com", "Assistenza");
 
@@ -40,14 +40,15 @@ public partial class Assistenza : System.Web.UI.Page
             email.To.Add("assistenzaprogettoesame@gmail.com");
             email.From = new MailAddress(mail);
             email.Subject = drpOggetto.SelectedItem.Text;
-            email.Body = "Email ricevuta da: "+mail+"\r\n "+txtMsg.Text;
+            email.Body = "Email ricevuta da: "+mail+" "+txtMsg.Text;
             client.Send(email);
             MessageBox.Show("Invio email riusciuto! Risponderemo al più presto!");
-            Response.AddHeader("REFRESH", "3;URL=Assistenza.aspx");
+            Response.AddHeader("REFRESH", "1;URL=Seleziona.aspx");
 
         }
         catch
         {
+            //MessageBox.Show(ex.ToString());
             MessageBox.Show("C'è stato un errore nell'invio della mail");
         }
 
