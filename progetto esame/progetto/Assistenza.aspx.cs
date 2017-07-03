@@ -40,8 +40,10 @@ public partial class Assistenza : System.Web.UI.Page
             email.To.Add("assistenzaprogettoesame@gmail.com");
             email.From = new MailAddress(mail);
             email.Subject = drpOggetto.SelectedItem.Text;
-            email.Body = "Email ricevuta da: "+mail+" "+txtMsg.Text;
+            email.Body = "Email ricevuta da: "+mail+"\r\n "+txtMsg.Text;
             client.Send(email);
+            MessageBox.Show("Invio email riusciuto! Risponderemo al più presto!");
+            Response.Redirect("Assistenza.aspx");
             
         }
         catch
