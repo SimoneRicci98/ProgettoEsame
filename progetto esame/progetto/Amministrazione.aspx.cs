@@ -10,9 +10,13 @@ public partial class Amministrazione : System.Web.UI.Page
 {
     dbHelper help = new dbHelper();
     SqlDataReader rs;
-    string domanda;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if(!IsPostBack)
+        {
+            ViewState["Domanda"] = "";
+        }
+        
         drpDomande.Items.Clear();
         if(Session["Admin"]!=null)
         {
@@ -43,7 +47,7 @@ public partial class Amministrazione : System.Web.UI.Page
         try
         {
             help.connetti();
-            help.assegnaComando("UPDATE DomandeRisposte SET Risposta = '"+TextBox1.Text+"' WHERE Risposta='blank' AND Domanda='"+domanda+"'");
+            help.assegnaComando("UPDATE DomandeRisposte SET Risposta = '"+TextBox1.Text+"' WHERE Risposta = 'blank' AND Domanda='"+ViewState["Domanda"].ToString()+"'");
             help.eseguicomando();
             help.disconnetti();
             lblSuccess.Text = "Operazione completata";
@@ -59,15 +63,15 @@ public partial class Amministrazione : System.Web.UI.Page
         try
         {
             string utente;
-            domanda = drpDomande.SelectedValue;
+            ViewState["Domanda"] = drpDomande.SelectedValue;
             help.connetti();
-            help.assegnaComando("SELECT Utente FROM DomandeRisposte WHERE Domanda ='"+domanda+"'");
+            help.assegnaComando("SELECT Utente FROM DomandeRisposte WHERE Domanda ='" + ViewState["Domanda"].ToString() + "'");
             rs = help.estraiDati();
             rs.Read();
             utente = rs["Utente"].ToString();
             help.disconnetti();
             lblRisp.Text = "Rispondi a: " +utente;
-            lblDomandaDa.Text = "Alla domanda: " + domanda;
+            lblDomandaDa.Text = "Alla domanda: " + ViewState["Domanda"].ToString();
         }
         catch
         {

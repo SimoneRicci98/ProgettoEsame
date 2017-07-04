@@ -28,7 +28,7 @@ public partial class Reg : System.Web.UI.Page
             if(email == "Admin")
             {
                 help.connetti();
-                help.assegnaComando("SELECT ID_Admin FROM Admin WHERE Nome='" + email + "' AND Password='" + password + "'");
+                help.assegnaComando("SELECT ID_Admin FROM Admin WHERE Nome='" + email + "' AND Password='" + System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(password, "md5")+ "'");
                 rs = help.estraiDati();
                 rs.Read();
                 Session["Admin"] = rs["ID_Admin"].ToString();
